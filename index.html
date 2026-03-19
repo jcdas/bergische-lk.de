@@ -37,7 +37,9 @@
       font-family: 'Bebas Neue', sans-serif;
       font-size: 1.4rem; color: var(--cream);
       letter-spacing: 2px; text-decoration: none;
+      display: flex; align-items: center; gap: 0.6rem;
     }
+    .nav-logo-img { height: 32px; width: auto; }
     nav .nav-right { display: flex; align-items: center; gap: 1.5rem; }
     nav a.nav-link {
       color: var(--cream); text-decoration: none; font-weight: 500;
@@ -74,7 +76,7 @@
     .hero-content {
       position: relative; z-index: 2; padding: 2rem; max-width: 800px;
     }
-    .hero-logo { width: 120px; height: 120px; margin: 0 auto 1.5rem; }
+    .hero-logo { width: 320px; max-width: 80vw; height: auto; margin: 0 auto 1.5rem; }
     .hero h1 {
       font-family: 'Bebas Neue', sans-serif;
       font-size: clamp(2.8rem, 7vw, 5rem);
@@ -285,7 +287,7 @@
 
 <!-- NAV -->
 <nav>
-  <a href="index.html" class="logo-text" id="nav-logo"></a>
+  <a href="index.html" class="logo-text" id="nav-logo"><img src="logo.svg" alt="" class="nav-logo-img"> </a>
   <div class="nav-right">
     <a href="index.html" class="nav-link" data-de="Startseite" data-en="Home"></a>
     <a href="clubs.html" class="nav-link" data-de="Für Vereine" data-en="For Clubs"></a>
@@ -300,15 +302,7 @@
 <section class="hero">
   <div class="hero-bg" id="hero-bg"></div>
   <div class="hero-content">
-    <svg class="hero-logo" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="60" cy="60" r="56" fill="none" stroke="#F0EBE0" stroke-width="3"/>
-      <circle cx="60" cy="60" r="46" fill="none" stroke="#B85A20" stroke-width="2"/>
-      <path d="M30 60 Q60 20 90 60 Q60 100 30 60Z" fill="none" stroke="#F0EBE0" stroke-width="2"/>
-      <line x1="60" y1="14" x2="60" y2="106" stroke="#F0EBE0" stroke-width="1.5" opacity="0.5"/>
-      <line x1="14" y1="60" x2="106" y2="60" stroke="#F0EBE0" stroke-width="1.5" opacity="0.5"/>
-      <text x="60" y="55" text-anchor="middle" font-family="Bebas Neue, sans-serif" font-size="14" fill="#F0EBE0" letter-spacing="2">BERGISCHE</text>
-      <text x="60" y="72" text-anchor="middle" font-family="Bebas Neue, sans-serif" font-size="11" fill="#B85A20" letter-spacing="3">LK-TURNIERE</text>
-    </svg>
+    <img src="logo.svg" alt="Bergische LK-Turniere" class="hero-logo">
     <h1 id="hero-title"></h1>
     <p class="subtitle" id="hero-subtitle"></p>
     <p class="dates" id="hero-dates"></p>

@@ -37,7 +37,9 @@
       font-family: 'Bebas Neue', sans-serif;
       font-size: 1.4rem; color: var(--cream);
       letter-spacing: 2px; text-decoration: none;
+      display: flex; align-items: center; gap: 0.6rem;
     }
+    .nav-logo-img { height: 32px; width: auto; }
     nav .nav-right { display: flex; align-items: center; gap: 1.5rem; }
     nav a.nav-link {
       color: var(--cream); text-decoration: none; font-weight: 500;
@@ -221,7 +223,7 @@
 
 <!-- NAV -->
 <nav>
-  <a href="index.html" class="logo-text" id="nav-logo"></a>
+  <a href="index.html" class="logo-text" id="nav-logo"><img src="logo.svg" alt="" class="nav-logo-img"> </a>
   <div class="nav-right">
     <a href="index.html" class="nav-link" data-de="Startseite" data-en="Home"></a>
     <a href="clubs.html" class="nav-link" data-de="Für Vereine" data-en="For Clubs"></a>
