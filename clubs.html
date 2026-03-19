@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Für Vereine | Bergische LK-Turniere</title>
+  <meta name="description" content="Sie wollen ein LK-Turnier organisieren? Wir übernehmen alles — von der Anmeldung bei BIG POINT bis zur Durchführung am Turniertag.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --green-deep: #1C3A0E;
+      --green-court: #2D5A18;
+      --orange-clay: #B85A20;
+      --cream: #F0EBE0;
+      --white: #FFFFFF;
+    }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      color: var(--green-deep);
+      background: var(--cream);
+      line-height: 1.6;
+    }
+
+    /* --- NAV --- */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--green-deep);
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.8rem 2rem;
+    }
+    nav .logo-text {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      color: var(--cream);
+      letter-spacing: 2px;
+      text-decoration: none;
+    }
+    nav .nav-right {
+      display: flex; align-items: center; gap: 1.5rem;
+    }
+    nav a.nav-link {
+      color: var(--cream); text-decoration: none; font-weight: 500;
+      font-size: 0.95rem; transition: color 0.2s;
+    }
+    nav a.nav-link:hover { color: var(--orange-clay); }
+    .lang-switch {
+      display: flex; gap: 0.3rem;
+      background: rgba(255,255,255,0.1); border-radius: 4px; padding: 2px;
+    }
+    .lang-switch button {
+      background: none; border: none; color: var(--cream);
+      font-family: 'Barlow', sans-serif; font-weight: 600;
+      padding: 4px 10px; border-radius: 3px; cursor: pointer;
+      font-size: 0.85rem; transition: all 0.2s;
+    }
+    .lang-switch button.active {
+      background: var(--orange-clay); color: var(--white);
+    }
+
+    /* --- HERO --- */
+    .hero {
+      position: relative;
+      min-height: 70vh;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1529926706528-db9e5010cd3e?w=1600&q=80') center/cover no-repeat;
+    }
+    .hero-bg::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(28,58,14,0.9) 0%, rgba(45,90,24,0.8) 100%);
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: 2rem;
+      max-width: 800px;
+    }
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      color: var(--white);
+      letter-spacing: 2px;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+    .hero h1 span { color: var(--orange-clay); }
+    .hero p {
+      font-size: 1.2rem; color: rgba(240,235,224,0.85);
+      max-width: 600px; margin: 0 auto;
+    }
+
+    /* --- SECTIONS --- */
+    section { padding: 5rem 2rem; }
+    .container { max-width: 1000px; margin: 0 auto; }
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.5rem; letter-spacing: 2px;
+      text-align: center; margin-bottom: 1rem;
+    }
+    .section-title span { color: var(--orange-clay); }
+    .divider {
+      width: 60px; height: 4px; background: var(--orange-clay);
+      margin: 1rem auto 2rem; border-radius: 2px;
+    }
+    .section-subtitle {
+      text-align: center; color: #555;
+      max-width: 600px; margin: 0 auto 3rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem;
+      letter-spacing: 2px;
+      border: none; border-radius: 4px;
+      cursor: pointer; text-decoration: none;
+      transition: all 0.3s;
+    }
+    .btn-primary {
+      background: var(--orange-clay); color: var(--white);
+    }
+    .btn-primary:hover {
+      background: #D4692A; transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(184,90,32,0.4);
+    }
+
+    /* --- SERVICES --- */
+    .services { background: var(--white); }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+    }
+    .service-card {
+      background: var(--cream); border-radius: 12px;
+      padding: 2rem; text-align: center;
+      border-top: 4px solid var(--orange-clay);
+      transition: transform 0.3s;
+    }
+    .service-card:hover { transform: translateY(-4px); }
+    .service-icon {
+      width: 56px; height: 56px;
+      background: var(--green-deep); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1rem;
+    }
+    .service-icon svg { width: 28px; height: 28px; fill: var(--cream); }
+    .service-card h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem; letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+    .service-card p { font-size: 0.9rem; color: #555; }
+
+    /* --- PROCESS --- */
+    .process { background: var(--green-deep); color: var(--cream); }
+    .process .section-title { color: var(--cream); }
+    .steps {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem; margin-top: 2rem;
+    }
+    .step {
+      text-align: center; position: relative;
+    }
+    .step-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3rem; color: var(--orange-clay);
+      line-height: 1;
+    }
+    .step h4 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.2rem; letter-spacing: 1px;
+      margin: 0.5rem 0;
+    }
+    .step p { font-size: 0.9rem; color: rgba(240,235,224,0.75); }
+
+    /* --- FORM --- */
+    .form-section { background: var(--cream); }
+    .contact-form {
+      max-width: 600px; margin: 0 auto;
+      background: var(--white);
+      border-radius: 12px;
+      padding: 2.5rem;
+      box-shadow: 0 4px 20px rgba(28,58,14,0.08);
+    }
+    .form-group { margin-bottom: 1.5rem; }
+    .form-group label {
+      display: block; font-weight: 600;
+      margin-bottom: 0.4rem; font-size: 0.95rem;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%; padding: 0.8rem 1rem;
+      border: 2px solid #e0dcd4;
+      border-radius: 6px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 1rem;
+      transition: border-color 0.2s;
+      background: var(--white);
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none; border-color: var(--orange-clay);
+    }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-submit {
+      width: 100%; padding: 1rem;
+      background: var(--orange-clay); color: var(--white);
+      border: none; border-radius: 6px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem; letter-spacing: 2px;
+      cursor: pointer; transition: all 0.3s;
+    }
+    .form-submit:hover {
+      background: #D4692A;
+      box-shadow: 0 6px 20px rgba(184,90,32,0.4);
+    }
+
+    /* --- CTA BACK --- */
+    .back-cta {
+      text-align: center;
+      background: var(--green-deep); color: var(--cream);
+    }
+    .back-cta .section-title { color: var(--cream); }
+    .back-cta p { margin-bottom: 1.5rem; color: rgba(240,235,224,0.8); }
+
+    /* --- FOOTER --- */
+    footer {
+      background: #111; color: #999;
+      text-align: center; padding: 2rem;
+      font-size: 0.85rem;
+    }
+    footer a { color: var(--orange-clay); text-decoration: none; }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+      nav { padding: 0.6rem 1rem; }
+      nav .nav-right { gap: 0.8rem; }
+      section { padding: 3rem 1.2rem; }
+      .contact-form { padding: 1.5rem; }
+    }
+
+    /* --- LANG --- */
+    [lang="de"] .en { display: none; }
+    [lang="en"] .de { display: none; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="logo-text">BERGISCHE LK-TURNIERE</a>
+  <div class="nav-right">
+    <a href="index.html" class="nav-link de">Startseite</a>
+    <a href="index.html" class="nav-link en">Home</a>
+    <a href="clubs.html" class="nav-link de">Für Vereine</a>
+    <a href="clubs.html" class="nav-link en">For Clubs</a>
+    <div class="lang-switch">
+      <button class="active" onclick="setLang('de')">DE</button>
+      <button onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <h1 class="de">SIE WOLLEN EIN LK-TURNIER ORGANISIEREN?<br><span>WIR ÜBERNEHMEN ALLES.</span></h1>
+    <h1 class="en">WANT TO ORGANIZE AN LK TOURNAMENT?<br><span>WE HANDLE EVERYTHING.</span></h1>
+    <p class="de">Von der Anmeldung beim DTB über die Kommunikation mit dem WTB bis zur Durchführung am Turniertag — wir kümmern uns um alles.</p>
+    <p class="en">From DTB registration and WTB communication to tournament day operations — we take care of everything.</p>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services">
+  <div class="container">
+    <h2 class="section-title de">UNSERE <span>LEISTUNGEN</span></h2>
+    <h2 class="section-title en">OUR <span>SERVICES</span></h2>
+    <div class="divider"></div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+        </div>
+        <h3>BIG POINT</h3>
+        <p class="de">Komplette Turnieranmeldung und -verwaltung über das DTB-Portal mybigpoint.tennis.de</p>
+        <p class="en">Complete tournament registration and management via the DTB portal mybigpoint.tennis.de</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+        </div>
+        <h3 class="de">WTB-KOORDINATION</h3>
+        <h3 class="en">WTB COORDINATION</h3>
+        <p class="de">Abstimmung mit dem Westfälischen Tennis-Bund: Genehmigungen, Oberschiedsrichter, Regularien</p>
+        <p class="en">Coordination with the Westphalian Tennis Federation: approvals, chief umpires, regulations</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>
+        </div>
+        <h3 class="de">LOGISTIK</h3>
+        <h3 class="en">LOGISTICS</h3>
+        <p class="de">Bälle, Beschilderung, Spielplan-Aushang, Verpflegung — wir koordinieren alles vor Ort</p>
+        <p class="en">Balls, signage, draw sheets, catering — we coordinate everything on-site</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+        </div>
+        <h3 class="de">TURNIERTAG</h3>
+        <h3 class="en">MATCH DAY</h3>
+        <p class="de">Turnierleitung vor Ort, Spieler-Check-in, Zeitplan-Management, Ergebnismeldung an den DTB</p>
+        <p class="en">On-site tournament direction, player check-in, schedule management, result reporting to DTB</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process">
+  <div class="container">
+    <h2 class="section-title de">SO FUNKTIONIERT <span>ES</span></h2>
+    <h2 class="section-title en">HOW IT <span>WORKS</span></h2>
+    <div class="divider"></div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">01</div>
+        <h4 class="de">ANFRAGE</h4>
+        <h4 class="en">INQUIRY</h4>
+        <p class="de">Füllen Sie das Formular aus — wir melden uns innerhalb von 48h</p>
+        <p class="en">Fill out the form — we'll get back to you within 48h</p>
+      </div>
+      <div class="step">
+        <div class="step-number">02</div>
+        <h4 class="de">PLANUNG</h4>
+        <h4 class="en">PLANNING</h4>
+        <p class="de">Gemeinsame Abstimmung zu Terminen, Kategorien und Umfang</p>
+        <p class="en">Joint coordination on dates, categories and scope</p>
+      </div>
+      <div class="step">
+        <div class="step-number">03</div>
+        <h4 class="de">ANMELDUNG</h4>
+        <h4 class="en">REGISTRATION</h4>
+        <p class="de">Wir übernehmen die komplette Anmeldung bei DTB & WTB</p>
+        <p class="en">We handle the complete registration with DTB & WTB</p>
+      </div>
+      <div class="step">
+        <div class="step-number">04</div>
+        <h4 class="de">TURNIER</h4>
+        <h4 class="en">TOURNAMENT</h4>
+        <p class="de">Wir leiten das Turnier — Ihr Verein genießt den Tag</p>
+        <p class="en">We run the tournament — your club enjoys the day</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORM -->
+<section class="form-section">
+  <div class="container">
+    <h2 class="section-title de">JETZT <span>ANFRAGEN</span></h2>
+    <h2 class="section-title en">GET IN <span>TOUCH</span></h2>
+    <div class="divider"></div>
+    <p class="section-subtitle de">Erzählen Sie uns von Ihrem Verein — wir erstellen ein unverbindliches Angebot</p>
+    <p class="section-subtitle en">Tell us about your club — we'll provide a free, no-obligation quote</p>
+    <form class="contact-form" action="https://formsubmit.co/info@bergische-lk.de" method="POST">
+      <input type="hidden" name="_subject" value="Neue Turnier-Anfrage über bergische-lk.de">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://bergische-lk.de/clubs.html">
+
+      <div class="form-group">
+        <label class="de">Vereinsname *</label>
+        <label class="en">Club Name *</label>
+        <input type="text" name="club_name" required placeholder="z.B. TC Musterstadt">
+      </div>
+
+      <div class="form-group">
+        <label class="de">Anzahl Plätze</label>
+        <label class="en">Number of Courts</label>
+        <input type="number" name="courts" min="1" max="30" placeholder="z.B. 6">
+      </div>
+
+      <div class="form-group">
+        <label class="de">Gewünschter Zeitraum</label>
+        <label class="en">Preferred Period</label>
+        <select name="period">
+          <option value="" class="de">Bitte wählen...</option>
+          <option value="" class="en">Please select...</option>
+          <option value="mai-juni">Mai – Juni</option>
+          <option value="juli-august">Juli – August</option>
+          <option value="september-oktober">September – Oktober</option>
+          <option value="flexibel" class="de">Flexibel</option>
+          <option value="flexible" class="en">Flexible</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>E-Mail *</label>
+        <input type="email" name="email" required placeholder="vorstand@tc-musterstadt.de">
+      </div>
+
+      <div class="form-group">
+        <label class="de">Nachricht (optional)</label>
+        <label class="en">Message (optional)</label>
+        <textarea name="message" placeholder=""></textarea>
+      </div>
+
+      <button type="submit" class="form-submit de">ANFRAGE SENDEN</button>
+      <button type="submit" class="form-submit en">SEND INQUIRY</button>
+    </form>
+  </div>
+</section>
+
+<!-- BACK CTA -->
+<section class="back-cta">
+  <div class="container">
+    <h2 class="section-title de" style="color:var(--cream)">UNSERE <span>TURNIERE</span></h2>
+    <h2 class="section-title en" style="color:var(--cream)">OUR <span>TOURNAMENTS</span></h2>
+    <div class="divider"></div>
+    <p class="de">Sehen Sie unsere aktuellen Turnierstandorte und Termine</p>
+    <p class="en">See our current tournament venues and dates</p>
+    <a href="index.html" class="btn btn-primary de">ZUR STARTSEITE</a>
+    <a href="index.html" class="btn btn-primary en">BACK TO HOME</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2026 Bergische LK-Turniere. <span class="de">Alle Rechte vorbehalten.</span><span class="en">All rights reserved.</span></p>
+  <p style="margin-top:0.5rem;">
+    <a href="mailto:info@bergische-lk.de">info@bergische-lk.de</a> · Jean-Charles, <span class="de">Organisator</span><span class="en">Organizer</span>
+  </p>
+</footer>
+
+<script>
+function setLang(lang) {
+  document.documentElement.lang = lang;
+  document.querySelectorAll('.lang-switch button').forEach(b => {
+    b.classList.toggle('active', b.textContent.trim() === lang.toUpperCase());
+  });
+  localStorage.setItem('lang', lang);
+}
+(function() {
+  const saved = localStorage.getItem('lang');
+  if (saved) setLang(saved);
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bergische LK-Turniere | Tennis Turniere im Bergischen Land</title>
+  <meta name="description" content="LK-Turniere im Bergischen Land. Offizielle Turniere auf Sandplatz in Wuppertal und Haan. Jetzt anmelden auf mybigpoint.tennis.de">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --green-deep: #1C3A0E;
+      --green-court: #2D5A18;
+      --orange-clay: #B85A20;
+      --cream: #F0EBE0;
+      --white: #FFFFFF;
+    }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      color: var(--green-deep);
+      background: var(--cream);
+      line-height: 1.6;
+    }
+
+    /* --- NAV --- */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--green-deep);
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.8rem 2rem;
+    }
+    nav .logo-text {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      color: var(--cream);
+      letter-spacing: 2px;
+      text-decoration: none;
+    }
+    nav .nav-right {
+      display: flex; align-items: center; gap: 1.5rem;
+    }
+    nav a.nav-link {
+      color: var(--cream); text-decoration: none; font-weight: 500;
+      font-size: 0.95rem; transition: color 0.2s;
+    }
+    nav a.nav-link:hover { color: var(--orange-clay); }
+    .lang-switch {
+      display: flex; gap: 0.3rem;
+      background: rgba(255,255,255,0.1); border-radius: 4px; padding: 2px;
+    }
+    .lang-switch button {
+      background: none; border: none; color: var(--cream);
+      font-family: 'Barlow', sans-serif; font-weight: 600;
+      padding: 4px 10px; border-radius: 3px; cursor: pointer;
+      font-size: 0.85rem; transition: all 0.2s;
+    }
+    .lang-switch button.active {
+      background: var(--orange-clay); color: var(--white);
+    }
+
+    /* --- HERO --- */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=1600&q=80') center/cover no-repeat;
+    }
+    .hero-bg::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(28,58,14,0.85) 0%, rgba(45,90,24,0.75) 100%);
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: 2rem;
+      max-width: 800px;
+    }
+    .hero-logo {
+      width: 120px; height: 120px; margin: 0 auto 1.5rem;
+    }
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      color: var(--white);
+      letter-spacing: 3px;
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+    }
+    .hero h1 span { color: var(--orange-clay); }
+    .hero .subtitle {
+      font-size: 1.3rem; color: rgba(240,235,224,0.9);
+      margin-bottom: 0.5rem; font-weight: 500;
+    }
+    .hero .dates {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem; color: var(--orange-clay);
+      letter-spacing: 2px; margin-bottom: 2rem;
+    }
+    .btn {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem;
+      letter-spacing: 2px;
+      border: none; border-radius: 4px;
+      cursor: pointer; text-decoration: none;
+      transition: all 0.3s;
+    }
+    .btn-primary {
+      background: var(--orange-clay); color: var(--white);
+    }
+    .btn-primary:hover {
+      background: #D4692A; transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(184,90,32,0.4);
+    }
+    .btn-outline {
+      background: transparent; color: var(--cream);
+      border: 2px solid var(--cream);
+    }
+    .btn-outline:hover {
+      background: var(--cream); color: var(--green-deep);
+    }
+
+    /* --- SECTIONS --- */
+    section { padding: 5rem 2rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.5rem; letter-spacing: 2px;
+      text-align: center; margin-bottom: 1rem;
+    }
+    .section-title span { color: var(--orange-clay); }
+    .section-subtitle {
+      text-align: center; color: #555;
+      max-width: 600px; margin: 0 auto 3rem;
+    }
+    .divider {
+      width: 60px; height: 4px; background: var(--orange-clay);
+      margin: 1rem auto 2rem; border-radius: 2px;
+    }
+
+    /* --- ANLAGEN --- */
+    .anlagen { background: var(--white); }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
+    .card {
+      border-radius: 12px; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(28,58,14,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      background: var(--white);
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(28,58,14,0.15);
+    }
+    .card-img {
+      height: 220px;
+      background-size: cover; background-position: center;
+    }
+    .card-body { padding: 1.5rem; }
+    .card-body h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem; letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+    .card-body .meta {
+      display: flex; flex-direction: column; gap: 0.4rem;
+      color: #555; font-size: 0.95rem; margin-bottom: 1rem;
+    }
+    .card-body .meta svg {
+      width: 16px; height: 16px; vertical-align: middle;
+      margin-right: 6px; fill: var(--orange-clay);
+    }
+    .tag {
+      display: inline-block;
+      background: var(--green-deep); color: var(--cream);
+      padding: 4px 12px; border-radius: 20px;
+      font-size: 0.8rem; font-weight: 600;
+    }
+
+    /* --- REGLEMENT --- */
+    .reglement { background: var(--green-deep); color: var(--cream); }
+    .reglement .section-title { color: var(--cream); }
+    .rules-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem;
+    }
+    .rule-item {
+      background: rgba(255,255,255,0.08);
+      border-radius: 10px; padding: 1.5rem;
+      border-left: 4px solid var(--orange-clay);
+    }
+    .rule-item h4 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.2rem; letter-spacing: 1px;
+      margin-bottom: 0.5rem; color: var(--orange-clay);
+    }
+    .rule-item p { font-size: 0.95rem; color: rgba(240,235,224,0.85); }
+
+    /* --- KATEGORIEN --- */
+    .kategorien { background: var(--cream); }
+    .kat-list {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;
+    }
+    .kat-badge {
+      background: var(--green-court); color: var(--white);
+      padding: 0.8rem 2rem; border-radius: 50px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem; letter-spacing: 2px;
+    }
+
+    /* --- SPONSORING --- */
+    .sponsoring { background: var(--white); }
+    .packages { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+    .package {
+      border-radius: 12px; padding: 2rem;
+      text-align: center; position: relative;
+      border: 2px solid #e0dcd4;
+      transition: all 0.3s;
+    }
+    .package:hover {
+      border-color: var(--orange-clay);
+      transform: translateY(-4px);
+    }
+    .package.featured {
+      border-color: var(--orange-clay);
+      background: linear-gradient(135deg, #FFF8F0, #FFF);
+    }
+    .package-badge {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem; letter-spacing: 2px;
+      margin-bottom: 0.5rem;
+    }
+    .package-badge.bronze { color: #A0522D; }
+    .package-badge.silver { color: #808080; }
+    .package-badge.gold { color: var(--orange-clay); }
+    .package ul {
+      list-style: none; margin: 1.5rem 0;
+      text-align: left; font-size: 0.95rem;
+    }
+    .package ul li {
+      padding: 0.4rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+    .package ul li::before {
+      content: '✓'; position: absolute; left: 0;
+      color: var(--green-court); font-weight: 700;
+    }
+
+    /* --- SOCIAL --- */
+    .social-section { background: var(--cream); text-align: center; }
+    .social-links {
+      display: flex; justify-content: center; gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .social-btn {
+      display: flex; align-items: center; gap: 0.6rem;
+      padding: 0.8rem 1.8rem;
+      border-radius: 50px;
+      text-decoration: none; font-weight: 600;
+      transition: all 0.3s;
+    }
+    .social-btn svg { width: 24px; height: 24px; }
+    .social-btn.insta {
+      background: linear-gradient(135deg, #833AB4, #FD1D1D, #F77737);
+      color: var(--white);
+    }
+    .social-btn.insta:hover { transform: scale(1.05); }
+    .social-btn.whatsapp {
+      background: #25D366; color: var(--white);
+    }
+    .social-btn.whatsapp:hover { transform: scale(1.05); }
+
+    /* --- CONTACT --- */
+    .contact {
+      background: var(--green-deep); color: var(--cream);
+      text-align: center;
+    }
+    .contact .section-title { color: var(--cream); }
+    .contact a { color: var(--orange-clay); text-decoration: none; }
+    .contact a:hover { text-decoration: underline; }
+
+    /* --- FOOTER --- */
+    footer {
+      background: #111; color: #999;
+      text-align: center; padding: 2rem;
+      font-size: 0.85rem;
+    }
+    footer a { color: var(--orange-clay); text-decoration: none; }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+      nav { padding: 0.6rem 1rem; }
+      nav .nav-right { gap: 0.8rem; }
+      nav a.nav-link { font-size: 0.85rem; }
+      section { padding: 3rem 1.2rem; }
+      .hero h1 { font-size: 2.5rem; }
+    }
+
+    /* --- LANG --- */
+    [lang="de"] .en { display: none; }
+    [lang="en"] .de { display: none; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="logo-text">BERGISCHE LK-TURNIERE</a>
+  <div class="nav-right">
+    <a href="index.html" class="nav-link de">Startseite</a>
+    <a href="index.html" class="nav-link en">Home</a>
+    <a href="clubs.html" class="nav-link de">Für Vereine</a>
+    <a href="clubs.html" class="nav-link en">For Clubs</a>
+    <div class="lang-switch">
+      <button class="active" onclick="setLang('de')">DE</button>
+      <button onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <svg class="hero-logo" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="60" cy="60" r="56" fill="none" stroke="#F0EBE0" stroke-width="3"/>
+      <circle cx="60" cy="60" r="46" fill="none" stroke="#B85A20" stroke-width="2"/>
+      <path d="M30 60 Q60 20 90 60 Q60 100 30 60Z" fill="none" stroke="#F0EBE0" stroke-width="2"/>
+      <line x1="60" y1="14" x2="60" y2="106" stroke="#F0EBE0" stroke-width="1.5" opacity="0.5"/>
+      <line x1="14" y1="60" x2="106" y2="60" stroke="#F0EBE0" stroke-width="1.5" opacity="0.5"/>
+      <text x="60" y="55" text-anchor="middle" font-family="Bebas Neue, sans-serif" font-size="14" fill="#F0EBE0" letter-spacing="2">BERGISCHE</text>
+      <text x="60" y="72" text-anchor="middle" font-family="Bebas Neue, sans-serif" font-size="11" fill="#B85A20" letter-spacing="3">LK-TURNIERE</text>
+    </svg>
+    <h1 class="de">BERGISCHE <span>LK-TURNIERE</span></h1>
+    <h1 class="en">BERGISCHE <span>LK TOURNAMENTS</span></h1>
+    <p class="subtitle de">Offizielle DTB-Turniere auf Sandplatz im Bergischen Land</p>
+    <p class="subtitle en">Official DTB tournaments on clay courts in Bergisches Land</p>
+    <p class="dates">SAISON 2026 — TERMINE FOLGEN</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <a href="https://mybigpoint.tennis.de" target="_blank" rel="noopener" class="btn btn-primary de">JETZT ANMELDEN</a>
+      <a href="https://mybigpoint.tennis.de" target="_blank" rel="noopener" class="btn btn-primary en">REGISTER NOW</a>
+      <a href="#anlagen" class="btn btn-outline de">UNSERE ANLAGEN</a>
+      <a href="#anlagen" class="btn btn-outline en">OUR VENUES</a>
+    </div>
+  </div>
+</section>
+
+<!-- ANLAGEN -->
+<section id="anlagen" class="anlagen">
+  <div class="container">
+    <h2 class="section-title de">UNSERE <span>ANLAGEN</span></h2>
+    <h2 class="section-title en">OUR <span>VENUES</span></h2>
+    <div class="divider"></div>
+    <p class="section-subtitle de">Zwei erstklassige Sandplatz-Anlagen im Bergischen Land</p>
+    <p class="section-subtitle en">Two premium clay court venues in Bergisches Land</p>
+    <div class="cards">
+      <!-- ESV Wuppertal West -->
+      <div class="card">
+        <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=800&q=80')"></div>
+        <div class="card-body">
+          <h3>ESV Wuppertal West</h3>
+          <div class="meta">
+            <span>
+              <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>
+              Homannstr. 33b, 42327 Wuppertal
+            </span>
+            <span>
+              <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"/></svg>
+              <span class="de">7 Sandplätze (Terre Battue)</span>
+              <span class="en">7 clay courts (Terre Battue)</span>
+            </span>
+          </div>
+          <span class="tag">SANDPLATZ</span>
+        </div>
+      </div>
+      <!-- TC Gruiten -->
+      <div class="card">
+        <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?w=800&q=80')"></div>
+        <div class="card-body">
+          <h3>TC Gruiten</h3>
+          <div class="meta">
+            <span>
+              <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>
+              Neandertalweg 6, 42781 Haan
+            </span>
+            <span>
+              <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"/></svg>
+              <span class="de">6 Sandplätze (Terre Battue)</span>
+              <span class="en">6 clay courts (Terre Battue)</span>
+            </span>
+          </div>
+          <span class="tag">SANDPLATZ</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REGLEMENT -->
+<section class="reglement">
+  <div class="container">
+    <h2 class="section-title de">TURNIER<span>REGLEMENT</span></h2>
+    <h2 class="section-title en">TOURNAMENT <span>RULES</span></h2>
+    <div class="divider"></div>
+    <p class="section-subtitle de" style="color:rgba(240,235,224,0.7)">Offizielle DTB LK-Turnierregeln</p>
+    <p class="section-subtitle en" style="color:rgba(240,235,224,0.7)">Official DTB LK tournament rules</p>
+    <div class="rules-grid">
+      <div class="rule-item">
+        <h4 class="de">Satzformat</h4>
+        <h4 class="en">Set Format</h4>
+        <p class="de">2 Gewinnsätze bis 6 Spiele</p>
+        <p class="en">Best of 3 sets, first to 6 games</p>
+      </div>
+      <div class="rule-item">
+        <h4>Tie-Break</h4>
+        <p class="de">Tie-Break bei 6:6 in jedem Satz</p>
+        <p class="en">Tie-break at 6:6 in each set</p>
+      </div>
+      <div class="rule-item">
+        <h4 class="de">3. Satz</h4>
+        <h4 class="en">3rd Set</h4>
+        <p class="de">Match-Tie-Break bis 10 Punkte im 3. Satz</p>
+        <p class="en">Match tie-break to 10 points in the 3rd set</p>
+      </div>
+      <div class="rule-item">
+        <h4 class="de">Anmeldung</h4>
+        <h4 class="en">Registration</h4>
+        <p class="de">Über mybigpoint.tennis.de — DTB-Nummer erforderlich</p>
+        <p class="en">Via mybigpoint.tennis.de — DTB number required</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KATEGORIEN -->
+<section class="kategorien">
+  <div class="container">
+    <h2 class="section-title de">ALTERS<span>KLASSEN</span></h2>
+    <h2 class="section-title en">AGE <span>CATEGORIES</span></h2>
+    <div class="divider"></div>
+    <div class="kat-list">
+      <div class="kat-badge">U12</div>
+      <div class="kat-badge">U14</div>
+      <div class="kat-badge">U16</div>
+      <div class="kat-badge">H00</div>
+    </div>
+  </div>
+</section>
+
+<!-- SPONSORING -->
+<section class="sponsoring">
+  <div class="container">
+    <h2 class="section-title de">SPONSORING-<span>PAKETE</span></h2>
+    <h2 class="section-title en">SPONSORING <span>PACKAGES</span></h2>
+    <div class="divider"></div>
+    <p class="section-subtitle de">Werden Sie Partner der Bergischen LK-Turniere</p>
+    <p class="section-subtitle en">Become a partner of Bergische LK-Turniere</p>
+    <div class="packages">
+      <div class="package">
+        <div class="package-badge bronze">BRONZE</div>
+        <ul>
+          <li class="de">Logo auf der Website</li>
+          <li class="en">Logo on the website</li>
+          <li class="de">Erwähnung in Social Media</li>
+          <li class="en">Social media mention</li>
+          <li class="de">Banner vor Ort (1 Turnier)</li>
+          <li class="en">On-site banner (1 tournament)</li>
+        </ul>
+        <a href="mailto:info@bergische-lk.de?subject=Sponsoring%20Bronze" class="btn btn-primary" style="font-size:1rem;padding:0.7rem 1.5rem;">KONTAKT</a>
+      </div>
+      <div class="package featured">
+        <div class="package-badge silver">SILBER</div>
+        <ul>
+          <li class="de">Alles aus Bronze +</li>
+          <li class="en">Everything in Bronze +</li>
+          <li class="de">Logo auf Spielerpässen</li>
+          <li class="en">Logo on player passes</li>
+          <li class="de">Banner vor Ort (alle Turniere)</li>
+          <li class="en">On-site banner (all tournaments)</li>
+          <li class="de">Story-Feature auf Instagram</li>
+          <li class="en">Instagram story feature</li>
+        </ul>
+        <a href="mailto:info@bergische-lk.de?subject=Sponsoring%20Silber" class="btn btn-primary" style="font-size:1rem;padding:0.7rem 1.5rem;">KONTAKT</a>
+      </div>
+      <div class="package">
+        <div class="package-badge gold">GOLD</div>
+        <ul>
+          <li class="de">Alles aus Silber +</li>
+          <li class="en">Everything in Silver +</li>
+          <li class="de">Namenssponsor eines Turniers</li>
+          <li class="en">Title sponsor of a tournament</li>
+          <li class="de">Exklusiver Stand vor Ort</li>
+          <li class="en">Exclusive booth on-site</li>
+          <li class="de">Highlights-Video mit Logo</li>
+          <li class="en">Highlights video with logo</li>
+        </ul>
+        <a href="mailto:info@bergische-lk.de?subject=Sponsoring%20Gold" class="btn btn-primary" style="font-size:1rem;padding:0.7rem 1.5rem;">KONTAKT</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL -->
+<section class="social-section">
+  <div class="container">
+    <h2 class="section-title de">FOLGT <span>UNS</span></h2>
+    <h2 class="section-title en">FOLLOW <span>US</span></h2>
+    <div class="divider"></div>
+    <div class="social-links">
+      <a href="https://instagram.com/" target="_blank" rel="noopener" class="social-btn insta">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        Instagram
+      </a>
+      <a href="https://wa.me/" target="_blank" rel="noopener" class="social-btn whatsapp">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact">
+  <div class="container">
+    <h2 class="section-title de" style="color:var(--cream)">KONTAKT</h2>
+    <h2 class="section-title en" style="color:var(--cream)">CONTACT</h2>
+    <div class="divider"></div>
+    <p style="font-size:1.1rem;margin-bottom:0.5rem;">Jean-Charles — <span class="de">Organisator</span><span class="en">Organizer</span></p>
+    <p style="margin-bottom:1.5rem;">
+      <a href="mailto:info@bergische-lk.de">info@bergische-lk.de</a>
+    </p>
+    <a href="clubs.html" class="btn btn-primary de" style="font-size:1rem;">SIE SIND EIN VEREIN? →</a>
+    <a href="clubs.html" class="btn btn-primary en" style="font-size:1rem;">YOU ARE A CLUB? →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2026 Bergische LK-Turniere. <span class="de">Alle Rechte vorbehalten.</span><span class="en">All rights reserved.</span></p>
+  <p style="margin-top:0.5rem;">
+    <a href="https://mybigpoint.tennis.de" target="_blank" rel="noopener">mybigpoint.tennis.de</a>
+  </p>
+</footer>
+
+<script>
+function setLang(lang) {
+  document.documentElement.lang = lang;
+  document.querySelectorAll('.lang-switch button').forEach(b => {
+    b.classList.toggle('active', b.textContent.trim() === lang.toUpperCase());
+  });
+  localStorage.setItem('lang', lang);
+}
+(function() {
+  const saved = localStorage.getItem('lang');
+  if (saved) setLang(saved);
+})();
+</script>
+
+</body>
+</html>
