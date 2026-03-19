@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://bergische-lk.de/sitemap.xml

@@ -16,8 +16,61 @@ const SITE = {
   // ── GÉNÉRAL ─────────────────────────────────────────────
   name: "Bergische LK-Turniere",
   email: "info@bergische-lk.de",
-  organizer: "Jean-Charles",
+  organizer: "Jean-Charles Das",
+  organizerShort: "Jean-Charles",
   year: 2026,
+  domain: "bergische-lk.de",
+
+  // ── IMPRESSUM (à compléter avec tes vraies données) ────
+  impressum: {
+    fullName: "Jean-Charles Das",               // ← ton nom complet
+    address: "Musterstraße 1, 42327 Wuppertal", // ← ta vraie adresse
+    phone: "+49 123 456 7890",                   // ← ton vrai numéro
+    email: "info@bergische-lk.de",
+    responsible: "Jean-Charles Das",             // Verantwortlich i.S.d. §18 Abs. 2 MStV
+  },
+
+  // ── NEWSLETTER ─────────────────────────────────────────
+  // Mettre l'URL du formulaire Buttondown / Brevo quand prêt
+  newsletter: {
+    enabled: true,
+    // action: "https://buttondown.com/api/emails/embed-subscribe/bergische-lk",
+    action: "",  // ← à remplir avec ton service newsletter
+    placeholder: { de: "Deine E-Mail-Adresse", en: "Your email address" },
+    cta: { de: "ANMELDEN", en: "SUBSCRIBE" },
+    text: {
+      de: "Erhalte Infos zu kommenden Turnieren direkt in dein Postfach.",
+      en: "Get info about upcoming tournaments straight to your inbox.",
+    },
+  },
+
+  // ── FAQ ────────────────────────────────────────────────
+  faq: [
+    {
+      q: { de: "Brauche ich eine DTB-Nummer?", en: "Do I need a DTB number?" },
+      a: { de: "Ja, für die Anmeldung über mybigpoint.tennis.de ist eine gültige DTB-Nummer erforderlich.", en: "Yes, a valid DTB number is required to register via mybigpoint.tennis.de." },
+    },
+    {
+      q: { de: "Was passiert bei Regen?", en: "What happens if it rains?" },
+      a: { de: "Bei Regen werden die Spiele verschoben. Bitte prüfen Sie unsere Instagram-Seite oder WhatsApp-Gruppe für aktuelle Updates.", en: "Matches are postponed in case of rain. Please check our Instagram page or WhatsApp group for live updates." },
+    },
+    {
+      q: { de: "Gibt es Umkleiden und Duschen?", en: "Are there changing rooms and showers?" },
+      a: { de: "Ja, beide Anlagen verfügen über Umkleidekabinen und Duschen.", en: "Yes, both venues have changing rooms and showers." },
+    },
+    {
+      q: { de: "Wie funktioniert der Check-in am Turniertag?", en: "How does check-in work on match day?" },
+      a: { de: "Bitte melden Sie sich mindestens 30 Minuten vor Ihrem ersten Spiel am Turnierbüro. Bringen Sie einen Ausweis mit.", en: "Please check in at the tournament desk at least 30 minutes before your first match. Bring valid ID." },
+    },
+    {
+      q: { de: "Gibt es Parkplätze?", en: "Is there parking?" },
+      a: { de: "Ja, beide Anlagen bieten kostenlose Parkplätze in der Nähe.", en: "Yes, both venues have free parking nearby." },
+    },
+    {
+      q: { de: "Werden Fotos gemacht?", en: "Will photos be taken?" },
+      a: { de: "Ja, während der Turniere werden Fotos gemacht. Am Check-in können Sie Ihre Einwilligung zur Veröffentlichung erteilen. Diese kann jederzeit widerrufen werden (info@bergische-lk.de).", en: "Yes, photos are taken during tournaments. You can give consent for publication at check-in. Consent can be withdrawn at any time (info@bergische-lk.de)." },
+    },
+  ],
 
   // ── SAISON / DATES ──────────────────────────────────────
   season: {
@@ -159,6 +212,22 @@ const SITE = {
   social: {
     instagram: "https://instagram.com/bergische.lk.turniere",  // à mettre à jour
     whatsapp: "https://wa.me/491234567890",                     // à mettre à jour
+  },
+
+  // ── GALERIE ─────────────────────────────────────────────
+  //  Ajoutez des photos de tournois ici.
+  //  consent: true = la personne a donné son accord (Einwilligung)
+  //  Seules les photos avec consent: true seront affichées.
+  gallery: {
+    enabled: false,  // ← passer à true quand vous avez des photos
+    photos: [
+      // {
+      //   src: "photos/esv-open-2026-01.jpg",
+      //   alt: { de: "Spieler auf Sandplatz", en: "Player on clay court" },
+      //   tournament: "esv-open-2026",
+      //   consent: true,
+      // },
+    ],
   },
 
   // ── CLUBS PAGE (clubs.html) ─────────────────────────────
