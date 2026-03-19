@@ -38,8 +38,8 @@ const SITE = {
       url: "https://mybigpoint.tennis.de",
       label: { de: "JETZT ANMELDEN", en: "REGISTER NOW" },
     },
-    // Image de fond (Unsplash ou locale)
-    image: "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=1600&q=80",
+    // Image de fond (Unsplash free — terre battue)
+    image: "https://images.unsplash.com/photo-1660866838821-58ae59dce677?w=1600&q=80",  // overhead red clay court
   },
 
   // ── TOURNOIS ────────────────────────────────────────────
@@ -84,7 +84,7 @@ const SITE = {
       address: "Homannstr. 33b, 42327 Wuppertal",
       courts: 7,
       surface: { de: "Sandplätze (Terre Battue)", en: "Clay courts (Terre Battue)" },
-      image: "https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=800&q=80",
+      image: "https://images.unsplash.com/photo-1718900700020-3bbe079b3bf1?w=800&q=80",  // clay court lines (Unsplash free)
       maps: "https://maps.google.com/?q=Homannstr.+33b,+42327+Wuppertal",
     },
     {
@@ -93,7 +93,7 @@ const SITE = {
       address: "Neandertalweg 6, 42781 Haan",
       courts: 6,
       surface: { de: "Sandplätze (Terre Battue)", en: "Clay courts (Terre Battue)" },
-      image: "https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?w=800&q=80",
+      image: "https://images.unsplash.com/photo-1722610418576-4e3b2c515592?w=800&q=80",  // clay court with chair (Unsplash free)
       maps: "https://maps.google.com/?q=Neandertalweg+6,+42781+Haan",
     },
   ],
@@ -172,7 +172,7 @@ const SITE = {
         de: "Von der Anmeldung beim DTB über die Kommunikation mit dem WTB bis zur Durchführung am Turniertag — wir kümmern uns um alles.",
         en: "From DTB registration and WTB communication to tournament day operations — we take care of everything.",
       },
-      image: "https://images.unsplash.com/photo-1529926706528-db9e5010cd3e?w=1600&q=80",
+      image: "https://images.unsplash.com/photo-1661521930553-5fb5cae2738a?w=1600&q=80",  // spectators clay court match (Unsplash free)
     },
     services: [
       {
