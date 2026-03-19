@@ -39,7 +39,7 @@ const SITE = {
       label: { de: "JETZT ANMELDEN", en: "REGISTER NOW" },
     },
     // Image de fond (Unsplash free — terre battue)
-    image: "https://images.unsplash.com/photo-1660866838821-58ae59dce677?w=1600&q=80",  // overhead red clay court
+    image: "https://images.unsplash.com/photo-1697746900540-ad490645f667?w=1600&q=80",  // overhead red clay court
   },
 
   // ── TOURNOIS ────────────────────────────────────────────
@@ -84,7 +84,7 @@ const SITE = {
       address: "Homannstr. 33b, 42327 Wuppertal",
       courts: 7,
       surface: { de: "Sandplätze (Terre Battue)", en: "Clay courts (Terre Battue)" },
-      image: "https://images.unsplash.com/photo-1718900700020-3bbe079b3bf1?w=800&q=80",  // clay court lines (Unsplash free)
+      image: "https://images.unsplash.com/photo-1750856698821-29e3878dec73?w=800&q=80",  // clay court with lines (Unsplash free)
       maps: "https://maps.google.com/?q=Homannstr.+33b,+42327+Wuppertal",
     },
     {
@@ -93,7 +93,7 @@ const SITE = {
       address: "Neandertalweg 6, 42781 Haan",
       courts: 6,
       surface: { de: "Sandplätze (Terre Battue)", en: "Clay courts (Terre Battue)" },
-      image: "https://images.unsplash.com/photo-1722610418576-4e3b2c515592?w=800&q=80",  // clay court with chair (Unsplash free)
+      image: "https://images.unsplash.com/photo-1750856698199-694d354a0d5e?w=800&q=80",  // clay court lines surface (Unsplash free)
       maps: "https://maps.google.com/?q=Neandertalweg+6,+42781+Haan",
     },
   ],
@@ -172,7 +172,7 @@ const SITE = {
         de: "Von der Anmeldung beim DTB über die Kommunikation mit dem WTB bis zur Durchführung am Turniertag — wir kümmern uns um alles.",
         en: "From DTB registration and WTB communication to tournament day operations — we take care of everything.",
       },
-      image: "https://images.unsplash.com/photo-1661521930553-5fb5cae2738a?w=1600&q=80",  // spectators clay court match (Unsplash free)
+      image: "https://images.unsplash.com/photo-1661474974357-c7b5a28383c8?w=1600&q=80",  // women playing on clay court (Unsplash free)
     },
     services: [
       {
