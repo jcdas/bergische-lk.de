@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bergische LK-Turniere | Tennis Turniere im Bergischen Land</title>
   <meta name="description" content="LK-Turniere im Bergischen Land. Offizielle Turniere auf Sandplatz in Wuppertal und Haan. Jetzt anmelden auf mybigpoint.tennis.de">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta property="og:title" content="Bergische LK-Turniere">
+  <meta property="og:description" content="Offizielle DTB-Turniere auf Sandplatz im Bergischen Land. ESV Wuppertal West & TC Gruiten.">
+  <meta property="og:image" content="https://bergische-lk.de/logo.svg">
+  <meta property="og:url" content="https://bergische-lk.de">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -260,6 +267,52 @@
     .social-btn.whatsapp { background: #25D366; color: var(--white); }
     .social-btn.whatsapp:hover { transform: scale(1.05); }
 
+    /* --- FAQ --- */
+    .faq-section { background: var(--white); }
+    .faq-item {
+      border-bottom: 1px solid #e0dcd4;
+      padding: 1.2rem 0; cursor: pointer;
+    }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q {
+      display: flex; justify-content: space-between; align-items: center;
+      font-weight: 600; font-size: 1.05rem;
+    }
+    .faq-q::after {
+      content: '+'; font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem; color: var(--orange-clay);
+      transition: transform 0.3s;
+    }
+    .faq-item.open .faq-q::after { content: '−'; }
+    .faq-a {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s;
+      color: #555; font-size: 0.95rem;
+    }
+    .faq-item.open .faq-a {
+      max-height: 200px; padding-top: 0.8rem;
+    }
+
+    /* --- NEWSLETTER --- */
+    .newsletter { background: var(--green-deep); color: var(--cream); }
+    .newsletter .section-title { color: var(--cream); }
+    .newsletter-form {
+      display: flex; gap: 0.8rem;
+      max-width: 480px; margin: 0 auto;
+      justify-content: center;
+    }
+    .newsletter-form input[type="email"] {
+      flex: 1; padding: 0.8rem 1rem;
+      border: 2px solid rgba(240,235,224,0.3);
+      border-radius: 4px; background: rgba(255,255,255,0.1);
+      color: var(--cream); font-family: 'Barlow', sans-serif;
+      font-size: 1rem;
+    }
+    .newsletter-form input[type="email"]::placeholder { color: rgba(240,235,224,0.5); }
+    .newsletter-form input[type="email"]:focus {
+      outline: none; border-color: var(--orange-clay);
+    }
+
     /* --- CONTACT --- */
     .contact { background: var(--green-deep); color: var(--cream); text-align: center; }
     .contact .section-title { color: var(--cream); }
@@ -370,6 +423,28 @@
   </div>
 </section>
 
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="container">
+    <h2 class="section-title" data-de="HÄUFIGE <span>FRAGEN</span>" data-en="FREQUENTLY ASKED <span>QUESTIONS</span>"></h2>
+    <div class="divider"></div>
+    <div id="faq-list"></div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter" id="newsletter-section">
+  <div class="container" style="text-align:center">
+    <h2 class="section-title" data-de="NEWSLETTER" data-en="NEWSLETTER"></h2>
+    <div class="divider"></div>
+    <p id="newsletter-text" style="margin-bottom:1.5rem;"></p>
+    <form id="newsletter-form" class="newsletter-form" method="POST">
+      <input type="email" name="email" id="newsletter-email" required>
+      <button type="submit" id="newsletter-btn" class="btn btn-primary btn-sm"></button>
+    </form>
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section class="contact">
   <div class="container">
@@ -388,6 +463,8 @@
   <p id="footer-copy"></p>
   <p style="margin-top:0.5rem;">
     <a href="https://mybigpoint.tennis.de" target="_blank" rel="noopener">mybigpoint.tennis.de</a>
+    &nbsp;·&nbsp;
+    <a href="legal.html" data-de="Impressum & Datenschutz" data-en="Legal & Privacy"></a>
   </p>
 </footer>
 
@@ -514,9 +591,37 @@ function render() {
     <a href="${D.social.whatsapp}" target="_blank" rel="noopener" class="social-btn whatsapp">${ICONS.whatsapp} WhatsApp</a>
   `;
 
+  // FAQ
+  const faqList = document.getElementById('faq-list');
+  faqList.innerHTML = D.faq.map(f => `
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">${t(f.q)}</div>
+      <div class="faq-a">${t(f.a)}</div>
+    </div>
+  `).join('');
+
+  // Newsletter
+  const nl = D.newsletter;
+  const nlSection = document.getElementById('newsletter-section');
+  if (nl && nl.enabled) {
+    nlSection.style.display = '';
+    document.getElementById('newsletter-text').textContent = t(nl.text);
+    document.getElementById('newsletter-email').placeholder = t(nl.placeholder);
+    document.getElementById('newsletter-btn').textContent = t(nl.cta);
+    const nlForm = document.getElementById('newsletter-form');
+    if (nl.action) {
+      nlForm.action = nl.action;
+    } else {
+      nlForm.action = 'mailto:' + D.email;
+      nlForm.method = 'GET';
+    }
+  } else {
+    nlSection.style.display = 'none';
+  }
+
   // Contact
   const orgLabel = LANG === 'de' ? 'Organisator' : 'Organizer';
-  document.getElementById('contact-info').textContent = `${D.organizer} — ${orgLabel}`;
+  document.getElementById('contact-info').textContent = `${D.organizerShort} — ${orgLabel}`;
   const emailEl = document.getElementById('contact-email');
   emailEl.href = `mailto:${D.email}`;
   emailEl.textContent = D.email;

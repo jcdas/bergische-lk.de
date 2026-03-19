@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Impressum & Datenschutz | Bergische LK-Turniere</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --green-deep: #1C3A0E; --green-court: #2D5A18;
+      --orange-clay: #B85A20; --cream: #F0EBE0; --white: #FFFFFF;
+    }
+    body {
+      font-family: 'Barlow', sans-serif; color: var(--green-deep);
+      background: var(--cream); line-height: 1.7;
+    }
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--green-deep);
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.8rem 2rem;
+    }
+    nav .logo-text {
+      font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem;
+      color: var(--cream); letter-spacing: 2px; text-decoration: none;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .nav-logo-img { height: 32px; width: auto; }
+    nav .nav-right { display: flex; align-items: center; gap: 1.5rem; }
+    nav a.nav-link {
+      color: var(--cream); text-decoration: none; font-weight: 500;
+      font-size: 0.95rem; transition: color 0.2s;
+    }
+    nav a.nav-link:hover { color: var(--orange-clay); }
+    .lang-switch {
+      display: flex; gap: 0.3rem;
+      background: rgba(255,255,255,0.1); border-radius: 4px; padding: 2px;
+    }
+    .lang-switch button {
+      background: none; border: none; color: var(--cream);
+      font-family: 'Barlow', sans-serif; font-weight: 600;
+      padding: 4px 10px; border-radius: 3px; cursor: pointer;
+      font-size: 0.85rem; transition: all 0.2s;
+    }
+    .lang-switch button.active { background: var(--orange-clay); color: var(--white); }
+
+    .legal-page { max-width: 800px; margin: 0 auto; padding: 6rem 2rem 4rem; }
+    .legal-page h1 {
+      font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem;
+      letter-spacing: 2px; margin-bottom: 2rem;
+    }
+    .legal-page h1 span { color: var(--orange-clay); }
+    .legal-page h2 {
+      font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem;
+      letter-spacing: 1px; color: var(--orange-clay);
+      margin: 2rem 0 0.8rem; border-bottom: 2px solid var(--orange-clay);
+      padding-bottom: 0.3rem;
+    }
+    .legal-page h3 {
+      font-weight: 600; margin: 1.2rem 0 0.4rem; font-size: 1.05rem;
+    }
+    .legal-page p, .legal-page li { margin-bottom: 0.6rem; font-size: 0.95rem; }
+    .legal-page ul { padding-left: 1.5rem; }
+    .legal-page a { color: var(--orange-clay); }
+
+    footer {
+      background: #111; color: #999; text-align: center;
+      padding: 2rem; font-size: 0.85rem;
+    }
+    footer a { color: var(--orange-clay); text-decoration: none; }
+
+    @media (max-width: 768px) {
+      nav { padding: 0.6rem 1rem; }
+      .legal-page { padding: 5rem 1.2rem 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo-text" id="nav-logo"><img src="logo.svg" alt="" class="nav-logo-img"> </a>
+  <div class="nav-right">
+    <a href="index.html" class="nav-link" data-de="Startseite" data-en="Home"></a>
+    <a href="clubs.html" class="nav-link" data-de="Für Vereine" data-en="For Clubs"></a>
+    <div class="lang-switch">
+      <button class="active" onclick="setLang('de')">DE</button>
+      <button onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+</nav>
+
+<div class="legal-page" id="legal-content"></div>
+
+<footer>
+  <p id="footer-copy"></p>
+</footer>
+
+<script src="data.js"></script>
+<script>
+let LANG = localStorage.getItem('lang') || 'de';
+
+function t(obj) {
+  if (!obj) return '';
+  if (typeof obj === 'string') return obj;
+  return obj[LANG] || obj.de || '';
+}
+
+function setLang(lang) {
+  LANG = lang;
+  document.documentElement.lang = lang;
+  document.querySelectorAll('.lang-switch button').forEach(b =>
+    b.classList.toggle('active', b.textContent.trim() === lang.toUpperCase())
+  );
+  localStorage.setItem('lang', lang);
+  render();
+}
+
+function render() {
+  const D = SITE;
+  const I = D.impressum;
+
+  document.querySelectorAll('[data-de]').forEach(el => {
+    el.innerHTML = el.dataset[LANG] || el.dataset.de;
+  });
+
+  document.getElementById('nav-logo').innerHTML = `<img src="logo.svg" alt="" class="nav-logo-img"> ${D.name.toUpperCase()}`;
+
+  const rights = LANG === 'de' ? 'Alle Rechte vorbehalten.' : 'All rights reserved.';
+  document.getElementById('footer-copy').innerHTML = `&copy; ${D.year} ${D.name}. ${rights}`;
+
+  if (LANG === 'de') {
+    document.getElementById('legal-content').innerHTML = `
+      <h1>IMPRESSUM & <span>DATENSCHUTZ</span></h1>
+
+      <h2>Impressum</h2>
+      <h3>Angaben gemäß § 5 TMG</h3>
+      <p>
+        ${I.fullName}<br>
+        ${I.address}<br>
+        E-Mail: <a href="mailto:${I.email}">${I.email}</a><br>
+        Telefon: ${I.phone}
+      </p>
+
+      <h3>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h3>
+      <p>${I.responsible}<br>${I.address}</p>
+
+      <h3>Haftungsausschluss</h3>
+      <p>Die Inhalte dieser Website werden mit größtmöglicher Sorgfalt erstellt. Der Anbieter übernimmt jedoch keine Gewähr für die Richtigkeit, Vollständigkeit und Aktualität der bereitgestellten Inhalte.</p>
+      <p>Für die Inhalte externer Links übernehmen wir keine Haftung. Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich.</p>
+
+      <h2>Datenschutzerklärung</h2>
+
+      <h3>1. Verantwortlicher</h3>
+      <p>
+        ${I.fullName}<br>
+        ${I.address}<br>
+        E-Mail: <a href="mailto:${I.email}">${I.email}</a>
+      </p>
+
+      <h3>2. Erhebung und Verarbeitung personenbezogener Daten</h3>
+      <p>Beim Besuch dieser Website werden automatisch folgende Daten erhoben:</p>
+      <ul>
+        <li>IP-Adresse (anonymisiert durch GitHub Pages)</li>
+        <li>Datum und Uhrzeit des Zugriffs</li>
+        <li>Aufgerufene Seite</li>
+        <li>Browser-Typ und -Version</li>
+      </ul>
+      <p>Diese Daten werden von GitHub Pages (GitHub Inc., San Francisco, USA) als Hosting-Anbieter verarbeitet. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse am Betrieb der Website).</p>
+
+      <h3>3. Kontaktformular</h3>
+      <p>Wenn Sie das Kontaktformular auf unserer Seite „Für Vereine" nutzen, werden folgende Daten verarbeitet:</p>
+      <ul>
+        <li>Vereinsname</li>
+        <li>Anzahl der Plätze</li>
+        <li>Gewünschter Zeitraum</li>
+        <li>E-Mail-Adresse</li>
+        <li>Nachricht (optional)</li>
+      </ul>
+      <p>Die Daten werden über den Dienst FormSubmit.co übermittelt und per E-Mail an uns weitergeleitet. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Maßnahmen). Ihre Daten werden nicht an Dritte weitergegeben und nach Bearbeitung Ihrer Anfrage gelöscht.</p>
+
+      <h3>4. Newsletter</h3>
+      <p>Wenn Sie sich für unseren Newsletter anmelden, speichern wir Ihre E-Mail-Adresse zum Versand von Informationen über kommende Turniere. Rechtsgrundlage ist Art. 6 Abs. 1 lit. a DSGVO (Einwilligung). Sie können Ihre Einwilligung jederzeit widerrufen, indem Sie sich abmelden oder uns per E-Mail kontaktieren.</p>
+
+      <h3>5. Fotos bei Turnieren</h3>
+      <p>Während unserer Turniere werden Fotos und ggf. Videos erstellt. Die Veröffentlichung von Fotos, auf denen Personen erkennbar sind, erfolgt nur mit ausdrücklicher Einwilligung. Diese wird am Turniertag beim Check-in eingeholt (separate Checkbox). Bei Minderjährigen ist die Einwilligung eines Erziehungsberechtigten erforderlich.</p>
+      <p>Die Einwilligung kann jederzeit mit Wirkung für die Zukunft widerrufen werden. Betroffene Fotos werden dann unverzüglich entfernt. Kontakt: <a href="mailto:${I.email}">${I.email}</a></p>
+
+      <h3>6. Externe Dienste</h3>
+      <p><strong>Google Fonts:</strong> Diese Website nutzt Google Fonts zur Darstellung von Schriftarten. Beim Aufruf der Seite werden Daten an Google-Server übertragen (IP-Adresse). Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO. Weitere Informationen: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Datenschutzerklärung</a>.</p>
+      <p><strong>Unsplash:</strong> Bilder werden von Unsplash (unsplash.com) geladen. Dabei werden Daten an Unsplash-Server übertragen. Weitere Informationen: <a href="https://unsplash.com/privacy" target="_blank" rel="noopener">Unsplash Privacy Policy</a>.</p>
+      <p><strong>GitHub Pages:</strong> Die Website wird bei GitHub Pages gehostet. Weitere Informationen: <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages#data-collection" target="_blank" rel="noopener">GitHub Pages Datenschutz</a>.</p>
+
+      <h3>7. Ihre Rechte</h3>
+      <p>Sie haben das Recht auf:</p>
+      <ul>
+        <li>Auskunft über Ihre gespeicherten Daten (Art. 15 DSGVO)</li>
+        <li>Berichtigung unrichtiger Daten (Art. 16 DSGVO)</li>
+        <li>Löschung Ihrer Daten (Art. 17 DSGVO)</li>
+        <li>Einschränkung der Verarbeitung (Art. 18 DSGVO)</li>
+        <li>Widerspruch gegen die Verarbeitung (Art. 21 DSGVO)</li>
+        <li>Datenübertragbarkeit (Art. 20 DSGVO)</li>
+        <li>Beschwerde bei einer Aufsichtsbehörde</li>
+      </ul>
+
+      <h3>8. Kontakt für Datenschutzfragen</h3>
+      <p>${I.fullName}<br>E-Mail: <a href="mailto:${I.email}">${I.email}</a></p>
+    `;
+  } else {
+    document.getElementById('legal-content').innerHTML = `
+      <h1>LEGAL NOTICE & <span>PRIVACY POLICY</span></h1>
+
+      <h2>Legal Notice (Impressum)</h2>
+      <h3>Information according to § 5 TMG</h3>
+      <p>
+        ${I.fullName}<br>
+        ${I.address}<br>
+        Email: <a href="mailto:${I.email}">${I.email}</a><br>
+        Phone: ${I.phone}
+      </p>
+
+      <h3>Responsible for content according to § 18 Abs. 2 MStV</h3>
+      <p>${I.responsible}<br>${I.address}</p>
+
+      <h3>Disclaimer</h3>
+      <p>The contents of this website are created with the utmost care. However, we cannot guarantee the accuracy, completeness, or timeliness of the content.</p>
+      <p>We are not responsible for the content of external links. The operators of the linked pages are solely responsible for their content.</p>
+
+      <h2>Privacy Policy</h2>
+
+      <h3>1. Data Controller</h3>
+      <p>
+        ${I.fullName}<br>
+        ${I.address}<br>
+        Email: <a href="mailto:${I.email}">${I.email}</a>
+      </p>
+
+      <h3>2. Data Collection</h3>
+      <p>When visiting this website, the following data is automatically collected:</p>
+      <ul>
+        <li>IP address (anonymized by GitHub Pages)</li>
+        <li>Date and time of access</li>
+        <li>Page visited</li>
+        <li>Browser type and version</li>
+      </ul>
+      <p>This data is processed by GitHub Pages (GitHub Inc., San Francisco, USA) as the hosting provider. Legal basis: Art. 6(1)(f) GDPR (legitimate interest in operating the website).</p>
+
+      <h3>3. Contact Form</h3>
+      <p>When you use the contact form on our "For Clubs" page, the following data is processed: club name, number of courts, preferred period, email address, and optional message. Data is transmitted via FormSubmit.co and forwarded to us by email. Legal basis: Art. 6(1)(b) GDPR (pre-contractual measures). Your data will not be shared with third parties and will be deleted after processing your inquiry.</p>
+
+      <h3>4. Newsletter</h3>
+      <p>If you subscribe to our newsletter, we store your email address to send information about upcoming tournaments. Legal basis: Art. 6(1)(a) GDPR (consent). You can withdraw your consent at any time by unsubscribing or contacting us by email.</p>
+
+      <h3>5. Photos at Tournaments</h3>
+      <p>Photos and videos may be taken during our tournaments. Publication of identifiable photos only occurs with explicit consent, which is obtained at check-in on tournament day (separate checkbox). For minors, parental/guardian consent is required.</p>
+      <p>Consent can be withdrawn at any time with future effect. Affected photos will be removed promptly. Contact: <a href="mailto:${I.email}">${I.email}</a></p>
+
+      <h3>6. External Services</h3>
+      <p><strong>Google Fonts:</strong> This website uses Google Fonts. When loading the page, data is transmitted to Google servers (IP address). Legal basis: Art. 6(1)(f) GDPR. More info: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a>.</p>
+      <p><strong>Unsplash:</strong> Images are loaded from Unsplash (unsplash.com). Data may be transmitted to Unsplash servers. More info: <a href="https://unsplash.com/privacy" target="_blank" rel="noopener">Unsplash Privacy Policy</a>.</p>
+      <p><strong>GitHub Pages:</strong> This website is hosted on GitHub Pages. More info: <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages#data-collection" target="_blank" rel="noopener">GitHub Pages Privacy</a>.</p>
+
+      <h3>7. Your Rights</h3>
+      <p>You have the right to:</p>
+      <ul>
+        <li>Access your stored data (Art. 15 GDPR)</li>
+        <li>Rectification of inaccurate data (Art. 16 GDPR)</li>
+        <li>Erasure of your data (Art. 17 GDPR)</li>
+        <li>Restriction of processing (Art. 18 GDPR)</li>
+        <li>Object to processing (Art. 21 GDPR)</li>
+        <li>Data portability (Art. 20 GDPR)</li>
+        <li>Lodge a complaint with a supervisory authority</li>
+      </ul>
+
+      <h3>8. Privacy Contact</h3>
+      <p>${I.fullName}<br>Email: <a href="mailto:${I.email}">${I.email}</a></p>
+    `;
+  }
+}
+
+setLang(LANG);
+</script>
+</body>
+</html>
