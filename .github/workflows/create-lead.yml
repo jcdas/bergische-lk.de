@@ -1,0 +1,53 @@
+name: Create lead MD file
+
+on:
+  repository_dispatch:
+    types: [new_lead]
+
+jobs:
+  create-lead:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create MD file
+        run: |
+          DATUM=$(date +%Y-%m-%d)
+          VEREIN="${{ github.event.client_payload.vereinsname }}"
+          SLUG=$(echo "$VEREIN" | tr '[:upper:]' '[:lower:]' | tr ' ' '-' | tr -cd '[:alnum:]-')
+          DATEINAME="leads/${DATUM}-${SLUG}.md"
+          mkdir -p leads
+          cat > "$DATEINAME" << 'LEADEOF'
+          # ${{ github.event.client_payload.vereinsname }}
+
+          **Eingegangen am:** ${{ github.event.client_payload.datum }}
+          **Status:** Interesse erhalten
+
+          ## Kontakt
+          - **Ansprechpartner:** ${{ github.event.client_payload.ansprechpartner }}
+          - **E-Mail:** ${{ github.event.client_payload.email }}
+          - **Telefon:** ${{ github.event.client_payload.telefon }}
+
+          ## Turnierdetails
+          - **Verfügbare Plätze:** ${{ github.event.client_payload.anzahl_plaetze }}
+          - **Vereinsanteil:** ${{ github.event.client_payload.vereinsanteil }} EUR
+          - **Free Tickets:** ${{ github.event.client_payload.free_tickets }}
+          - **Verfügbare Sonntage:** ${{ github.event.client_payload.verfuegbare_sonntage }}
+          - **Anzahl Sonntage:** ${{ github.event.client_payload.anzahl_sonntage }}
+
+          ## Nachricht
+          ${{ github.event.client_payload.nachricht }}
+
+          ## Notizen
+          *(hier eigene Notizen nach dem Erstgespräch eintragen)*
+          LEADEOF
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add leads/
+          git commit -m "Neuer Lead: ${{ github.event.client_payload.vereinsname }}"
+          git push

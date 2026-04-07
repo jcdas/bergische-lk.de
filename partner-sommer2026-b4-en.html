@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Partner Offer Summer 2026 | Bergische LK-Turniere</title>
+  <meta name="description" content="Personalized partner offer for your club — Bergische LK-Turniere Summer 2026">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --green-deep: #1C3A0E;
+      --green-court: #2D5A18;
+      --orange-clay: #B85A20;
+      --cream: #F0EBE0;
+      --white: #FFFFFF;
+    }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      color: var(--green-deep);
+      background: var(--cream);
+      line-height: 1.6;
+    }
+
+    /* --- NAV --- */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--green-deep);
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.8rem 2rem;
+    }
+    nav .logo-text {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem; color: var(--cream);
+      letter-spacing: 2px; text-decoration: none;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .nav-logo-img { height: 32px; width: auto; }
+    nav .nav-right { display: flex; align-items: center; gap: 1.5rem; }
+    nav a.nav-link {
+      color: var(--cream); text-decoration: none; font-weight: 500;
+      font-size: 0.95rem; transition: color 0.2s;
+    }
+    nav a.nav-link:hover { color: var(--orange-clay); }
+
+    /* --- WIZARD CONTAINER --- */
+    .wizard-wrapper {
+      margin-top: 70px;
+      min-height: calc(100vh - 70px);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: flex-start;
+      padding: 2rem 1.2rem 4rem;
+    }
+
+    /* --- PROGRESS --- */
+    .progress-bar {
+      display: flex; align-items: center; gap: 0.75rem;
+      margin-bottom: 2.5rem; margin-top: 1rem;
+    }
+    .progress-dot {
+      width: 14px; height: 14px; border-radius: 50%;
+      background: #d4cfbf; transition: background 0.3s;
+    }
+    .progress-dot.active { background: var(--orange-clay); }
+    .progress-dot.done { background: var(--green-court); }
+    .progress-line {
+      width: 32px; height: 3px; background: #d4cfbf;
+      border-radius: 2px; transition: background 0.3s;
+    }
+    .progress-line.done { background: var(--green-court); }
+
+    /* --- STEP PANELS --- */
+    .step-panel {
+      display: none; width: 100%; max-width: 800px;
+      animation: fadeIn 0.2s ease;
+    }
+    .step-panel.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+    .step-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      letter-spacing: 2px; text-align: center;
+      margin-bottom: 0.5rem;
+    }
+    .step-title span { color: var(--orange-clay); }
+    .step-subtitle {
+      text-align: center; color: #666; margin-bottom: 2rem; font-size: 0.95rem;
+    }
+
+    /* --- STEP 1: COURTS --- */
+    .courts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 1rem; max-width: 700px; margin: 0 auto;
+    }
+    .court-btn {
+      padding: 1.4rem 1rem;
+      background: var(--white);
+      border: 3px solid #e0dcd4;
+      border-radius: 12px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem; letter-spacing: 1px;
+      color: var(--green-deep);
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+    }
+    .court-btn:hover {
+      border-color: var(--orange-clay);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(184,90,32,0.15);
+    }
+    .court-btn.selected {
+      border-color: var(--orange-clay);
+      background: var(--orange-clay);
+      color: var(--white);
+    }
+
+    /* --- STEP 2: SUNDAYS --- */
+    .month-group { margin-bottom: 1.5rem; }
+    .month-label {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.2rem; letter-spacing: 1px;
+      margin-bottom: 0.6rem; color: var(--green-court);
+    }
+    .sundays-row { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .sunday-btn {
+      padding: 0.6rem 1.2rem;
+      background: var(--white);
+      border: 2px solid #e0dcd4;
+      border-radius: 8px;
+      font-family: 'Barlow', sans-serif;
+      font-weight: 600; font-size: 0.95rem;
+      color: var(--green-deep);
+      cursor: pointer; transition: all 0.2s;
+    }
+    .sunday-btn:hover { border-color: var(--orange-clay); }
+    .sunday-btn.selected {
+      border-color: var(--green-court);
+      background: var(--green-court);
+      color: var(--white);
+    }
+    .nav-buttons {
+      display: flex; justify-content: center; gap: 1rem;
+      margin-top: 2rem;
+    }
+    .btn {
+      display: inline-block; padding: 0.9rem 2.2rem;
+      font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem;
+      letter-spacing: 2px; border: none; border-radius: 6px;
+      cursor: pointer; text-decoration: none; transition: all 0.3s;
+    }
+    .btn-primary { background: var(--orange-clay); color: var(--white); }
+    .btn-primary:hover { background: #D4692A; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(184,90,32,0.4); }
+    .btn-primary:disabled { background: #c4bfb2; cursor: not-allowed; transform: none; box-shadow: none; }
+    .btn-outline {
+      background: transparent; color: var(--green-deep);
+      border: 2px solid #c4bfb2;
+    }
+    .btn-outline:hover { border-color: var(--green-deep); }
+
+    /* --- STEP 3: SERVICES --- */
+    .services-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem; margin-bottom: 1.5rem;
+    }
+    @media (max-width: 640px) {
+      .services-columns { grid-template-columns: 1fr; }
+    }
+    .service-box {
+      border-radius: 12px; padding: 1.8rem;
+    }
+    .service-box.green-bg {
+      background: rgba(45,90,24,0.08);
+      border: 2px solid rgba(45,90,24,0.15);
+    }
+    .service-box.gray-bg {
+      background: rgba(0,0,0,0.03);
+      border: 2px solid #e0dcd4;
+    }
+    .service-box h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.15rem; letter-spacing: 1px;
+      margin-bottom: 1rem;
+    }
+    .service-box ul {
+      list-style: none; padding: 0;
+    }
+    .service-box li {
+      padding: 0.35rem 0; font-size: 0.95rem;
+      padding-left: 1.5rem; position: relative;
+    }
+    .service-box.green-bg li::before {
+      content: '✓'; position: absolute; left: 0;
+      color: var(--green-court); font-weight: 700;
+    }
+    .service-box.gray-bg li::before {
+      content: '•'; position: absolute; left: 0.2rem;
+      color: #999;
+    }
+    .categories-tag {
+      display: inline-block; margin-top: 0.8rem;
+      font-size: 0.85rem; font-weight: 600;
+      background: rgba(45,90,24,0.1); color: var(--green-court);
+      padding: 0.3rem 0.8rem; border-radius: 4px;
+    }
+    .highlight-box {
+      background: var(--white);
+      border: 2px solid var(--orange-clay);
+      border-radius: 12px;
+      padding: 1.5rem; text-align: center;
+      font-size: 1.1rem; font-weight: 600;
+      color: var(--green-deep);
+      margin-bottom: 2rem;
+    }
+    .highlight-box .big-num { color: var(--orange-clay); font-size: 1.3rem; }
+
+    /* --- STEP 4: OFFER + FORM --- */
+    .offer-card {
+      border-radius: 16px; padding: 2rem;
+      text-align: center; margin-bottom: 1.2rem;
+    }
+    .offer-green {
+      background: linear-gradient(135deg, var(--green-deep), var(--green-court));
+      color: var(--white);
+    }
+    .offer-green .offer-label {
+      font-size: 0.95rem; opacity: 0.85; margin-bottom: 0.5rem;
+    }
+    .offer-green .offer-amount {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 8vw, 4.5rem);
+      letter-spacing: 2px; line-height: 1;
+    }
+    .offer-green .offer-sub {
+      font-size: 0.9rem; opacity: 0.75; margin-top: 0.5rem;
+    }
+    .offer-orange {
+      background: rgba(184,90,32,0.08);
+      border: 2px solid rgba(184,90,32,0.2);
+    }
+    .offer-orange .offer-ft-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem; color: var(--orange-clay);
+      letter-spacing: 1px;
+    }
+    .offer-orange .offer-ft-detail {
+      font-size: 0.9rem; color: #666; margin-top: 0.3rem;
+    }
+    .offer-gray {
+      background: rgba(0,0,0,0.03);
+      border: 2px solid #e0dcd4;
+      font-size: 0.95rem;
+    }
+    .offer-blue {
+      background: rgba(30,80,160,0.06);
+      border: 2px solid rgba(30,80,160,0.15);
+    }
+    .offer-blue .dates-label {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem; letter-spacing: 1px;
+      color: #1e5090; margin-bottom: 0.5rem;
+    }
+    .offer-blue .dates-list {
+      font-size: 0.9rem; color: #555;
+    }
+
+    /* --- CONTACT FORM --- */
+    .form-divider {
+      border: none; border-top: 2px solid #e0dcd4;
+      margin: 2.5rem 0;
+    }
+    .contact-form {
+      max-width: 600px; margin: 0 auto;
+      background: var(--white); border-radius: 12px;
+      padding: 2.5rem;
+      box-shadow: 0 4px 20px rgba(28,58,14,0.08);
+    }
+    .form-group { margin-bottom: 1.5rem; }
+    .form-group label {
+      display: block; font-weight: 600;
+      margin-bottom: 0.4rem; font-size: 0.95rem;
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%; padding: 0.8rem 1rem;
+      border: 2px solid #e0dcd4; border-radius: 6px;
+      font-family: 'Barlow', sans-serif; font-size: 1rem;
+      transition: border-color 0.2s; background: var(--white);
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none; border-color: var(--orange-clay);
+    }
+    .form-group textarea { resize: vertical; min-height: 80px; }
+    .form-submit {
+      width: 100%; padding: 1rem;
+      background: var(--orange-clay); color: var(--white);
+      border: none; border-radius: 6px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem; letter-spacing: 2px;
+      cursor: pointer; transition: all 0.3s;
+    }
+    .form-submit:hover {
+      background: #D4692A;
+      box-shadow: 0 6px 20px rgba(184,90,32,0.4);
+    }
+
+    /* --- SUCCESS --- */
+    .success-msg {
+      display: none; text-align: center; padding: 3rem 1rem;
+    }
+    .success-msg.show { display: block; }
+    .success-icon {
+      width: 64px; height: 64px; background: var(--green-court);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.5rem;
+    }
+    .success-icon svg { width: 32px; height: 32px; fill: var(--white); }
+    .success-msg h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem; letter-spacing: 1px; margin-bottom: 0.5rem;
+    }
+    .success-msg p { color: #666; margin-bottom: 1.5rem; }
+
+    /* --- FOOTER --- */
+    footer {
+      background: #111; color: #999; text-align: center;
+      padding: 2rem; font-size: 0.85rem;
+    }
+    footer a { color: var(--orange-clay); text-decoration: none; }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+      nav { padding: 0.6rem 1rem; }
+      .wizard-wrapper { padding: 1.5rem 1rem 3rem; }
+      .courts-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+      .contact-form { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="logo-text"><img src="logo.svg" alt="" class="nav-logo-img"> BERGISCHE LK-TURNIERE</a>
+  <div class="nav-right">
+    <a href="index.html" class="nav-link">Home</a>
+  </div>
+</nav>
+
+<!-- WIZARD -->
+<div class="wizard-wrapper">
+
+  <!-- PROGRESS -->
+  <div class="progress-bar" id="progress-bar">
+    <div class="progress-dot active" data-step="1"></div>
+    <div class="progress-line" data-after="1"></div>
+    <div class="progress-dot" data-step="2"></div>
+    <div class="progress-line" data-after="2"></div>
+    <div class="progress-dot" data-step="3"></div>
+    <div class="progress-line" data-after="3"></div>
+    <div class="progress-dot" data-step="4"></div>
+  </div>
+
+  <!-- STEP 1 — Courts -->
+  <div class="step-panel active" id="step1">
+    <h2 class="step-title">How many <span>courts</span> can you make available?</h2>
+    <p class="step-subtitle">Select the number of available clay courts</p>
+    <div class="courts-grid">
+      <button class="court-btn" data-courts="4" onclick="selectCourts(4)">4 Courts</button>
+      <button class="court-btn" data-courts="5" onclick="selectCourts(5)">5 Courts</button>
+      <button class="court-btn" data-courts="6" onclick="selectCourts(6)">6 Courts</button>
+      <button class="court-btn" data-courts="7" onclick="selectCourts(7)">7 Courts</button>
+      <button class="court-btn" data-courts="8" onclick="selectCourts(8)">8 Courts</button>
+    </div>
+  </div>
+
+  <!-- STEP 2 — Sundays -->
+  <div class="step-panel" id="step2">
+    <h2 class="step-title">Which <span>Sundays</span> would be available?</h2>
+    <p class="step-subtitle">Only Sundays outside NRW school holidays 2026</p>
+
+    <div class="month-group">
+      <div class="month-label">May</div>
+      <div class="sundays-row">
+        <button class="sunday-btn" data-date="May 17" onclick="toggleSunday(this)">May 17</button>
+        <button class="sunday-btn" data-date="May 24" onclick="toggleSunday(this)">May 24</button>
+        <button class="sunday-btn" data-date="May 31" onclick="toggleSunday(this)">May 31</button>
+      </div>
+    </div>
+    <div class="month-group">
+      <div class="month-label">June</div>
+      <div class="sundays-row">
+        <button class="sunday-btn" data-date="Jun 7" onclick="toggleSunday(this)">Jun 7</button>
+        <button class="sunday-btn" data-date="Jun 14" onclick="toggleSunday(this)">Jun 14</button>
+        <button class="sunday-btn" data-date="Jun 21" onclick="toggleSunday(this)">Jun 21</button>
+      </div>
+    </div>
+    <div class="month-group">
+      <div class="month-label">August</div>
+      <div class="sundays-row">
+        <button class="sunday-btn" data-date="Aug 9" onclick="toggleSunday(this)">Aug 9</button>
+        <button class="sunday-btn" data-date="Aug 16" onclick="toggleSunday(this)">Aug 16</button>
+        <button class="sunday-btn" data-date="Aug 23" onclick="toggleSunday(this)">Aug 23</button>
+        <button class="sunday-btn" data-date="Aug 30" onclick="toggleSunday(this)">Aug 30</button>
+      </div>
+    </div>
+    <div class="month-group">
+      <div class="month-label">September</div>
+      <div class="sundays-row">
+        <button class="sunday-btn" data-date="Sep 6" onclick="toggleSunday(this)">Sep 6</button>
+        <button class="sunday-btn" data-date="Sep 13" onclick="toggleSunday(this)">Sep 13</button>
+        <button class="sunday-btn" data-date="Sep 20" onclick="toggleSunday(this)">Sep 20</button>
+        <button class="sunday-btn" data-date="Sep 27" onclick="toggleSunday(this)">Sep 27</button>
+      </div>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn btn-outline" onclick="goToStep(1)">&#8592; Back</button>
+      <button class="btn btn-primary" id="btn-step2-next" disabled onclick="goToStep(3)">Next &#8594;</button>
+    </div>
+  </div>
+
+  <!-- STEP 3 — Services -->
+  <div class="step-panel" id="step3">
+    <h2 class="step-title">What we do <span>for you</span></h2>
+    <p class="step-subtitle">Full tournament organization — your club just provides the courts</p>
+
+    <div class="services-columns">
+      <div class="service-box green-bg">
+        <h3>We handle everything</h3>
+        <ul>
+          <li>Tournament listing and TVN registration</li>
+          <li>Draw, scheduling and chief umpire</li>
+          <li>Communication with players and parents</li>
+          <li>All match balls</li>
+          <li>TVN post-tournament processing</li>
+        </ul>
+        <div class="categories-tag">U12 · U14 · U16 · Men — LK Spiral Tournament</div>
+      </div>
+      <div class="service-box gray-bg">
+        <h3>What we need from you</h3>
+        <ul>
+          <li>Access to the "Tournaments" tab in your club account</li>
+          <li>A table with weather protection</li>
+          <li>Changing rooms and restrooms</li>
+          <li>Playable courts with standard equipment</li>
+        </ul>
+        <p style="margin-top:1rem; font-weight:600; font-size:0.9rem; color:var(--orange-clay);">That's all.</p>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <span class="big-num" id="highlight-players">48</span> players, parents and siblings mean a<br>
+      <strong>busy club day for your restaurant and bar.</strong>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="btn btn-outline" onclick="goToStep(2)">&#8592; Back</button>
+      <button class="btn btn-primary" onclick="goToStep(4)">Calculate your revenue &#8594;</button>
+    </div>
+  </div>
+
+  <!-- STEP 4 — Offer + Form -->
+  <div class="step-panel" id="step4">
+    <h2 class="step-title">Your <span>Offer</span></h2>
+
+    <!-- Green: Club share -->
+    <div class="offer-card offer-green">
+      <div class="offer-label">Your club share</div>
+      <div class="offer-amount"><span id="offer-amount">0</span> &euro;</div>
+      <div class="offer-sub">per tournament Sunday — with zero effort on your part</div>
+    </div>
+
+    <!-- Orange: Free Tickets -->
+    <div class="offer-card offer-orange" id="offer-ft-card" style="display:none;">
+      <div class="offer-ft-title">+ <span id="offer-ft-total">0</span> free entry spots for your members</div>
+      <div class="offer-ft-detail" id="offer-ft-detail"></div>
+      <div class="offer-ft-detail" style="margin-top:0.2rem;">Allocation at your discretion</div>
+    </div>
+
+    <!-- Gray: Participants -->
+    <div class="offer-card offer-gray">
+      <strong><span id="offer-players">0</span> participants</strong> — Categories: U12, U14, U16, Men
+    </div>
+
+    <!-- Blue: Dates -->
+    <div class="offer-card offer-blue">
+      <div class="dates-label">Your selected dates</div>
+      <div class="dates-list" id="offer-dates"></div>
+    </div>
+
+    <!-- FORM -->
+    <hr class="form-divider">
+    <h3 class="step-title" style="font-size:1.5rem; margin-bottom:0.3rem;">Interested? We'll get back to you.</h3>
+    <p class="step-subtitle">Fill out the form — we'll arrange a meeting.</p>
+
+    <form class="contact-form" id="lead-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <!-- Hidden fields -->
+      <input type="hidden" name="Anzahl_Plaetze" id="h-courts">
+      <input type="hidden" name="Vereinsanteil_EUR" id="h-anteil">
+      <input type="hidden" name="Free_Tickets" id="h-ft">
+      <input type="hidden" name="Verfuegbare_Sonntage" id="h-sundays">
+      <input type="hidden" name="Anzahl_Sonntage" id="h-count">
+
+      <div class="form-group">
+        <label>Club name *</label>
+        <input type="text" name="Vereinsname" required placeholder="e.g. TC Example City">
+      </div>
+      <div class="form-group">
+        <label>Contact person *</label>
+        <input type="text" name="Ansprechpartner" required placeholder="First and last name">
+      </div>
+      <div class="form-group">
+        <label>Email address *</label>
+        <input type="email" name="E-Mail-Adresse" required placeholder="board@tc-example.de">
+      </div>
+      <div class="form-group">
+        <label>Phone number</label>
+        <input type="tel" name="Telefonnummer" placeholder="+49 ...">
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea name="Nachricht" placeholder="Optional message..."></textarea>
+      </div>
+
+      <button type="submit" class="form-submit">SEND INQUIRY</button>
+    </form>
+
+    <!-- Success -->
+    <div class="success-msg" id="success-msg">
+      <div class="success-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+      </div>
+      <h3>Thank you!</h3>
+      <p>We'll get back to you shortly.</p>
+      <button class="btn btn-primary" onclick="resetWizard()">Start over</button>
+    </div>
+
+    <div class="nav-buttons" id="back-step3-btn">
+      <button class="btn btn-outline" onclick="goToStep(3)">&#8592; Back</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2026 Bergische LK-Turniere. All rights reserved.</p>
+  <p style="margin-top:0.5rem;">
+    <a href="mailto:info@bergische-lk.de">info@bergische-lk.de</a> &middot;
+    Jean-Charles Das, Organizer &middot;
+    <a href="legal.html">Legal & Privacy</a>
+  </p>
+</footer>
+
+<script>
+/* ════════════════════════════════════════════════════════
+   WIZARD LOGIC
+   ════════════════════════════════════════════════════════ */
+
+let currentStep = 1;
+let selectedCourts = 0;
+let selectedSundays = [];
+
+/* ── Free-Ticket table ─────────────────────────────── */
+const FT_TABLE = {
+  4: { ftJ: 1, ftE: 0 },
+  5: { ftJ: 1, ftE: 1 },
+  6: { ftJ: 2, ftE: 1 },
+  7: { ftJ: 3, ftE: 1 },
+  8: { ftJ: 4, ftE: 2 },
+};
+
+/* ── Step navigation ───────────────────────────────── */
+function goToStep(n) {
+  document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('step' + n).classList.add('active');
+  currentStep = n;
+  updateProgress();
+  if (n === 3) updateHighlight();
+  if (n === 4) renderOffer();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function updateProgress() {
+  document.querySelectorAll('.progress-dot').forEach(d => {
+    const s = parseInt(d.dataset.step);
+    d.className = 'progress-dot';
+    if (s < currentStep) d.classList.add('done');
+    else if (s === currentStep) d.classList.add('active');
+  });
+  document.querySelectorAll('.progress-line').forEach(l => {
+    const a = parseInt(l.dataset.after);
+    l.className = 'progress-line';
+    if (a < currentStep) l.classList.add('done');
+  });
+}
+
+/* ── Step 1: Select courts ─────────────────────────── */
+function selectCourts(n) {
+  selectedCourts = n;
+  document.querySelectorAll('.court-btn').forEach(b => {
+    b.classList.toggle('selected', parseInt(b.dataset.courts) === n);
+  });
+  setTimeout(() => goToStep(2), 200);
+}
+
+/* ── Step 2: Toggle sundays ────────────────────────── */
+function toggleSunday(btn) {
+  btn.classList.toggle('selected');
+  selectedSundays = [];
+  document.querySelectorAll('.sunday-btn.selected').forEach(b => {
+    selectedSundays.push(b.dataset.date);
+  });
+  document.getElementById('btn-step2-next').disabled = selectedSundays.length === 0;
+}
+
+/* ── Step 3: Highlight players ─────────────────────── */
+function updateHighlight() {
+  const spieler = selectedCourts * 8;
+  document.getElementById('highlight-players').textContent = spieler;
+}
+
+/* ── Step 4: Render offer ──────────────────────────── */
+function renderOffer() {
+  const spieler = selectedCourts * 8;
+  const jugendliche = Math.floor(spieler * 0.75 / 2) * 2;
+  const erwachsene = spieler - jugendliche;
+
+  const ft = FT_TABLE[selectedCourts] || { ftJ: 0, ftE: 0 };
+  const nennwert = ft.ftJ * 28 + ft.ftE * 35;
+  const nettoBasis = (jugendliche - ft.ftJ) * 25 + (erwachsene - ft.ftE) * 30;
+  const vereinsAnt = Math.round(nettoBasis * 0.25);
+
+  // Green block
+  document.getElementById('offer-amount').textContent = vereinsAnt;
+
+  // Orange block
+  const ftTotal = ft.ftJ + ft.ftE;
+  const ftCard = document.getElementById('offer-ft-card');
+  if (ftTotal > 0) {
+    ftCard.style.display = '';
+    document.getElementById('offer-ft-total').textContent = ftTotal;
+    document.getElementById('offer-ft-detail').textContent =
+      ft.ftJ + '\u00d7 Youth + ' + ft.ftE + '\u00d7 Adults \u2014 Total value: ' + nennwert + ' \u20ac';
+  } else {
+    ftCard.style.display = 'none';
+  }
+
+  // Gray block
+  document.getElementById('offer-players').textContent = spieler;
+
+  // Blue block — dates
+  const datesStr = selectedSundays.join(' \u00b7 ');
+  document.getElementById('offer-dates').innerHTML =
+    datesStr + '<br><strong>' + selectedSundays.length + ' available Sundays</strong>';
+
+  // Hidden fields
+  document.getElementById('h-courts').value = selectedCourts;
+  document.getElementById('h-anteil').value = vereinsAnt;
+  document.getElementById('h-ft').value =
+    ft.ftJ + 'x Youth + ' + ft.ftE + 'x Adults (Value: ' + nennwert + ' EUR)';
+  document.getElementById('h-sundays').value = selectedSundays.join(', ');
+  document.getElementById('h-count').value = selectedSundays.length;
+}
+
+/* ── Form submission ───────────────────────────────── */
+const form = document.getElementById('lead-form');
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
+  const data = new FormData(form);
+
+  fetch(form.action, {
+    method: 'POST',
+    body: data,
+    headers: { 'Accept': 'application/json' }
+  }).then(r => {
+    if (r.ok) {
+      form.style.display = 'none';
+      document.getElementById('back-step3-btn').style.display = 'none';
+      document.getElementById('success-msg').classList.add('show');
+    } else {
+      alert('Error sending. Please try again.');
+    }
+  }).catch(() => {
+    alert('Network error. Please check your connection.');
+  });
+});
+
+/* ── Reset wizard ──────────────────────────────────── */
+function resetWizard() {
+  selectedCourts = 0;
+  selectedSundays = [];
+  document.querySelectorAll('.court-btn').forEach(b => b.classList.remove('selected'));
+  document.querySelectorAll('.sunday-btn').forEach(b => b.classList.remove('selected'));
+  document.getElementById('btn-step2-next').disabled = true;
+  form.reset();
+  form.style.display = '';
+  document.getElementById('back-step3-btn').style.display = '';
+  document.getElementById('success-msg').classList.remove('show');
+  goToStep(1);
+}
+</script>
+
+</body>
+</html>
