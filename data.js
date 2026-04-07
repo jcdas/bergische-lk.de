@@ -91,7 +91,7 @@ const SITE = {
       label: { de: "UNSERE TURNIERE", en: "OUR TOURNAMENTS" },
     },
     // Image de fond (Unsplash free — terre battue close-up)
-    image: "https://images.unsplash.com/photo-1731777347134-099c75eb2a65?w=1600&q=80",  // terre battue rouge filet court clay
+    image: "https://images.unsplash.com/photo-1750856698142-d84955b0abf7?w=1600&q=80",  // spectateurs match terre battue Roland Garros
   },
 
   // ── TOURNOIS ────────────────────────────────────────────
