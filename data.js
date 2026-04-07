@@ -23,9 +23,8 @@ const SITE = {
 
   // ── IMPRESSUM (à compléter avec tes vraies données) ────
   impressum: {
-    fullName: "Jean-Charles Das",               // ← ton nom complet
-    address: "Musterstraße 1, 42327 Wuppertal", // ← ta vraie adresse
-    phone: "+49 123 456 7890",                   // ← ton vrai numéro
+    fullName: "Jean-Charles Das",
+    address: "Bergstr. 10, 42781 Haan",
     email: "info@bergische-lk.de",
     responsible: "Jean-Charles Das",             // Verantwortlich i.S.d. §18 Abs. 2 MStV
   },

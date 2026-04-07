@@ -442,6 +442,10 @@
       <input type="email" name="email" id="newsletter-email" required>
       <button type="submit" id="newsletter-btn" class="btn btn-primary btn-sm"></button>
     </form>
+    <div style="max-width:500px; margin:0.8rem auto 0; display:flex; align-items:flex-start; gap:0.5rem; text-align:left;">
+      <input type="checkbox" id="nl-consent" required style="margin-top:0.3rem; width:16px; height:16px; accent-color:var(--orange-clay); cursor:pointer; flex-shrink:0;">
+      <label for="nl-consent" style="font-size:0.8rem; color:rgba(240,235,224,0.8); cursor:pointer;" id="nl-consent-label"></label>
+    </div>
   </div>
 </section>
 
@@ -467,6 +471,12 @@
     <a href="legal.html" data-de="Impressum & Datenschutz" data-en="Legal & Privacy"></a>
   </p>
 </footer>
+
+<!-- COOKIE BANNER -->
+<div id="cookie-banner" style="display:none; position:fixed; bottom:0; left:0; right:0; background:var(--green-deep); color:var(--cream); padding:1rem 2rem; z-index:200; font-size:0.85rem; display:none; align-items:center; justify-content:center; gap:1.5rem; flex-wrap:wrap;">
+  <span id="cookie-text"></span>
+  <button onclick="dismissCookie()" style="background:var(--orange-clay); color:#fff; border:none; padding:0.5rem 1.2rem; border-radius:4px; font-family:'Barlow',sans-serif; font-weight:600; cursor:pointer; white-space:nowrap;" id="cookie-btn"></button>
+</div>
 
 <!-- DATA + RENDER -->
 <script src="data.js"></script>
@@ -608,6 +618,9 @@ function render() {
     document.getElementById('newsletter-text').textContent = t(nl.text);
     document.getElementById('newsletter-email').placeholder = t(nl.placeholder);
     document.getElementById('newsletter-btn').textContent = t(nl.cta);
+    document.getElementById('nl-consent-label').innerHTML = LANG === 'de'
+      ? 'Ich stimme zu, E-Mails über Turniere zu erhalten. Widerruf jederzeit möglich. <a href="legal.html" style="color:var(--orange-clay);">Datenschutzerklärung</a>'
+      : 'I agree to receive tournament emails. Unsubscribe anytime. <a href="legal.html" style="color:var(--orange-clay);">Privacy Policy</a>';
     const nlForm = document.getElementById('newsletter-form');
     if (nl.action) {
       nlForm.action = nl.action;
@@ -615,6 +628,14 @@ function render() {
       nlForm.action = 'mailto:' + D.email;
       nlForm.method = 'GET';
     }
+    // Require consent before newsletter submit
+    nlForm.onsubmit = function(e) {
+      if (!document.getElementById('nl-consent').checked) {
+        e.preventDefault();
+        alert(LANG === 'de' ? 'Bitte stimmen Sie der Datenschutzerklärung zu.' : 'Please accept the Privacy Policy.');
+        return false;
+      }
+    };
   } else {
     nlSection.style.display = 'none';
   }
@@ -631,8 +652,24 @@ function render() {
   document.getElementById('footer-copy').innerHTML = `&copy; ${D.year} ${D.name}. ${rights}`;
 }
 
+// Cookie banner
+function showCookieBanner() {
+  if (localStorage.getItem('cookie_ok')) return;
+  const b = document.getElementById('cookie-banner');
+  b.style.display = 'flex';
+  document.getElementById('cookie-text').textContent = LANG === 'de'
+    ? 'Diese Website verwendet keine Tracking-Cookies. Wir speichern lediglich Ihre Sprachpräferenz.'
+    : 'This website does not use tracking cookies. We only store your language preference.';
+  document.getElementById('cookie-btn').textContent = LANG === 'de' ? 'Verstanden' : 'Got it';
+}
+function dismissCookie() {
+  localStorage.setItem('cookie_ok', '1');
+  document.getElementById('cookie-banner').style.display = 'none';
+}
+
 // Init
 setLang(LANG);
+showCookieBanner();
 </script>
 
 </body>
