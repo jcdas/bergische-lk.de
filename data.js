@@ -87,11 +87,11 @@ const SITE = {
       en: "Official DTB tournaments on clay courts in Bergisches Land",
     },
     cta: {
-      url: "https://mybigpoint.tennis.de",
-      label: { de: "JETZT ANMELDEN", en: "REGISTER NOW" },
+      url: "#tournaments",
+      label: { de: "UNSERE TURNIERE", en: "OUR TOURNAMENTS" },
     },
-    // Image de fond (Unsplash free — terre battue)
-    image: "https://images.unsplash.com/photo-1750856698142-d84955b0abf7?w=1600&q=80",  // spectateurs match terre battue Roland Garros
+    // Image de fond (Unsplash free — terre battue close-up)
+    image: "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=1600&q=80",  // clay court surface close-up with line
   },
 
   // ── TOURNOIS ────────────────────────────────────────────

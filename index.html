@@ -355,13 +355,11 @@
 <section class="hero">
   <div class="hero-bg" id="hero-bg"></div>
   <div class="hero-content">
-    <img src="logo.svg" alt="Bergische LK-Turniere" class="hero-logo" id="hero-logo">
     <h1 id="hero-title"></h1>
     <p class="subtitle" id="hero-subtitle"></p>
     <p class="dates" id="hero-dates"></p>
     <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
-      <a id="hero-cta" target="_blank" rel="noopener" class="btn btn-primary"></a>
-      <a href="#turniere" class="btn btn-outline" data-de="UNSERE TURNIERE" data-en="OUR TOURNAMENTS"></a>
+      <a href="#turniere" class="btn btn-primary" data-de="UNSERE TURNIERE" data-en="OUR TOURNAMENTS"></a>
     </div>
   </div>
 </section>
@@ -533,16 +531,14 @@ function render() {
   document.getElementById('hero-title').innerHTML = t(D.hero.title);
   document.getElementById('hero-subtitle').textContent = t(D.hero.subtitle);
   document.getElementById('hero-dates').textContent = `${t(D.season.label)} — ${t(D.season.status)}`;
-  const cta = document.getElementById('hero-cta');
-  cta.href = D.hero.cta.url;
-  cta.textContent = t(D.hero.cta.label);
+  // hero CTA removed — single "Unsere Turniere" button handled via data-de/data-en
 
   // Tournaments
   const tList = document.getElementById('tournament-list');
   tList.innerHTML = D.tournaments.map(tr => {
     const venue = D.venues.find(v => v.id === tr.venue);
     const link = tr.mybigpoint
-      ? `<a href="${tr.mybigpoint}" target="_blank" rel="noopener" class="btn btn-primary btn-sm" style="margin-top:0.8rem">${t(D.hero.cta.label)}</a>`
+      ? `<a href="${tr.mybigpoint}" target="_blank" rel="noopener" class="btn btn-primary btn-sm" style="margin-top:0.8rem">${LANG === 'de' ? 'JETZT ANMELDEN' : 'REGISTER NOW'}</a>`
       : '';
     return `<div class="tournament-card">
       <div style="display:flex;justify-content:space-between;align-items:start">
