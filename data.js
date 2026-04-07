@@ -91,7 +91,7 @@ const SITE = {
       label: { de: "UNSERE TURNIERE", en: "OUR TOURNAMENTS" },
     },
     // Image de fond (Unsplash free — terre battue close-up)
-    image: "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=1600&q=80",  // clay court surface close-up with line
+    image: "https://images.unsplash.com/photo-1731777347134-099c75eb2a65?w=1600&q=80",  // terre battue rouge filet court clay
   },
 
   // ── TOURNOIS ────────────────────────────────────────────
