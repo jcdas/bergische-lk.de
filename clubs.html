@@ -273,38 +273,47 @@
     <h2 class="section-title" data-de="JETZT <span>ANFRAGEN</span>" data-en="GET IN <span>TOUCH</span>"></h2>
     <div class="divider"></div>
     <p class="section-subtitle" data-de="Erzählen Sie uns von Ihrem Verein — wir erstellen ein unverbindliches Angebot" data-en="Tell us about your club — we'll provide a free, no-obligation quote"></p>
-    <form class="contact-form" id="contact-form" method="POST">
-      <input type="hidden" name="_subject" value="Neue Turnier-Anfrage über bergische-lk.de">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_next" value="https://bergische-lk.de/clubs.html">
-
+    <form class="contact-form" id="contact-form" action="https://formspree.io/f/xojprpog" method="POST">
       <div class="form-group">
         <label data-de="Vereinsname *" data-en="Club Name *"></label>
-        <input type="text" name="club_name" required placeholder="z.B. TC Musterstadt">
+        <input type="text" name="Vereinsname" required placeholder="z.B. TC Musterstadt">
       </div>
 
       <div class="form-group">
         <label data-de="Anzahl Plätze" data-en="Number of Courts"></label>
-        <input type="number" name="courts" min="1" max="30" placeholder="z.B. 6">
+        <input type="number" name="Anzahl_Plaetze" min="1" max="30" placeholder="z.B. 6">
       </div>
 
       <div class="form-group">
         <label data-de="Gewünschter Zeitraum" data-en="Preferred Period"></label>
-        <select name="period" id="period-select"></select>
+        <select name="Zeitraum" id="period-select"></select>
       </div>
 
       <div class="form-group">
         <label>E-Mail *</label>
-        <input type="email" name="email" required placeholder="vorstand@tc-musterstadt.de">
+        <input type="email" name="E-Mail-Adresse" required placeholder="vorstand@tc-musterstadt.de">
       </div>
 
       <div class="form-group">
         <label data-de="Nachricht (optional)" data-en="Message (optional)"></label>
-        <textarea name="message"></textarea>
+        <textarea name="Nachricht"></textarea>
+      </div>
+
+      <div class="form-group" style="display:flex; align-items:flex-start; gap:0.6rem;">
+        <input type="checkbox" id="dsgvo-consent" required style="margin-top:0.35rem; width:18px; height:18px; accent-color:var(--orange-clay); cursor:pointer; flex-shrink:0;">
+        <label for="dsgvo-consent" style="font-weight:400; font-size:0.85rem; cursor:pointer;" data-de='Ich stimme der Verarbeitung meiner Daten gemäß der <a href="legal.html" target="_blank" style="color:var(--orange-clay);">Datenschutzerklärung</a> zu. *' data-en='I consent to my data being processed according to the <a href="legal.html" target="_blank" style="color:var(--orange-clay);">Privacy Policy</a>. *'></label>
       </div>
 
       <button type="submit" class="form-submit" id="form-submit"></button>
     </form>
+
+    <div id="form-success" style="display:none; text-align:center; padding:2rem;">
+      <div style="width:64px; height:64px; background:var(--green-court); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 1.5rem;">
+        <svg viewBox="0 0 24 24" style="width:32px; height:32px; fill:var(--white);"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+      </div>
+      <h3 style="font-family:'Bebas Neue',sans-serif; font-size:1.8rem; letter-spacing:1px; margin-bottom:0.5rem;" data-de="Vielen Dank!" data-en="Thank you!"></h3>
+      <p style="color:#666;" data-de="Wir melden uns in Kürze bei Ihnen." data-en="We'll get back to you shortly."></p>
+    </div>
   </div>
 </section>
 
@@ -327,6 +336,12 @@
     <a href="legal.html" data-de="Impressum & Datenschutz" data-en="Legal & Privacy"></a>
   </p>
 </footer>
+
+<!-- COOKIE BANNER -->
+<div id="cookie-banner" style="display:none; position:fixed; bottom:0; left:0; right:0; background:var(--green-deep); color:var(--cream); padding:1rem 2rem; z-index:200; font-size:0.85rem; align-items:center; justify-content:center; gap:1.5rem; flex-wrap:wrap;">
+  <span id="cookie-text"></span>
+  <button onclick="dismissCookie()" style="background:var(--orange-clay); color:#fff; border:none; padding:0.5rem 1.2rem; border-radius:4px; font-family:'Barlow',sans-serif; font-weight:600; cursor:pointer; white-space:nowrap;" id="cookie-btn"></button>
+</div>
 
 <!-- DATA + RENDER -->
 <script src="data.js"></script>
@@ -376,8 +391,8 @@ function render() {
   document.getElementById('hero-title').innerHTML = t(C.hero.title);
   document.getElementById('hero-subtitle').textContent = t(C.hero.subtitle);
 
-  // Form action
-  document.getElementById('contact-form').action = `https://formsubmit.co/${D.email}`;
+  // Form action (Formspree)
+  // action already set in HTML attribute
 
   // Services
   const sGrid = document.getElementById('services-grid');
@@ -419,8 +434,45 @@ function render() {
   document.getElementById('footer-org').textContent = `${D.organizer}, ${orgLabel}`;
 }
 
+// AJAX form submission
+const cForm = document.getElementById('contact-form');
+cForm.addEventListener('submit', function(e) {
+  e.preventDefault();
+  const data = new FormData(cForm);
+  fetch(cForm.action, {
+    method: 'POST',
+    body: data,
+    headers: { 'Accept': 'application/json' }
+  }).then(r => {
+    if (r.ok) {
+      cForm.style.display = 'none';
+      document.getElementById('form-success').style.display = 'block';
+    } else {
+      alert(LANG === 'de' ? 'Fehler beim Senden. Bitte versuchen Sie es erneut.' : 'Error sending. Please try again.');
+    }
+  }).catch(() => {
+    alert(LANG === 'de' ? 'Netzwerkfehler. Bitte prüfen Sie Ihre Verbindung.' : 'Network error. Please check your connection.');
+  });
+});
+
+// Cookie banner
+function showCookieBanner() {
+  if (localStorage.getItem('cookie_ok')) return;
+  const b = document.getElementById('cookie-banner');
+  b.style.display = 'flex';
+  document.getElementById('cookie-text').textContent = LANG === 'de'
+    ? 'Diese Website verwendet keine Tracking-Cookies. Wir speichern lediglich Ihre Sprachpräferenz.'
+    : 'This website does not use tracking cookies. We only store your language preference.';
+  document.getElementById('cookie-btn').textContent = LANG === 'de' ? 'Verstanden' : 'Got it';
+}
+function dismissCookie() {
+  localStorage.setItem('cookie_ok', '1');
+  document.getElementById('cookie-banner').style.display = 'none';
+}
+
 // Init
 setLang(LANG);
+showCookieBanner();
 </script>
 
 </body>

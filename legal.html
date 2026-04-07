@@ -93,6 +93,12 @@
   </div>
 </nav>
 
+<!-- COOKIE BANNER -->
+<div id="cookie-banner" style="display:none; position:fixed; bottom:0; left:0; right:0; background:var(--green-deep); color:var(--cream); padding:1rem 2rem; z-index:200; font-size:0.85rem; align-items:center; justify-content:center; gap:1.5rem; flex-wrap:wrap;">
+  <span id="cookie-text"></span>
+  <button onclick="dismissCookie()" style="background:var(--orange-clay); color:#fff; border:none; padding:0.5rem 1.2rem; border-radius:4px; font-family:'Barlow',sans-serif; font-weight:600; cursor:pointer; white-space:nowrap;" id="cookie-btn"></button>
+</div>
+
 <div class="legal-page" id="legal-content"></div>
 
 <footer>
@@ -141,9 +147,9 @@ function render() {
       <p>
         ${I.fullName}<br>
         ${I.address}<br>
-        E-Mail: <a href="mailto:${I.email}">${I.email}</a><br>
-        Telefon: ${I.phone}
+        E-Mail: <a href="mailto:${I.email}">${I.email}</a>
       </p>
+      <p>Kontakt auch über das <a href="clubs.html">Kontaktformular</a> möglich.</p>
 
       <h3>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h3>
       <p>${I.responsible}<br>${I.address}</p>
@@ -170,17 +176,13 @@ function render() {
         <li>Browser-Typ und -Version</li>
       </ul>
       <p>Diese Daten werden von GitHub Pages (GitHub Inc., San Francisco, USA) als Hosting-Anbieter verarbeitet. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse am Betrieb der Website).</p>
+      <p><strong>Lokale Speicherung:</strong> Diese Website speichert Ihre Sprachpräferenz (DE/EN) sowie den Status des Cookie-Hinweises im localStorage Ihres Browsers. Diese Daten werden nicht an Server übermittelt und können jederzeit über die Browser-Einstellungen gelöscht werden. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer benutzerfreundlichen Website).</p>
 
-      <h3>3. Kontaktformular</h3>
-      <p>Wenn Sie das Kontaktformular auf unserer Seite „Für Vereine" nutzen, werden folgende Daten verarbeitet:</p>
-      <ul>
-        <li>Vereinsname</li>
-        <li>Anzahl der Plätze</li>
-        <li>Gewünschter Zeitraum</li>
-        <li>E-Mail-Adresse</li>
-        <li>Nachricht (optional)</li>
-      </ul>
-      <p>Die Daten werden über den Dienst FormSubmit.co übermittelt und per E-Mail an uns weitergeleitet. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Maßnahmen). Ihre Daten werden nicht an Dritte weitergegeben und nach Bearbeitung Ihrer Anfrage gelöscht.</p>
+      <h3>3. Kontaktformulare</h3>
+      <p><strong>a) Vereinsanfrage („Für Vereine"):</strong> Wenn Sie das Kontaktformular nutzen, werden folgende Daten verarbeitet: Vereinsname, Anzahl der Plätze, gewünschter Zeitraum, E-Mail-Adresse und optionale Nachricht.</p>
+      <p><strong>b) Partnerangebot-Formular:</strong> Beim interaktiven Partnerangebot werden zusätzlich verarbeitet: Ansprechpartner, Telefonnummer (optional), Anzahl verfügbarer Plätze, ausgewählte Sonntage, berechneter Vereinsanteil und Free-Ticket-Paket.</p>
+      <p>Alle Formulardaten werden über den Dienst <strong>Formspree Inc.</strong> (USA) übermittelt. Formspree verarbeitet die Daten auf Servern in den USA. Die Übermittlung erfolgt auf Grundlage von Standardvertragsklauseln (Art. 46 Abs. 2 lit. c DSGVO). Weitere Informationen: <a href="https://formspree.io/legal/privacy-policy" target="_blank" rel="noopener">Formspree Privacy Policy</a>.</p>
+      <p>Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Maßnahmen). Ihre Daten werden nicht an sonstige Dritte weitergegeben und nach Bearbeitung Ihrer Anfrage gelöscht.</p>
 
       <h3>4. Newsletter</h3>
       <p>Wenn Sie sich für unseren Newsletter anmelden, speichern wir Ihre E-Mail-Adresse zum Versand von Informationen über kommende Turniere. Rechtsgrundlage ist Art. 6 Abs. 1 lit. a DSGVO (Einwilligung). Sie können Ihre Einwilligung jederzeit widerrufen, indem Sie sich abmelden oder uns per E-Mail kontaktieren.</p>
@@ -218,9 +220,9 @@ function render() {
       <p>
         ${I.fullName}<br>
         ${I.address}<br>
-        Email: <a href="mailto:${I.email}">${I.email}</a><br>
-        Phone: ${I.phone}
+        Email: <a href="mailto:${I.email}">${I.email}</a>
       </p>
+      <p>You can also reach us via the <a href="clubs.html">contact form</a>.</p>
 
       <h3>Responsible for content according to § 18 Abs. 2 MStV</h3>
       <p>${I.responsible}<br>${I.address}</p>
@@ -247,9 +249,13 @@ function render() {
         <li>Browser type and version</li>
       </ul>
       <p>This data is processed by GitHub Pages (GitHub Inc., San Francisco, USA) as the hosting provider. Legal basis: Art. 6(1)(f) GDPR (legitimate interest in operating the website).</p>
+      <p><strong>Local Storage:</strong> This website stores your language preference (DE/EN) and cookie notice status in your browser's localStorage. This data is not transmitted to any server and can be deleted at any time via your browser settings. Legal basis: Art. 6(1)(f) GDPR (legitimate interest in a user-friendly website).</p>
 
-      <h3>3. Contact Form</h3>
-      <p>When you use the contact form on our "For Clubs" page, the following data is processed: club name, number of courts, preferred period, email address, and optional message. Data is transmitted via FormSubmit.co and forwarded to us by email. Legal basis: Art. 6(1)(b) GDPR (pre-contractual measures). Your data will not be shared with third parties and will be deleted after processing your inquiry.</p>
+      <h3>3. Contact Forms</h3>
+      <p><strong>a) Club Inquiry ("For Clubs"):</strong> When you use the contact form, the following data is processed: club name, number of courts, preferred period, email address, and optional message.</p>
+      <p><strong>b) Partner Offer Form:</strong> The interactive partner offer additionally processes: contact person, phone number (optional), number of available courts, selected Sundays, calculated club share, and free ticket package.</p>
+      <p>All form data is transmitted via <strong>Formspree Inc.</strong> (USA). Formspree processes data on servers in the USA. The transfer is based on Standard Contractual Clauses (Art. 46(2)(c) GDPR). More info: <a href="https://formspree.io/legal/privacy-policy" target="_blank" rel="noopener">Formspree Privacy Policy</a>.</p>
+      <p>Legal basis: Art. 6(1)(b) GDPR (pre-contractual measures). Your data will not be shared with other third parties and will be deleted after processing your inquiry.</p>
 
       <h3>4. Newsletter</h3>
       <p>If you subscribe to our newsletter, we store your email address to send information about upcoming tournaments. Legal basis: Art. 6(1)(a) GDPR (consent). You can withdraw your consent at any time by unsubscribing or contacting us by email.</p>
@@ -281,7 +287,23 @@ function render() {
   }
 }
 
+// Cookie banner
+function showCookieBanner() {
+  if (localStorage.getItem('cookie_ok')) return;
+  const b = document.getElementById('cookie-banner');
+  b.style.display = 'flex';
+  document.getElementById('cookie-text').textContent = LANG === 'de'
+    ? 'Diese Website verwendet keine Tracking-Cookies. Wir speichern lediglich Ihre Sprachpräferenz.'
+    : 'This website does not use tracking cookies. We only store your language preference.';
+  document.getElementById('cookie-btn').textContent = LANG === 'de' ? 'Verstanden' : 'Got it';
+}
+function dismissCookie() {
+  localStorage.setItem('cookie_ok', '1');
+  document.getElementById('cookie-banner').style.display = 'none';
+}
+
 setLang(LANG);
+showCookieBanner();
 </script>
 </body>
 </html>

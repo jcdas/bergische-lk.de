@@ -533,6 +533,13 @@
         <textarea name="Nachricht" placeholder="Optionale Nachricht..."></textarea>
       </div>
 
+      <div class="form-group" style="display:flex; align-items:flex-start; gap:0.6rem;">
+        <input type="checkbox" id="dsgvo-consent" required style="margin-top:0.35rem; width:18px; height:18px; accent-color:var(--orange-clay); cursor:pointer; flex-shrink:0;">
+        <label for="dsgvo-consent" style="font-weight:400; font-size:0.85rem; cursor:pointer;">
+          Ich stimme der Verarbeitung meiner Daten gem&auml;&szlig; der <a href="legal.html" target="_blank" style="color:var(--orange-clay);">Datenschutzerkl&auml;rung</a> zu. *
+        </label>
+      </div>
+
       <button type="submit" class="form-submit">ANFRAGE SENDEN</button>
     </form>
 
@@ -553,6 +560,12 @@
 
 </div>
 
+<!-- COOKIE BANNER -->
+<div id="cookie-banner" style="display:none; position:fixed; bottom:0; left:0; right:0; background:var(--green-deep); color:var(--cream); padding:1rem 2rem; z-index:200; font-size:0.85rem; align-items:center; justify-content:center; gap:1.5rem; flex-wrap:wrap;">
+  <span>Diese Website verwendet keine Tracking-Cookies. Wir speichern lediglich Ihre Sprachpr&auml;ferenz.</span>
+  <button onclick="localStorage.setItem('cookie_ok','1');document.getElementById('cookie-banner').style.display='none';" style="background:var(--orange-clay); color:#fff; border:none; padding:0.5rem 1.2rem; border-radius:4px; font-family:'Barlow',sans-serif; font-weight:600; cursor:pointer;">Verstanden</button>
+</div>
+
 <!-- FOOTER -->
 <footer>
   <p>&copy; 2026 Bergische LK-Turniere. Alle Rechte vorbehalten.</p>
@@ -564,6 +577,11 @@
 </footer>
 
 <script>
+// Cookie banner
+if (!localStorage.getItem('cookie_ok')) {
+  document.getElementById('cookie-banner').style.display = 'flex';
+}
+
 /* ════════════════════════════════════════════════════════
    WIZARD LOGIC
    ════════════════════════════════════════════════════════ */
