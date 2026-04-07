@@ -1,76 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240">
-  <defs>
-    <!-- Terre battue texture subtile -->
-    <pattern id="clay" patternUnits="userSpaceOnUse" width="4" height="4">
-      <rect width="4" height="4" fill="#B85A20"/>
-      <rect x="0" y="0" width="1" height="1" fill="#A54E1A" opacity="0.3"/>
-      <rect x="2" y="2" width="1" height="1" fill="#C96A2E" opacity="0.3"/>
-    </pattern>
-    <!-- Ombre portée -->
-    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
-      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#1C3A0E" flood-opacity="0.3"/>
-    </filter>
-  </defs>
-
-  <!-- === FOND COURT TERRE BATTUE === -->
-  <rect x="20" y="15" width="360" height="210" rx="8" fill="url(#clay)" filter="url(#shadow)"/>
-
-  <!-- Bordure extérieure blanche -->
-  <rect x="32" y="27" width="336" height="186" rx="3" fill="none" stroke="#F0EBE0" stroke-width="2.5"/>
-
-  <!-- === LIGNES DU COURT === -->
-
-  <!-- Ligne centrale horizontale (filet) -->
-  <line x1="32" y1="120" x2="368" y2="120" stroke="#F0EBE0" stroke-width="2" opacity="0.6"/>
-
-  <!-- Lignes de service verticales -->
-  <line x1="110" y1="55" x2="110" y2="185" stroke="#F0EBE0" stroke-width="1.8"/>
-  <line x1="290" y1="55" x2="290" y2="185" stroke="#F0EBE0" stroke-width="1.8"/>
-
-  <!-- Lignes de service horizontales (carré de service) -->
-  <line x1="110" y1="55" x2="290" y2="55" stroke="#F0EBE0" stroke-width="1.8"/>
-  <line x1="110" y1="185" x2="290" y2="185" stroke="#F0EBE0" stroke-width="1.8"/>
-
-  <!-- Ligne médiane (T) -->
-  <line x1="200" y1="55" x2="200" y2="185" stroke="#F0EBE0" stroke-width="1.5"/>
-
-  <!-- Petites marques centrales (style vrai court) -->
-  <line x1="197" y1="27" x2="203" y2="27" stroke="#F0EBE0" stroke-width="2"/>
-  <line x1="197" y1="213" x2="203" y2="213" stroke="#F0EBE0" stroke-width="2"/>
-
-  <!-- === FILET (ligne épaisse au centre) === -->
-  <line x1="20" y1="120" x2="380" y2="120" stroke="#F0EBE0" stroke-width="1" opacity="0.3"/>
-  <!-- Poteaux du filet -->
-  <rect x="17" y="116" width="6" height="8" rx="1" fill="#F0EBE0" opacity="0.5"/>
-  <rect x="377" y="116" width="6" height="8" rx="1" fill="#F0EBE0" opacity="0.5"/>
-
-  <!-- === TEXTE BERGISCHE (zone du haut) === -->
-  <text x="200" y="98" text-anchor="middle"
-        font-family="'Bebas Neue', 'Arial Black', sans-serif"
-        font-size="42" font-weight="400"
-        fill="#F0EBE0" letter-spacing="8"
-        opacity="0.95">BERGISCHE</text>
-
-  <!-- === LK au centre (dans le T) === -->
-  <text x="200" y="143" text-anchor="middle"
-        font-family="'Bebas Neue', 'Arial Black', sans-serif"
-        font-size="36" font-weight="400"
-        fill="#1C3A0E" letter-spacing="6"
-        opacity="0.9">LK</text>
-
-  <!-- Petit cercle décoratif autour de LK (balle de tennis stylisée) -->
-  <circle cx="200" cy="133" r="22" fill="none" stroke="#1C3A0E" stroke-width="1.5" opacity="0.4"/>
-
-  <!-- === TURNIERE (zone du bas) === -->
-  <text x="200" y="177" text-anchor="middle"
-        font-family="'Bebas Neue', 'Arial Black', sans-serif"
-        font-size="30" font-weight="400"
-        fill="#F0EBE0" letter-spacing="10"
-        opacity="0.95">TURNIERE</text>
-
-  <!-- === BALLE DE TENNIS (accent en bas à droite) === -->
-  <circle cx="340" cy="46" r="12" fill="#C8D84B" opacity="0.85"/>
-  <path d="M333 38 Q340 46 333 54" fill="none" stroke="#F0EBE0" stroke-width="1.2" opacity="0.7"/>
-  <path d="M347 38 Q340 46 347 54" fill="none" stroke="#F0EBE0" stroke-width="1.2" opacity="0.7"/>
-
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 80">
+  <!-- Tennis ball -->
+  <circle cx="268" cy="40" r="20" fill="#B85A20"/>
+  <path d="M 257 23 Q 268 40 257 57" fill="none" stroke="#F0EBE0" stroke-width="2" stroke-linecap="round"/>
+  <path d="M 279 23 Q 268 40 279 57" fill="none" stroke="#F0EBE0" stroke-width="2" stroke-linecap="round"/>
+  <!-- BERGISCHE -->
+  <text x="0" y="42" font-family="'Bebas Neue',Impact,'Arial Black',sans-serif" font-size="48" font-weight="400" letter-spacing="2" fill="#F0EBE0">BERGISCHE</text>
+  <!-- LK-TURNIERE -->
+  <text x="0" y="68" font-family="'Bebas Neue',Impact,'Arial Black',sans-serif" font-size="24" font-weight="400" letter-spacing="4" fill="#B85A20">LK-TURNIERE</text>
 </svg>
