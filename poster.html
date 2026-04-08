@@ -43,9 +43,15 @@
   /* ── HERO IMAGE ── */
   .hero-image {
     height: 200px;
-    background: url("https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=1200&q=80") center center / cover no-repeat;
     position: relative;
     flex-shrink: 0;
+    overflow: hidden;
+  }
+  .hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
   .hero-image::after {
     content: "";
@@ -269,12 +275,13 @@
   /* FOOTER */
   .footer-band {
     background: var(--green-deep);
-    padding: 8mm 20mm;
+    padding: 12px 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     color: var(--cream);
-    font-size: 9pt;
+    font-size: 8pt;
+    flex-shrink: 0;
   }
   .footer-band .org {
     font-weight: 700;
@@ -311,11 +318,11 @@
 
   /* ── PRINT ── */
   @media print {
-    body { background: none; padding: 0; }
-    .poster { box-shadow: none; margin: 0; width: 297mm; max-width: none; }
+    body { background: none; padding: 0; margin: 0; }
+    .poster { box-shadow: none; margin: 0; width: 100%; max-width: none; }
     .controls { display: none; }
     @page {
-      size: A3 portrait;
+      size: A4 portrait;
       margin: 0;
     }
   }
@@ -335,7 +342,9 @@
 <!-- ── POSTER ── -->
 <div class="poster" id="poster">
   <!-- Hero: Unsplash free license — clay court close-up -->
-  <div class="hero-image"></div>
+  <div class="hero-image">
+    <img src="https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=1200&q=80" alt="Tennis auf Sandplatz">
+  </div>
 
   <div class="header-band">
     <div class="logo-row">
