@@ -144,37 +144,49 @@ Le club ne voit JAMAIS : net organisateur, coût balles, coût DTB Free Tickets.
 | Anschreiben Anmeldung Jugend-Ranglistenturnier 2026 (PDF) | idem |
 | Zeitplan Jugendturnier 2025 (PDF) | `~/CURSOR-RAG/output/gmail_attachments/4b44ea53e8dac808/` |
 
+### Mailing GDPR avec Brevo
+
+| Fichier | Localisation | Rôle |
+|---------|-------------|------|
+| `prepare_mailing.py` | `~/Tennis/scripts/` | Génère CSV Brevo depuis tennis_players_male.csv (179 contacts, 90 clubs) |
+| `mailing_brevo_import.csv` | `~/Tennis/` | CSV prêt à importer dans Brevo (EMAIL;VORNAME;NACHNAME;TELEFON;VEREIN;KATEGORIEN) |
+| `tournoi_annonce.html` | `~/Tennis/email_templates/` | Template email HTML avec merge tags Brevo + footer GDPR |
+| `README_BREVO.md` | `~/Tennis/email_templates/` | Guide complet setup Brevo (compte, DNS, import, campagne) |
+
+### GDPR Compliance
+
+- Base légale : Art. 6(1)(f) DSGVO, berechtigtes Interesse (anciens participants)
+- Opt-out : lien Brevo unsubscribe 1-clic en footer
+- Transparence : explication source données + droit de désinscription dans chaque email
+
 ### Statut
 
-- [x] Base joueurs extraite (174 jeunes, 179 lignes CSV)
+- [x] Base joueurs extraite (179 contacts uniques, 90 clubs)
 - [x] HTML mailing list généré avec contacts parents
-- [ ] Système d'envoi email (newsletter Buttondown/Brevo) non configuré
-- [ ] Template email parents pour annonces tournois à rédiger
-- [ ] Mécanisme de mise à jour automatique (nouveaux inscrits)
+- [x] Script préparation CSV Brevo fonctionnel
+- [x] Template email GDPR-compliant créé
+- [x] Guide setup Brevo rédigé
+- [ ] Créer compte Brevo + vérifier domaine bergische-lk.de
+- [ ] Importer CSV dans Brevo
+- [ ] Envoyer première campagne (ESV Summer Smash 02.05)
 
 ---
 
 ## 5. Affiches Tournois + QR Code
 
-### Statut : ❌ À CONSTRUIRE
+### Statut : ✅ TEMPLATE CRÉÉ
 
-### Besoin
+### Fichier
 
-Pour chaque tournoi de la saison, générer une affiche (PDF/image) contenant :
-- Nom du tournoi + date + lieu
-- Catégories (U12, U14, U16, Herren)
-- Format (Spiralturnier LK, 2 matchs garantis)
-- QR code pointant vers la page d'inscription (mybigpoint.tennis.de ou bergische-lk.de)
-- Branding bergische-lk.de (charte graphique : vert/orange/crème)
-- Logos venues (ESV / TC Gruiten)
-- Contact : info@bergische-lk.de
+`~/Tennis/poster.html` : template HTML paramétré, lit depuis `data.js`, QR code dynamique (qrcode-generator CDN).
+Sélecteur de tournoi intégré, format A3 portrait, optimisé print (Cmd+P > PDF).
 
-### Pistes techniques
+### Tournoi actif
 
-- HTML/CSS > PDF (via Puppeteer ou WeasyPrint)
-- Python (ReportLab, FPDF2, ou Pillow)
-- QR code : bibliothèque `qrcode` ou `segno` (Python)
-- Template réutilisable, paramétré par tournoi depuis `data.js`
+- **LK Summer Smash Series - ESV - 1** (02.05.2026)
+- Lien inscription : `https://www.tennis.de/spielen/turniersuche.html#detail/828059`
+- QR code pointe vers ce lien
+- Antragsnummer TVN : 905111
 
 ---
 
