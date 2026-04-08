@@ -42,7 +42,7 @@
 
   /* ── HERO IMAGE ── */
   .hero-image {
-    height: 140px;
+    height: 100px;
     position: relative;
     flex-shrink: 0;
     overflow: hidden;
@@ -73,9 +73,9 @@
   .header-band::after {
     content: "";
     position: absolute;
-    bottom: -30px;
+    bottom: -16px;
     left: 0; right: 0;
-    height: 30px;
+    height: 16px;
     background: var(--orange-clay);
     clip-path: polygon(0 0, 100% 0, 100% 40%, 0 100%);
   }
@@ -99,7 +99,7 @@
   }
   .tournament-name {
     font-family: "Bebas Neue", sans-serif;
-    font-size: 42pt;
+    font-size: 28pt;
     color: var(--white);
     line-height: 1.05;
     letter-spacing: 2px;
@@ -116,7 +116,7 @@
   /* ── CONTENT ── */
   .content {
     flex: 1;
-    padding: 32px 24px 10px;
+    padding: 22px 24px 8px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -238,9 +238,9 @@
   .qr-section {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 12px;
     background: var(--white);
-    padding: 14px 20px;
+    padding: 10px 16px;
     border-radius: 8px;
     border: 2px solid var(--green-court);
     max-width: 240mm;
@@ -505,8 +505,8 @@
       // Style the generated image
       const imgEl = container.querySelector("img");
       if (imgEl) {
-        imgEl.style.width = "35mm";
-        imgEl.style.height = "35mm";
+        imgEl.style.width = "80px";
+        imgEl.style.height = "80px";
       }
     }
   }
