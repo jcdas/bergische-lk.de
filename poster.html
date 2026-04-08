@@ -319,7 +319,8 @@
   /* ── PRINT ── */
   @media print {
     body { background: none; padding: 0; margin: 0; }
-    .poster { box-shadow: none; margin: 0; width: 100%; max-width: none; }
+    .poster { box-shadow: none; margin: 0; width: 210mm; max-width: 210mm; overflow: hidden; }
+    .footer-band { padding: 8px 16px; font-size: 7pt; }
     .controls { display: none; }
     @page {
       size: A4 portrait;
@@ -343,7 +344,7 @@
 <div class="poster" id="poster">
   <!-- Hero: Unsplash free license — clay court close-up -->
   <div class="hero-image">
-    <img src="https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=1200&q=80" alt="Tennis auf Sandplatz">
+    <img src="hero-tennis.jpg" alt="Tennis auf Sandplatz">
   </div>
 
   <div class="header-band">
