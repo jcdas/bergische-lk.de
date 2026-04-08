@@ -108,7 +108,10 @@ const SITE = {
       mybigpoint: "https://www.tennis.de/spielen/turniersuche.html#detail/828059",
       meldeschluss: { de: "30. April 2026, 18:00", en: "Apr 30, 2026, 6:00 PM" },
       tvnAntrag: "905111",
-      nenngeld: { de: "Barzahlung vor Ort", en: "Cash payment on site" },
+      nenngeld: {
+        de: "Jugend: 25 EUR + 3 EUR DTB | Herren: 30 EUR + 5 EUR DTB — Barzahlung vor Ort",
+        en: "Youth: 25 EUR + 3 EUR DTB | Men: 30 EUR + 5 EUR DTB — Cash payment on site",
+      },
     },
     {
       id: "gruiten-cup-2026",
