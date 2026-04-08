@@ -42,25 +42,27 @@
 
   /* ── HERO IMAGE ── */
   .hero-image {
-    height: 110mm;
+    height: 90mm;
     background: url("https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=1200&q=80") center center / cover no-repeat;
     position: relative;
+    flex-shrink: 0;
   }
   .hero-image::after {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, rgba(28,58,14,0.3) 0%, rgba(28,58,14,0.85) 100%);
+    background: linear-gradient(to bottom, rgba(28,58,14,0.2) 0%, rgba(28,58,14,0.9) 100%);
   }
 
   /* ── HEADER BAND ── */
   .header-band {
     background: var(--green-deep);
-    padding: 12mm 20mm 14mm;
+    padding: 10mm 20mm 12mm;
     text-align: center;
     position: relative;
-    margin-top: -40mm;
+    margin-top: -30mm;
     z-index: 2;
+    flex-shrink: 0;
   }
   .header-band::after {
     content: "";
@@ -108,11 +110,12 @@
   /* ── CONTENT ── */
   .content {
     flex: 1;
-    padding: 22mm 20mm 10mm;
+    padding: 18mm 20mm 8mm;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10mm;
+    justify-content: center;
+    gap: 8mm;
   }
 
   /* DATE */
@@ -302,7 +305,7 @@
       </div>
       <div class="info-card">
         <div class="label">Format</div>
-        <div class="value">Spiralturnier LK<br>2 Spiele garantiert</div>
+        <div class="value">Spiralturnier LK</div>
       </div>
       <div class="info-card">
         <div class="label">Meldeschluss</div>
@@ -397,7 +400,14 @@
 
     // Info cards
     const catMap = { "U12": "U12", "U14": "U14", "U16": "U16", "H00": "Herren" };
-    document.getElementById("pCategories").textContent = t.categories.map(c => catMap[c] || c).join(" | ");
+    // Group youth categories under "Jugend"
+    const cats = t.categories.map(c => catMap[c] || c);
+    const youth = cats.filter(c => c.startsWith("U"));
+    const adults = cats.filter(c => !c.startsWith("U"));
+    const display = [];
+    if (youth.length > 0) display.push("Jugend: " + youth.join(", "));
+    if (adults.length > 0) display.push(adults.join(", "));
+    document.getElementById("pCategories").textContent = display.join(" | ");
     document.getElementById("pDeadline").textContent = t.meldeschluss ? t.meldeschluss.de : "Wird bekannt gegeben";
     document.getElementById("pFee").textContent = t.nenngeld ? t.nenngeld.de : "Wird bekannt gegeben";
     document.getElementById("pAddress").textContent = venue ? venue.name + ", " + venue.address : "";
