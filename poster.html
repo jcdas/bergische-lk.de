@@ -199,6 +199,21 @@
     border-radius: 2mm;
   }
   .info-card.full { grid-column: 1 / -1; }
+  .address-card {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .address-icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .address-icon svg { width: 32px; height: 32px; }
   .info-card .label {
     font-size: 8pt;
     font-weight: 700;
@@ -349,9 +364,17 @@
         <div class="label">Meldeschluss</div>
         <div class="value" id="pDeadline"></div>
       </div>
-      <div class="info-card">
-        <div class="label">Adresse</div>
-        <div class="value" id="pAddress"></div>
+      <div class="info-card full address-card">
+        <div class="address-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="#B85A20"/>
+            <circle cx="12" cy="9" r="2.5" fill="#F0EBE0"/>
+          </svg>
+        </div>
+        <div>
+          <div class="label">Adresse</div>
+          <div class="value" id="pAddress"></div>
+        </div>
       </div>
     </div>
 
