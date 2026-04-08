@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LK-Turnier Einladung</title>
+<!--
+  BREVO EMAIL TEMPLATE — LK Summer Smash Series
+
+  Merge tags Brevo:
+    {{ contact.VORNAME }}     Vorname des Spielers / Elternteils
+    {{ contact.NACHNAME }}    Nachname
+    {{ contact.KATEGORIEN }}  Kategorien (z.B. U14, U16)
+    {{ contact.VEREIN }}      Vereinsname
+    {{ contact.EMAIL }}       E-Mail-Adresse
+    {{ unsubscribe }}         Brevo Auto-Unsubscribe Link
+
+  Hinweise:
+  - Bei Brevo einfuegen: Kampagne > E-Mail > HTML-Template > Code einfuegen
+  - Vor dem Versand: Testmail an sich selbst senden
+  - {{ unsubscribe }} wird automatisch durch Brevo ersetzt
+-->
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: #f5f5f0;
+    color: #1a1a1a;
+  }
+  .wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #ffffff;
+  }
+  .header {
+    background-color: #1C3A0E;
+    padding: 24px 32px;
+    text-align: center;
+  }
+  .header h1 {
+    color: #F0EBE0;
+    font-size: 22px;
+    margin: 0;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .header .sub {
+    color: #B85A20;
+    font-size: 13px;
+    margin-top: 4px;
+    letter-spacing: 1px;
+  }
+  .accent-bar {
+    height: 6px;
+    background: linear-gradient(90deg, #B85A20, #2D5A18);
+  }
+  .body-content {
+    padding: 28px 32px;
+    line-height: 1.6;
+  }
+  .greeting {
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+  .event-card {
+    background: #f8f6f0;
+    border-left: 5px solid #B85A20;
+    padding: 20px 24px;
+    margin: 20px 0;
+    border-radius: 4px;
+  }
+  .event-card .title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1C3A0E;
+    margin-bottom: 12px;
+  }
+  .event-card .detail {
+    font-size: 14px;
+    margin: 6px 0;
+    color: #333;
+  }
+  .event-card .detail .icon {
+    display: inline-block;
+    width: 22px;
+    text-align: center;
+  }
+  .cta-button {
+    display: block;
+    background: #2D5A18;
+    color: #ffffff !important;
+    text-decoration: none;
+    padding: 14px 28px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    margin: 24px auto;
+    max-width: 300px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .cta-button:hover { background: #1C3A0E; }
+  .format-info {
+    background: #edf5e8;
+    padding: 14px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #2D5A18;
+    margin: 16px 0;
+    text-align: center;
+  }
+  .signature {
+    margin-top: 24px;
+    font-size: 14px;
+    color: #555;
+  }
+  .signature strong { color: #1C3A0E; }
+  .footer {
+    background: #f5f5f0;
+    padding: 20px 32px;
+    font-size: 11px;
+    color: #888;
+    line-height: 1.5;
+    border-top: 1px solid #e0ddd5;
+  }
+  .footer a {
+    color: #B85A20;
+    text-decoration: underline;
+  }
+  .gdpr {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #ddd;
+    font-size: 10px;
+    color: #999;
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1>Bergische LK-Turniere</h1>
+    <div class="sub">Offizielle DTB-Turniere auf Sandplatz im Bergischen Land</div>
+  </div>
+  <div class="accent-bar"></div>
+
+  <!-- BODY -->
+  <div class="body-content">
+    <div class="greeting">
+      Hallo {{ contact.VORNAME }},
+    </div>
+
+    <p>
+      wir freuen uns, dich zum n&auml;chsten LK-Turnier einzuladen!
+    </p>
+
+    <!-- EVENT CARD -->
+    <div class="event-card">
+      <div class="title">LK Summer Smash Series &mdash; ESV &mdash; 1</div>
+      <div class="detail"><span class="icon">&#127934;</span> <strong>Samstag, 02. Mai 2026</strong></div>
+      <div class="detail"><span class="icon">&#128205;</span> ESV Wuppertal West, Homannstr. 33b, 42327 Wuppertal</div>
+      <div class="detail"><span class="icon">&#127942;</span> Kategorien: U12 | U14 | U16 | Herren</div>
+      <div class="detail"><span class="icon">&#9200;</span> Meldeschluss: <strong>30. April 2026, 18:00</strong></div>
+      <div class="detail"><span class="icon">&#128176;</span> Nenngeld: Barzahlung vor Ort</div>
+    </div>
+
+    <!-- CTA -->
+    <a href="https://www.tennis.de/spielen/turniersuche.html#detail/828059" class="cta-button">
+      Jetzt anmelden auf tennis.de
+    </a>
+
+    <!-- FORMAT -->
+    <div class="format-info">
+      <strong>Format:</strong> Spiralturnier mit LK-Wertung &mdash; 2 Spiele garantiert
+    </div>
+
+    <!-- SIGNATURE -->
+    <div class="signature">
+      Wir freuen uns auf ein tolles Turnier!<br><br>
+      <strong>Jean-Charles Das</strong><br>
+      Bergische LK-Turniere<br>
+      <a href="mailto:info@bergische-lk.de" style="color:#B85A20;">info@bergische-lk.de</a> |
+      <a href="https://bergische-lk.de" style="color:#B85A20;">bergische-lk.de</a>
+    </div>
+  </div>
+
+  <!-- FOOTER / GDPR -->
+  <div class="footer">
+    Diese E-Mail wurde an {{ contact.EMAIL }} gesendet, da du an einem
+    fr&uuml;heren LK-Turnier bei ESV Wuppertal West oder TC Gruiten
+    teilgenommen hast.
+
+    <div class="gdpr">
+      <strong>Datenschutzhinweis (DSGVO Art. 6 Abs. 1 lit. f)</strong><br>
+      Wir informieren ehemalige Teilnehmer &uuml;ber kommende Turniere auf
+      Grundlage unseres berechtigten Interesses. Deine Daten (Name, E-Mail,
+      Verein) stammen aus deiner fr&uuml;heren Turnieranmeldung &uuml;ber nuLiga.<br><br>
+      Du m&ouml;chtest keine weiteren E-Mails erhalten?<br>
+      <a href="{{ unsubscribe }}">Mit einem Klick abmelden</a>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

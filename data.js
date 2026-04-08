@@ -99,13 +99,16 @@ const SITE = {
   //  Ils s'afficheront automatiquement sur la page d'accueil.
   tournaments: [
     {
-      id: "esv-open-2026",
-      name: "ESV Open",
-      venue: "esv-wuppertal",        // doit correspondre à un id dans venues[]
-      dates: { de: "Termin folgt", en: "Date TBA" },
-      categories: ["U12", "U14", "U16"],
-      status: "upcoming",            // upcoming | registration | ongoing | completed
-      mybigpoint: "",                 // lien direct mybigpoint quand disponible
+      id: "esv-summer-smash-1",
+      name: "LK Summer Smash Series - ESV - 1",
+      venue: "esv-wuppertal",
+      dates: { de: "02. Mai 2026 (Samstag)", en: "May 2, 2026 (Saturday)" },
+      categories: ["U12", "U14", "U16", "H00"],
+      status: "registration",
+      mybigpoint: "https://www.tennis.de/spielen/turniersuche.html#detail/828059",
+      meldeschluss: { de: "30. April 2026, 18:00", en: "Apr 30, 2026, 6:00 PM" },
+      tvnAntrag: "905111",
+      nenngeld: { de: "Barzahlung vor Ort", en: "Cash payment on site" },
     },
     {
       id: "gruiten-cup-2026",
@@ -116,16 +119,7 @@ const SITE = {
       status: "upcoming",
       mybigpoint: "",
     },
-    // ➕ Ajoutez un nouveau tournoi ici :
-    // {
-    //   id: "mon-tournoi",
-    //   name: "Mon Tournoi",
-    //   venue: "esv-wuppertal",
-    //   dates: { de: "15.–17. Juli 2026", en: "Jul 15–17, 2026" },
-    //   categories: ["U16", "H00"],
-    //   status: "upcoming",
-    //   mybigpoint: "https://mybigpoint.tennis.de/...",
-    // },
+    // ➕ Ajoutez un nouveau tournoi ici (copier le bloc ci-dessus comme modèle)
   ],
 
   // ── ANLAGEN / VENUES ────────────────────────────────────
