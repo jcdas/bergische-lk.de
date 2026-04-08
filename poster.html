@@ -114,7 +114,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 8mm;
   }
 
@@ -143,6 +143,45 @@
     color: var(--orange-clay);
     text-transform: uppercase;
     letter-spacing: 1px;
+  }
+
+  /* CATEGORY ROW */
+  .cat-row {
+    display: flex;
+    gap: 6mm;
+    width: 100%;
+    max-width: 240mm;
+    justify-content: center;
+  }
+  .cat-block {
+    flex: 1;
+    text-align: center;
+    padding: 5mm 6mm;
+    border-radius: 3mm;
+  }
+  .cat-block.youth {
+    background: var(--green-deep);
+    color: var(--white);
+  }
+  .cat-block.adults {
+    background: var(--orange-clay);
+    color: var(--white);
+  }
+  .cat-block .cat-title {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 18pt;
+    letter-spacing: 2px;
+    margin-bottom: 1mm;
+  }
+  .cat-block .cat-detail {
+    font-size: 11pt;
+    font-weight: 600;
+    opacity: 0.9;
+  }
+  .cat-block .cat-fee {
+    font-size: 9pt;
+    margin-top: 2mm;
+    opacity: 0.75;
   }
 
   /* INFO GRID */
@@ -298,11 +337,10 @@
       <div class="month-year" id="pMonthYear"></div>
     </div>
 
+    <!-- CATEGORIES: 2 blocs visuels séparés -->
+    <div class="cat-row" id="pCatRow"></div>
+
     <div class="info-grid">
-      <div class="info-card">
-        <div class="label">Kategorien</div>
-        <div class="value" id="pCategories"></div>
-      </div>
       <div class="info-card">
         <div class="label">Format</div>
         <div class="value">Spiralturnier LK</div>
@@ -315,7 +353,7 @@
         <div class="label">Nenngeld</div>
         <div class="value" id="pFee"></div>
       </div>
-      <div class="info-card full">
+      <div class="info-card">
         <div class="label">Adresse</div>
         <div class="value" id="pAddress"></div>
       </div>
@@ -399,15 +437,27 @@
     }
 
     // Info cards
+    // Categories: visual blocks
     const catMap = { "U12": "U12", "U14": "U14", "U16": "U16", "H00": "Herren" };
-    // Group youth categories under "Jugend"
     const cats = t.categories.map(c => catMap[c] || c);
     const youth = cats.filter(c => c.startsWith("U"));
     const adults = cats.filter(c => !c.startsWith("U"));
-    const display = [];
-    if (youth.length > 0) display.push("Jugend: " + youth.join(", "));
-    if (adults.length > 0) display.push(adults.join(", "));
-    document.getElementById("pCategories").textContent = display.join(" | ");
+    const catRow = document.getElementById("pCatRow");
+    catRow.innerHTML = "";
+    if (youth.length > 0) {
+      catRow.innerHTML += `<div class="cat-block youth">
+        <div class="cat-title">JUGEND</div>
+        <div class="cat-detail">${youth.join(" | ")}</div>
+        <div class="cat-fee">25 EUR + 3 EUR DTB</div>
+      </div>`;
+    }
+    if (adults.length > 0) {
+      catRow.innerHTML += `<div class="cat-block adults">
+        <div class="cat-title">HERREN</div>
+        <div class="cat-detail">${adults.join(" | ")}</div>
+        <div class="cat-fee">30 EUR + 5 EUR DTB</div>
+      </div>`;
+    }
     document.getElementById("pDeadline").textContent = t.meldeschluss ? t.meldeschluss.de : "Wird bekannt gegeben";
     document.getElementById("pFee").textContent = t.nenngeld ? t.nenngeld.de : "Wird bekannt gegeben";
     document.getElementById("pAddress").textContent = venue ? venue.name + ", " + venue.address : "";
