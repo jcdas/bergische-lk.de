@@ -28,10 +28,10 @@
     padding: 2em;
   }
 
-  /* ── POSTER (A3 portrait: 297x420mm) ── */
+  /* ── POSTER ── */
   .poster {
-    width: 297mm;
-    height: 420mm;
+    width: 800px;
+    max-width: 95vw;
     background: var(--cream);
     position: relative;
     overflow: hidden;
@@ -42,7 +42,7 @@
 
   /* ── HERO IMAGE ── */
   .hero-image {
-    height: 90mm;
+    height: 200px;
     background: url("https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=1200&q=80") center center / cover no-repeat;
     position: relative;
     flex-shrink: 0;
@@ -57,19 +57,19 @@
   /* ── HEADER BAND ── */
   .header-band {
     background: var(--green-deep);
-    padding: 10mm 20mm 12mm;
+    padding: 20px 30px 24px;
     text-align: center;
     position: relative;
-    margin-top: -30mm;
+    margin-top: -60px;
     z-index: 2;
     flex-shrink: 0;
   }
   .header-band::after {
     content: "";
     position: absolute;
-    bottom: -15mm;
+    bottom: -30px;
     left: 0; right: 0;
-    height: 15mm;
+    height: 30px;
     background: var(--orange-clay);
     clip-path: polygon(0 0, 100% 0, 100% 40%, 0 100%);
   }
@@ -110,12 +110,12 @@
   /* ── CONTENT ── */
   .content {
     flex: 1;
-    padding: 18mm 20mm 8mm;
+    padding: 40px 30px 16px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    gap: 8mm;
+    gap: 16px;
   }
 
   /* DATE */
@@ -297,7 +297,7 @@
   /* ── PRINT ── */
   @media print {
     body { background: none; padding: 0; }
-    .poster { box-shadow: none; margin: 0; }
+    .poster { box-shadow: none; margin: 0; width: 297mm; max-width: none; }
     .controls { display: none; }
     @page {
       size: A3 portrait;
@@ -455,7 +455,6 @@
       </div>`;
     }
     document.getElementById("pDeadline").textContent = t.meldeschluss ? t.meldeschluss.de : "Wird bekannt gegeben";
-    document.getElementById("pFee").textContent = t.nenngeld ? t.nenngeld.de : "Wird bekannt gegeben";
     document.getElementById("pAddress").textContent = venue ? venue.name + ", " + venue.address : "";
 
     // URL
