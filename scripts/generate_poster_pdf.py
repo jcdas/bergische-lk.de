@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 """
 Generate tournament poster PDF using Playwright (headless Chrome).
-Properly renders hero image, QR code, and all CSS.
+Takes a pixel-perfect screenshot at A4 ratio, then wraps it in a PDF.
 
 Usage:
     python scripts/generate_poster_pdf.py
-    python scripts/generate_poster_pdf.py --output ~/Desktop/poster_esv1.pdf
-    python scripts/generate_poster_pdf.py --tournament esv-summer-smash-1
+    python scripts/generate_poster_pdf.py --output ~/Desktop/poster.pdf
 """
 
 import argparse
+import base64
 import http.server
 import threading
 import time
@@ -21,9 +21,13 @@ TENNIS_DIR = Path(__file__).parent.parent
 DEFAULT_OUTPUT = TENNIS_DIR / "poster_output.pdf"
 PORT = 8099
 
+# A4 ratio: 210mm x 297mm = 1:1.414
+# Use 2x resolution for crisp print
+A4_W = 1588  # 794 * 2
+A4_H = 2246  # 1123 * 2
+
 
 def start_server(directory, port):
-    """Start a simple HTTP server in a background thread."""
     handler = lambda *args, **kwargs: http.server.SimpleHTTPRequestHandler(
         *args, directory=str(directory), **kwargs
     )
@@ -34,8 +38,6 @@ def start_server(directory, port):
 
 
 def generate_pdf(output_path: Path, tournament_id: str = None):
-    """Generate poster PDF."""
-    # Start local server
     server = start_server(TENNIS_DIR, PORT)
     time.sleep(0.5)
 
@@ -47,32 +49,132 @@ def generate_pdf(output_path: Path, tournament_id: str = None):
 
     with sync_playwright() as p:
         browser = p.chromium.launch()
-        page = browser.new_page(viewport={"width": 800, "height": 1200})
+        page = browser.new_page(viewport={"width": A4_W, "height": A4_H}, device_scale_factor=1)
         page.goto(url, wait_until="networkidle")
+        page.wait_for_timeout(1500)
 
-        # Wait for QR code to render
-        page.wait_for_timeout(1000)
-
-        # Hide controls + force poster to fill page
-        page.evaluate("""
+        # Force poster to fill exactly the viewport
+        page.evaluate(f"""
             document.querySelector('.controls').style.display = 'none';
             document.body.style.padding = '0';
             document.body.style.margin = '0';
-            document.body.style.background = 'none';
+            document.body.style.background = '#F0EBE0';
+
             const poster = document.querySelector('.poster');
-            poster.style.width = '100%';
+            poster.style.width = '{A4_W}px';
+            poster.style.height = '{A4_H}px';
             poster.style.maxWidth = 'none';
             poster.style.boxShadow = 'none';
-            poster.style.minHeight = '100vh';
-            // Distribute space evenly between elements
+            poster.style.overflow = 'hidden';
+            poster.style.borderRadius = '0';
+
+            // Scale up fonts and elements for high-res
             document.querySelector('.content').style.flex = '1';
-            document.querySelector('.content').style.justifyContent = 'space-evenly';
+
+            // Make hero much taller to fill top
+            document.querySelector('.hero-image').style.height = '420px';
+
+            // Bigger title
+            document.querySelector('.tournament-name').style.fontSize = '56pt';
+            document.querySelector('.venue-name').style.fontSize = '28pt';
+            document.querySelector('.site-name').style.fontSize = '18pt';
+
+            // Bigger date block
+            const dateBlock = document.querySelector('.date-block');
+            dateBlock.style.padding = '24px 64px';
+            document.querySelector('.date-block .day').style.fontSize = '72pt';
+            document.querySelector('.date-block .month-year').style.fontSize = '36pt';
+            document.querySelector('.date-block .weekday').style.fontSize = '16pt';
+
+            // Bigger category blocks
+            document.querySelectorAll('.cat-block').forEach(el => {{
+                el.style.padding = '24px 20px';
+            }});
+            document.querySelectorAll('.cat-title').forEach(el => el.style.fontSize = '32pt');
+            document.querySelectorAll('.cat-detail').forEach(el => el.style.fontSize = '16pt');
+            document.querySelectorAll('.cat-fee').forEach(el => el.style.fontSize = '13pt');
+
+            // Bigger info cards
+            document.querySelectorAll('.info-card .label').forEach(el => el.style.fontSize = '12pt');
+            document.querySelectorAll('.info-card .value').forEach(el => el.style.fontSize = '20pt');
+
+            // Bigger QR section
+            const qrSection = document.querySelector('.qr-section');
+            qrSection.style.padding = '24px 32px';
+            qrSection.style.gap = '32px';
+            document.querySelector('.qr-text .cta').style.fontSize = '36pt';
+            document.querySelector('.qr-text .sub').style.fontSize = '14pt';
+            document.querySelector('.qr-text .url').style.fontSize = '12pt';
+            const qrImg = document.querySelector('#qrContainer img');
+            if (qrImg) {{
+                qrImg.style.width = '160px';
+                qrImg.style.height = '160px';
+            }}
+
+            // Bigger address
+            document.querySelector('.address-icon svg').style.width = '48px';
+            document.querySelector('.address-icon svg').style.height = '48px';
+
+            // Footer
+            const footer = document.querySelector('.footer-band');
+            footer.style.padding = '16px 32px';
+            footer.style.fontSize = '12pt';
+
+            // Header band
+            const header = document.querySelector('.header-band');
+            header.style.padding = '28px 40px 32px';
+            header.style.marginTop = '-100px';
+
+            // Orange bar
+            const style = document.createElement('style');
+            style.textContent = '.header-band::after {{ bottom: -32px; height: 32px; }}';
+            document.head.appendChild(style);
+
+            // Content: fixed gaps, flex-start
+            const content = document.querySelector('.content');
+            content.style.padding = '40px 40px 24px';
+            content.style.gap = '24px';
+            content.style.justifyContent = 'flex-start';
+            content.style.flex = '0 0 auto';
+
+            // Now measure remaining space and give it to hero
+            const posterH = {A4_H};
+            const headerH = document.querySelector('.header-band').offsetHeight;
+            const contentH = content.scrollHeight;
+            const footerH = document.querySelector('.footer-band').offsetHeight;
+            const barH = 32;
+            const usedH = headerH + contentH + footerH + barH;
+            const heroH = Math.max(300, posterH - usedH + 40);
+            document.querySelector('.hero-image').style.height = heroH + 'px';
+
+            // Category row
+            document.querySelector('.cat-row').style.gap = '16px';
+
+            // Info grid
+            document.querySelector('.info-grid').style.gap = '12px';
         """)
 
-        # Generate A4 PDF
+        page.wait_for_timeout(500)
+
+        # Take screenshot at exact A4 dimensions
+        png_bytes = page.screenshot(clip={"x": 0, "y": 0, "width": A4_W, "height": A4_H})
+        b64 = base64.b64encode(png_bytes).decode()
+
+        # Create a clean page with the screenshot as an A4 image, then PDF it
+        page.goto("about:blank")
+        page.set_content(f"""<!DOCTYPE html>
+        <html><head><style>
+            * {{ margin:0; padding:0; }}
+            body {{ width:210mm; height:297mm; }}
+            img {{ width:210mm; height:297mm; display:block; }}
+        </style></head>
+        <body><img src="data:image/png;base64,{b64}"></body></html>""")
+        page.wait_for_timeout(500)
+
         page.pdf(
             path=str(output_path),
-            format="A4",
+            width="210mm",
+            height="297mm",
             print_background=True,
             margin={"top": "0", "right": "0", "bottom": "0", "left": "0"},
         )
