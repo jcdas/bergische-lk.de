@@ -67,12 +67,12 @@ def generate_pdf(output_path: Path, tournament_id: str = None):
             poster.style.boxShadow = 'none';
             poster.style.overflow = 'hidden';
             poster.style.borderRadius = '0';
+            poster.style.background = '#1C3A0E';
 
             // Scale up fonts and elements for high-res
             document.querySelector('.content').style.flex = '1';
 
-            // Make hero much taller to fill top
-            document.querySelector('.hero-image').style.height = '420px';
+            // Hero: controlled size
 
             // Bigger title
             document.querySelector('.tournament-name').style.fontSize = '56pt';
@@ -140,23 +140,10 @@ def generate_pdf(output_path: Path, tournament_id: str = None):
             content.style.gap = '24px';
             content.style.justifyContent = 'flex-start';
             content.style.flex = '0 0 auto';
+            content.style.background = '#F0EBE0';
 
-            // Temporarily hide hero to measure everything else
-            const hero = document.querySelector('.hero-image');
-            hero.style.height = '0px';
-
-            // Measure all non-hero elements
-            const posterH = {A4_H};
-            const headerH = document.querySelector('.header-band').offsetHeight;
-            const contentH = content.scrollHeight;
-            const footerH = 50; // absolute positioned footer
-            const barH = 32;
-            const overlap = 100; // header overlaps hero by margin-top
-
-            // Hero fills remaining space exactly
-            const heroH = posterH - headerH - contentH - footerH - barH + overlap;
-            hero.style.height = Math.max(200, heroH) + 'px';
-            document.querySelector('.hero-image').style.height = heroH + 'px';
+            // Set hero to fixed size (1/3 of page)
+            document.querySelector('.hero-image').style.height = '500px';
 
             // Category row
             document.querySelector('.cat-row').style.gap = '16px';
