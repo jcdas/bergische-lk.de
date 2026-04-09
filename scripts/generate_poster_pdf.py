@@ -115,10 +115,14 @@ def generate_pdf(output_path: Path, tournament_id: str = None):
             document.querySelector('.address-icon svg').style.width = '48px';
             document.querySelector('.address-icon svg').style.height = '48px';
 
-            // Footer
+            // Footer — stick to bottom
             const footer = document.querySelector('.footer-band');
             footer.style.padding = '16px 32px';
             footer.style.fontSize = '12pt';
+            footer.style.position = 'absolute';
+            footer.style.bottom = '0';
+            footer.style.left = '0';
+            footer.style.right = '0';
 
             // Header band
             const header = document.querySelector('.header-band');
@@ -137,14 +141,21 @@ def generate_pdf(output_path: Path, tournament_id: str = None):
             content.style.justifyContent = 'flex-start';
             content.style.flex = '0 0 auto';
 
-            // Now measure remaining space and give it to hero
+            // Temporarily hide hero to measure everything else
+            const hero = document.querySelector('.hero-image');
+            hero.style.height = '0px';
+
+            // Measure all non-hero elements
             const posterH = {A4_H};
             const headerH = document.querySelector('.header-band').offsetHeight;
             const contentH = content.scrollHeight;
-            const footerH = document.querySelector('.footer-band').offsetHeight;
+            const footerH = 50; // absolute positioned footer
             const barH = 32;
-            const usedH = headerH + contentH + footerH + barH;
-            const heroH = Math.max(300, posterH - usedH + 40);
+            const overlap = 100; // header overlaps hero by margin-top
+
+            // Hero fills remaining space exactly
+            const heroH = posterH - headerH - contentH - footerH - barH + overlap;
+            hero.style.height = Math.max(200, heroH) + 'px';
             document.querySelector('.hero-image').style.height = heroH + 'px';
 
             // Category row
