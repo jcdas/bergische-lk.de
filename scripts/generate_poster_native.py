@@ -308,12 +308,12 @@ TOURNAMENTS = {
     },
     "esv-2": {
         "name": "LK Summer Smash Series - ESV - 2",
-        "date": "05. Mai 2026",
-        "weekday": "Dienstag",
+        "date": "10. Mai 2026",
+        "weekday": "Sonntag",
         "venue": "ESV Wuppertal West",
         "address": "Homannstr. 33b, 42327 Wuppertal",
         "url": "https://www.tennis.de/spielen/turniersuche.html#detail/906353",
-        "deadline": "03. Mai 2026, 18:00",
+        "deadline": "08. Mai 2026, 18:00",
     },
 }
 
