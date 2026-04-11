@@ -312,7 +312,7 @@ TOURNAMENTS = {
         "weekday": "Sonntag",
         "venue": "ESV Wuppertal West",
         "address": "Homannstr. 33b, 42327 Wuppertal",
-        "url": "https://www.tennis.de/spielen/turniersuche.html#detail/906353",
+        "url": "https://www.tennis.de/spielen/turniersuche.html#detail/829441",
         "deadline": "08. Mai 2026, 18:00",
     },
 }
