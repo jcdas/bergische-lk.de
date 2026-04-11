@@ -120,7 +120,7 @@ const SITE = {
       dates: { de: "10. Mai 2026 (Sonntag)", en: "May 10, 2026 (Sunday)" },
       categories: ["U12", "U14", "U16", "H00"],
       status: "registration",
-      mybigpoint: "https://www.tennis.de/spielen/turniersuche.html#detail/906353",
+      mybigpoint: "https://www.tennis.de/spielen/turniersuche.html#detail/829441",
       meldeschluss: { de: "08. Mai 2026, 18:00", en: "May 8, 2026, 6:00 PM" },
       tvnAntrag: "906353",
       nenngeld: {
