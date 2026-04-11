@@ -114,6 +114,21 @@ const SITE = {
       },
     },
     {
+      id: "esv-summer-smash-2",
+      name: "LK Summer Smash Series - ESV - 2",
+      venue: "esv-wuppertal",
+      dates: { de: "05. Mai 2026 (Montag)", en: "May 5, 2026 (Monday)" },
+      categories: ["U12", "U14", "U16", "H00"],
+      status: "registration",
+      mybigpoint: "https://www.tennis.de/spielen/turniersuche.html#detail/906353",
+      meldeschluss: { de: "03. Mai 2026, 18:00", en: "May 3, 2026, 6:00 PM" },
+      tvnAntrag: "906353",
+      nenngeld: {
+        de: "Jugend: 25 EUR + 3 EUR DTB | Herren: 30 EUR + 5 EUR DTB",
+        en: "Youth: 25 EUR + 3 EUR DTB | Men: 30 EUR + 5 EUR DTB",
+      },
+    },
+    {
       id: "gruiten-cup-2026",
       name: "Gruiten Cup",
       venue: "tc-gruiten",
