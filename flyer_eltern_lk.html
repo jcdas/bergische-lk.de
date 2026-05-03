@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LK-Turniere Sommer 2026 — Bergische LK-Turniere</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @page { size: A4 portrait; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Barlow', 'Segoe UI', sans-serif;
+    background: #F0EBE0;
+    color: #1a1a1a;
+    width: 210mm; min-height: 297mm;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: linear-gradient(135deg, #1C3A0E 0%, #2D5A18 60%, #3a7020 100%);
+    color: white;
+    padding: 28px 35px 22px;
+    position: relative;
+  }
+  .header::after {
+    content: '';
+    position: absolute; bottom: -20px; left: 0; right: 0;
+    height: 20px;
+    background: linear-gradient(to bottom right, #2D5A18 50%, transparent 50%);
+  }
+  .header-top {
+    display: flex; justify-content: space-between; align-items: flex-start;
+  }
+  .header h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.8em; letter-spacing: 2px; line-height: 1;
+  }
+  .header h1 span { color: #E8A050; }
+  .header .subtitle {
+    font-size: 1.05em; color: #c0daa0; margin-top: 6px; font-weight: 500;
+  }
+  .logo-area {
+    text-align: right; min-width: 130px;
+  }
+  .logo-area .url {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4em; color: #E8A050; letter-spacing: 1px;
+  }
+  .logo-area .tagline {
+    font-size: 0.75em; color: #c0daa0; margin-top: 2px;
+  }
+
+  /* ── INTRO ── */
+  .intro {
+    padding: 28px 35px 14px;
+    font-size: 1em; line-height: 1.55;
+  }
+  .intro strong { color: #2D5A18; }
+  .highlight-box {
+    background: #2D5A18; color: white;
+    display: inline-block; padding: 4px 14px; border-radius: 4px;
+    font-weight: 700; font-size: 0.95em; margin-bottom: 10px;
+  }
+
+  /* ── TOURNAMENTS ── */
+  .tournaments {
+    padding: 10px 35px 5px;
+    display: flex; gap: 16px;
+  }
+  .tournament-card {
+    flex: 1;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+    border-top: 5px solid #B85A20;
+  }
+  .tournament-card .card-header {
+    background: #B85A20; color: white;
+    padding: 14px 18px;
+    text-align: center;
+  }
+  .tournament-card .card-header .date {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.7em; letter-spacing: 1px;
+  }
+  .tournament-card .card-header .day {
+    font-size: 0.9em; font-weight: 500; opacity: 0.9;
+  }
+  .tournament-card .card-body {
+    padding: 16px 18px;
+  }
+  .tournament-card .card-body .name {
+    font-weight: 700; font-size: 1.05em; color: #1C3A0E; margin-bottom: 10px;
+  }
+  .detail-row {
+    display: flex; align-items: flex-start; gap: 8px;
+    margin-bottom: 7px; font-size: 0.88em;
+  }
+  .detail-row .icon { font-size: 1em; min-width: 20px; text-align: center; }
+  .detail-row .label { color: #666; min-width: 75px; }
+  .detail-row .value { font-weight: 600; }
+  .meldeschluss {
+    background: #FFF3E0; border: 1px solid #E8A050;
+    border-radius: 6px; padding: 8px 12px; margin-top: 12px;
+    text-align: center; font-size: 0.88em;
+  }
+  .meldeschluss strong { color: #B85A20; }
+
+  /* ── QR CODES ── */
+  .qr-section {
+    display: flex; gap: 16px; padding: 0 35px;
+    margin-top: 14px;
+  }
+  .qr-box {
+    flex: 1; text-align: center;
+    background: white; border-radius: 10px; padding: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .qr-box canvas { margin-bottom: 6px; }
+  .qr-box .qr-label {
+    font-size: 0.78em; color: #666; font-weight: 600;
+  }
+  .qr-box .qr-sublabel {
+    font-size: 0.68em; color: #999; margin-top: 2px;
+  }
+
+  /* ── FEATURES ── */
+  .features {
+    padding: 12px 35px 6px;
+    display: flex; gap: 10px; flex-wrap: wrap;
+  }
+  .feature {
+    flex: 1; min-width: 140px;
+    background: white; border-radius: 10px; padding: 10px 14px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    text-align: center;
+  }
+  .feature .emoji { font-size: 1.4em; margin-bottom: 3px; }
+  .feature .title { font-weight: 700; font-size: 0.85em; color: #1C3A0E; }
+  .feature .desc { font-size: 0.75em; color: #666; margin-top: 3px; line-height: 1.4; }
+
+  /* ── CATEGORIES ── */
+  .categories {
+    padding: 6px 35px 8px;
+  }
+  .categories h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2em; color: #2D5A18; margin-bottom: 6px; letter-spacing: 1px;
+  }
+  .cat-grid {
+    display: flex; gap: 10px;
+  }
+  .cat-badge {
+    flex: 1; text-align: center;
+    background: #2D5A18; color: white;
+    border-radius: 8px; padding: 8px 8px;
+  }
+  .cat-badge.adult { background: #B85A20; }
+  .cat-badge .age { font-family: 'Bebas Neue', sans-serif; font-size: 1.3em; line-height: 1; }
+  .cat-badge .label { font-size: 0.65em; opacity: 0.85; }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: #1C3A0E; color: white;
+    padding: 16px 35px;
+    display: flex; justify-content: space-between; align-items: center;
+    position: absolute; bottom: 0; left: 0; right: 0;
+  }
+  .footer .contact { font-size: 0.85em; line-height: 1.6; }
+  .footer .contact a { color: #E8A050; text-decoration: none; }
+  .footer .branding {
+    text-align: right;
+  }
+  .footer .branding .url {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5em; color: #E8A050; letter-spacing: 1px;
+  }
+  .footer .branding .org {
+    font-size: 0.75em; color: #a0c080;
+  }
+
+  /* ── PRINT ── */
+  @media print {
+    body { width: 210mm; min-height: 297mm; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .no-print { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-top">
+    <div>
+      <h1>BERGISCHE <span>LK-TURNIERE</span></h1>
+      <div class="subtitle">Offizielle DTB-Turniere auf Sandplatz im Bergischen Land</div>
+    </div>
+    <div class="logo-area">
+      <div class="url">bergische-lk.de</div>
+      <div class="tagline">Sommer 2026</div>
+    </div>
+  </div>
+</div>
+
+<!-- INTRO -->
+<div class="intro">
+  <div class="highlight-box">NEU IN DER REGION!</div>
+  <p>
+    Liebe Eltern, liebe Spieler:innen,<br><br>
+    es gibt <strong>zu wenige LK-Turniere</strong> in unserer Region. Deshalb haben wir die
+    <strong>LK Summer Smash Series</strong> ins Leben gerufen — offizielle, DTB-gewertete
+    Turniere auf <strong>Sandplatz</strong>, direkt vor der Haustür. Jede:r Teilnehmer:in
+    spielt <strong>garantiert 2 Matches</strong> (Spiralturnier-Format).
+  </p>
+</div>
+
+<!-- TOURNAMENT CARDS -->
+<div class="tournaments">
+  <div class="tournament-card">
+    <div class="card-header">
+      <div class="day">Samstag</div>
+      <div class="date">02. MAI 2026</div>
+    </div>
+    <div class="card-body">
+      <div class="name">LK Summer Smash #1</div>
+      <div class="detail-row">
+        <span class="icon">&#127934;</span>
+        <span class="value">ESV Wuppertal West</span>
+      </div>
+      <div class="detail-row">
+        <span class="icon">&#128205;</span>
+        <span class="value">Homannstr. 33b, Wuppertal</span>
+      </div>
+      <div class="detail-row">
+        <span class="icon">&#9939;</span>
+        <span class="value">7 Sandplätze</span>
+      </div>
+      <div class="detail-row">
+        <span class="icon">&#128176;</span>
+        <span class="value">Jugend 25 EUR | Herren 30 EUR</span>
+      </div>
+      <div class="meldeschluss">
+        <strong>Meldeschluss: 30. April 2026</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="tournament-card">
+    <div class="card-header">
+      <div class="day">Sonntag</div>
+      <div class="date">10. MAI 2026</div>
+    </div>
+    <div class="card-body">
+      <div class="name">LK Summer Smash #2</div>
+      <div class="detail-row">
+        <span class="icon">&#127934;</span>
+        <span class="value">ESV Wuppertal West</span>
+      </div>
+      <div class="detail-row">
+        <span class="icon">&#128205;</span>
+        <span class="value">Homannstr. 33b, Wuppertal</span>
+      </div>
+      <div class="detail-row">
+        <span class="icon">&#9939;</span>
+        <span class="value">7 Sandplätze</span>
+      </div>
+      <div class="detail-row">
+        <span class="icon">&#128176;</span>
+        <span class="value">Jugend 25 EUR | Herren 30 EUR</span>
+      </div>
+      <div class="meldeschluss">
+        <strong>Meldeschluss: 08. Mai 2026</strong>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- QR CODES -->
+<div class="qr-section">
+  <div class="qr-box">
+    <canvas id="qr1"></canvas>
+    <div class="qr-label">Anmeldung #1 — 02. Mai</div>
+    <div class="qr-sublabel">mybigpoint / tennis.de</div>
+  </div>
+  <div class="qr-box">
+    <canvas id="qr2"></canvas>
+    <div class="qr-label">Anmeldung #2 — 10. Mai</div>
+    <div class="qr-sublabel">mybigpoint / tennis.de</div>
+  </div>
+  <div class="qr-box">
+    <canvas id="qr3"></canvas>
+    <div class="qr-label">Alle Infos & weitere Termine</div>
+    <div class="qr-sublabel">bergische-lk.de</div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<div class="features">
+  <div class="feature">
+    <div class="emoji">&#127942;</div>
+    <div class="title">LK-gewertet</div>
+    <div class="desc">Offizielle DTB-Wertung<br>für die Leistungsklasse</div>
+  </div>
+  <div class="feature">
+    <div class="emoji">&#9939;</div>
+    <div class="title">Sandplatz</div>
+    <div class="desc">Terre Battue —<br>wie in Roland Garros</div>
+  </div>
+  <div class="feature">
+    <div class="emoji">&#128170;</div>
+    <div class="title">2 Matches garantiert</div>
+    <div class="desc">Spiralturnier-Format<br>Kein frühes Ausscheiden</div>
+  </div>
+  <div class="feature">
+    <div class="emoji">&#128666;</div>
+    <div class="title">Regional</div>
+    <div class="desc">Kurze Anfahrt<br>im Bergischen Land</div>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<div class="categories">
+  <h3>KATEGORIEN</h3>
+  <div class="cat-grid">
+    <div class="cat-badge"><div class="age">U12</div><div class="label">Jahrgang 2014+</div></div>
+    <div class="cat-badge"><div class="age">U14</div><div class="label">Jahrgang 2012+</div></div>
+    <div class="cat-badge"><div class="age">U16</div><div class="label">Jahrgang 2010+</div></div>
+    <div class="cat-badge adult"><div class="age">HERREN</div><div class="label">Erwachsene</div></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="contact">
+    <strong>Jean-Charles Das</strong> — Organisator<br>
+    <a href="mailto:info@bergische-lk.de">info@bergische-lk.de</a><br>
+    Anmeldung ausschließlich über <a href="https://mybigpoint.tennis.de">mybigpoint.tennis.de</a>
+  </div>
+  <div class="branding">
+    <div class="url">bergische-lk.de</div>
+    <div class="org">Bergische LK-Turniere &mdash; Sommer 2026</div>
+  </div>
+</div>
+
+<!-- QR CODE GENERATION -->
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+<script>
+function drawQR(canvasId, url, size) {
+  var qr = qrcode(0, 'M');
+  qr.addData(url);
+  qr.make();
+  var canvas = document.getElementById(canvasId);
+  var ctx = canvas.getContext('2d');
+  var moduleCount = qr.getModuleCount();
+  var cellSize = Math.floor(size / moduleCount);
+  canvas.width = cellSize * moduleCount;
+  canvas.height = cellSize * moduleCount;
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  for (var row = 0; row < moduleCount; row++) {
+    for (var col = 0; col < moduleCount; col++) {
+      ctx.fillStyle = qr.isDark(row, col) ? '#1C3A0E' : '#ffffff';
+      ctx.fillRect(col * cellSize, row * cellSize, cellSize, cellSize);
+    }
+  }
+}
+drawQR('qr1', 'https://www.tennis.de/spielen/turniersuche.html#detail/828059', 100);
+drawQR('qr2', 'https://www.tennis.de/spielen/turniersuche.html#detail/829441', 100);
+drawQR('qr3', 'https://bergische-lk.de', 100);
+</script>
+
+</body>
+</html>
