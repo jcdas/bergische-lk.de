@@ -109,8 +109,8 @@ const SITE = {
       meldeschluss: { de: "30. April 2026, 18:00", en: "Apr 30, 2026, 6:00 PM" },
       tvnAntrag: "905111",
       nenngeld: {
-        de: "Jugend: 25 EUR + 3 EUR DTB | Herren: 30 EUR + 5 EUR DTB",
-        en: "Youth: 25 EUR + 3 EUR DTB | Men: 30 EUR + 5 EUR DTB",
+        de: "Jugend: 25 EUR + 3 EUR DTB | Herren: 25 EUR + 5 EUR DTB",
+        en: "Youth: 25 EUR + 3 EUR DTB | Men: 25 EUR + 5 EUR DTB",
       },
     },
     {
@@ -124,21 +124,22 @@ const SITE = {
       meldeschluss: { de: "08. Mai 2026, 18:00", en: "May 8, 2026, 6:00 PM" },
       tvnAntrag: "906353",
       nenngeld: {
-        de: "Jugend: 25 EUR + 3 EUR DTB | Herren: 30 EUR + 5 EUR DTB",
-        en: "Youth: 25 EUR + 3 EUR DTB | Men: 30 EUR + 5 EUR DTB",
+        de: "Jugend: 25 EUR + 3 EUR DTB | Herren: 25 EUR + 5 EUR DTB",
+        en: "Youth: 25 EUR + 3 EUR DTB | Men: 25 EUR + 5 EUR DTB",
       },
     },
     {
       id: "esv-summer-smash-3",
       name: "LK Summer Smash Series - ESV - 3",
       venue: "esv-wuppertal",
-      dates: { de: "07. Juni 2026 (Sonntag)", en: "June 7, 2026 (Sunday)" },
+      dates: { de: "21. Juni 2026 (Sonntag)", en: "June 21, 2026 (Sunday)" },
       categories: ["U12", "U14", "U16", "H00"],
-      status: "upcoming",
-      mybigpoint: "",
+      status: "registration",
+      mybigpoint: "https://www.tennis.de/spielen/spielbetrieb/turniersuche.html#detail/829440",
+      meldeschluss: { de: "19. Juni 2026, 18:00", en: "Jun 19, 2026, 6:00 PM" },
       nenngeld: {
-        de: "Jugend: 25 EUR + 3 EUR DTB | Herren: 30 EUR + 5 EUR DTB",
-        en: "Youth: 25 EUR + 3 EUR DTB | Men: 30 EUR + 5 EUR DTB",
+        de: "Jugend: 25 EUR + 3 EUR DTB | Herren: 25 EUR + 5 EUR DTB",
+        en: "Youth: 25 EUR + 3 EUR DTB | Men: 25 EUR + 5 EUR DTB",
       },
     },
     {
@@ -147,11 +148,12 @@ const SITE = {
       venue: "esv-wuppertal",
       dates: { de: "28. Juni 2026 (Sonntag)", en: "June 28, 2026 (Sunday)" },
       categories: ["U12", "U14", "U16", "H00"],
-      status: "upcoming",
-      mybigpoint: "",
+      status: "registration",
+      mybigpoint: "https://www.tennis.de/spielen/spielbetrieb/turniersuche.html#detail/841883",
+      meldeschluss: { de: "26. Juni 2026, 18:00", en: "Jun 26, 2026, 6:00 PM" },
       nenngeld: {
-        de: "Jugend: 25 EUR + 3 EUR DTB | Herren: 30 EUR + 5 EUR DTB",
-        en: "Youth: 25 EUR + 3 EUR DTB | Men: 30 EUR + 5 EUR DTB",
+        de: "Jugend: 25 EUR + 3 EUR DTB | Herren: 25 EUR + 5 EUR DTB",
+        en: "Youth: 25 EUR + 3 EUR DTB | Men: 25 EUR + 5 EUR DTB",
       },
     },
     {
@@ -160,11 +162,12 @@ const SITE = {
       venue: "esv-wuppertal",
       dates: { de: "05. Juli 2026 (Sonntag)", en: "July 5, 2026 (Sunday)" },
       categories: ["U12", "U14", "U16", "H00"],
-      status: "upcoming",
+      status: "cancelled",
+      cancellationReason: { de: "Bezirksmeisterschaft", en: "District Championship" },
       mybigpoint: "",
       nenngeld: {
-        de: "Jugend: 25 EUR + 3 EUR DTB | Herren: 30 EUR + 5 EUR DTB",
-        en: "Youth: 25 EUR + 3 EUR DTB | Men: 30 EUR + 5 EUR DTB",
+        de: "Jugend: 25 EUR + 3 EUR DTB | Herren: 25 EUR + 5 EUR DTB",
+        en: "Youth: 25 EUR + 3 EUR DTB | Men: 25 EUR + 5 EUR DTB",
       },
     },
     {
@@ -173,11 +176,12 @@ const SITE = {
       venue: "esv-wuppertal",
       dates: { de: "11. Juli 2026 (Samstag)", en: "July 11, 2026 (Saturday)" },
       categories: ["U12", "U14", "U16", "H00"],
-      status: "upcoming",
+      status: "cancelled",
+      cancellationReason: { de: "Bezirksmeisterschaft", en: "District Championship" },
       mybigpoint: "",
       nenngeld: {
-        de: "Jugend: 25 EUR + 3 EUR DTB | Herren: 30 EUR + 5 EUR DTB",
-        en: "Youth: 25 EUR + 3 EUR DTB | Men: 30 EUR + 5 EUR DTB",
+        de: "Jugend: 25 EUR + 3 EUR DTB | Herren: 25 EUR + 5 EUR DTB",
+        en: "Youth: 25 EUR + 3 EUR DTB | Men: 25 EUR + 5 EUR DTB",
       },
     },
     {
@@ -278,20 +282,66 @@ const SITE = {
   },
 
   // ── GALERIE ─────────────────────────────────────────────
-  //  Ajoutez des photos de tournois ici.
-  //  consent: true = la personne a donné son accord (Einwilligung)
-  //  Seules les photos avec consent: true seront affichées.
-  gallery: {
-    enabled: false,  // ← passer à true quand vous avez des photos
-    photos: [
-      // {
-      //   src: "photos/esv-open-2026-01.jpg",
-      //   alt: { de: "Spieler auf Sandplatz", en: "Player on clay court" },
-      //   tournament: "esv-open-2026",
-      //   consent: true,
-      // },
-    ],
-  },
+  //  Anciennes rencontres avec photos.
+  //  placeholder: true → image Unsplash provisoire, à remplacer par une vraie photo.
+  //  Seules les photos avec consent: true (ou placeholder: true) sont affichées.
+  //  Pour ajouter une vraie photo : src: "photos/mon-tournoi-01.jpg", consent: true, placeholder: false
+  pastTournaments: [
+    {
+      id: "esv-smash-2025-4",
+      name: { de: "LK Summer Smash - ESV - 4", en: "LK Summer Smash - ESV - 4" },
+      venue: "esv-wuppertal",
+      date: { de: "29. Juni 2025", en: "June 29, 2025" },
+      players: 52,
+      cover: "https://images.unsplash.com/photo-1750856698142-d84955b0abf7?w=800&q=80",
+      placeholder: true,
+    },
+    {
+      id: "gruiten-cup-2025",
+      name: { de: "Gruiten Cup 2025", en: "Gruiten Cup 2025" },
+      venue: "tc-gruiten",
+      date: { de: "20. Juli 2025", en: "July 20, 2025" },
+      players: 36,
+      cover: "https://images.unsplash.com/photo-1752400879796-fa953a301e11?w=800&q=80",
+      placeholder: true,
+    },
+    {
+      id: "esv-smash-2025-5",
+      name: { de: "LK Summer Smash - ESV - 5", en: "LK Summer Smash - ESV - 5" },
+      venue: "esv-wuppertal",
+      date: { de: "27. Juli 2025", en: "July 27, 2025" },
+      players: 48,
+      cover: "https://images.unsplash.com/photo-1751275061863-db6d9d0857ce?w=800&q=80",
+      placeholder: true,
+    },
+    {
+      id: "esv-smash-2025-6",
+      name: { de: "LK Summer Smash - ESV - 6", en: "LK Summer Smash - ESV - 6" },
+      venue: "esv-wuppertal",
+      date: { de: "24. August 2025", en: "August 24, 2025" },
+      players: 44,
+      cover: "https://images.unsplash.com/photo-1646343253681-eaafc374b2b1?w=800&q=80",
+      placeholder: true,
+    },
+    {
+      id: "gruiten-open-2025",
+      name: { de: "TC Gruiten Open 2025", en: "TC Gruiten Open 2025" },
+      venue: "tc-gruiten",
+      date: { de: "07. September 2025", en: "September 7, 2025" },
+      players: 40,
+      cover: "https://images.unsplash.com/photo-1752400879796-fa953a301e11?w=800&q=80&sat=-30",
+      placeholder: true,
+    },
+    {
+      id: "esv-autumn-2025",
+      name: { de: "ESV Herbst-Turnier 2025", en: "ESV Autumn Tournament 2025" },
+      venue: "esv-wuppertal",
+      date: { de: "05. Oktober 2025", en: "October 5, 2025" },
+      players: 38,
+      cover: "https://images.unsplash.com/photo-1750856698142-d84955b0abf7?w=800&q=80&sat=-20",
+      placeholder: true,
+    },
+  ],
 
   // ── CLUBS PAGE (clubs.html) ─────────────────────────────
   clubs: {

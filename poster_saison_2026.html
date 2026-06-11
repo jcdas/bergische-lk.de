@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Summer Smash Series 2026 — Bergische LK-Turniere</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+<style>
+/* ════════════════════════════════════════════
+   CHARTE — bergische-lk.de
+   Design: Editorial Luxury × Bento A4
+   Skill: Vanguard_UI_Architect — Double-Bezel
+   ════════════════════════════════════════════ */
+:root {
+  --g:   #1C3A0E;   /* vert profond       */
+  --g2:  #152c0a;   /* vert profond + dark */
+  --g3:  #234d12;   /* vert clair         */
+  --o:   #B85A20;   /* orange clay        */
+  --o2:  #8a4218;   /* orange foncé       */
+  --o3:  #c8641f;   /* orange clair       */
+  --c:   #F0EBE0;   /* crème              */
+  --cd:  #E0D9CC;   /* crème foncée       */
+  --w:   #FFFFFF;
+  --r:   #8B1A12;   /* rouge alerte       */
+  --r2:  #b02217;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #2a2a2a;
+  font-family: "Barlow", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2.5rem;
+}
+
+/* ════════════════════════
+   POSTER — 210 × 297 mm
+   Zones : 92 + 4 + 133 + 60 + 8 = 297mm
+   ════════════════════════ */
+.poster {
+  width: 210mm;
+  height: 297mm;
+  overflow: hidden;
+  background: var(--c);
+  display: flex;
+  flex-direction: column;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.06),
+    0 24px 80px rgba(0,0,0,.65),
+    0 8px 20px rgba(0,0,0,.4);
+}
+
+/* ── Z1 : HERO PHOTO — 92mm ── */
+.z1 {
+  height: 92mm;
+  position: relative;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.z1 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 38%;
+  display: block;
+}
+/* Gradient multicouche */
+.z1-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      to right,
+      rgba(28,58,14,.9) 0%,
+      rgba(28,58,14,.55) 55%,
+      rgba(28,58,14,.15) 100%
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(0,0,0,.08) 0%,
+      rgba(0,0,0,0) 40%,
+      rgba(28,58,14,.6) 100%
+    );
+}
+/* Contenu titre */
+.z1-body {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 9mm 8mm 9mm;
+}
+.z1-eyebrow {
+  font-size: 6.5pt;
+  font-weight: 800;
+  letter-spacing: 4.5px;
+  text-transform: uppercase;
+  color: var(--o);
+  margin-bottom: 2.5mm;
+  opacity: .92;
+}
+.z1-title {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 64pt;
+  color: var(--w);
+  line-height: .86;
+  letter-spacing: 1.5px;
+}
+.z1-title em {
+  color: var(--o);
+  font-style: normal;
+}
+.z1-sub {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 17pt;
+  color: rgba(240,235,224,.65);
+  letter-spacing: 6px;
+  margin-top: 2.5mm;
+}
+/* Badge ESV */
+.z1-badge {
+  position: absolute;
+  top: 11px;
+  right: 13px;
+  background: rgba(0,0,0,.36);
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 30px;
+  padding: 4px 13px 4px 9px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.z1-badge img {
+  height: 15px;
+  filter: brightness(0) invert(1);
+  opacity: .78;
+}
+.z1-badge span {
+  font-size: 6pt;
+  font-weight: 800;
+  color: rgba(255,255,255,.65);
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+}
+
+/* ── BANDE ORANGE — 4mm ── */
+.o-band {
+  height: 4mm;
+  background: linear-gradient(to right, var(--o2), var(--o), var(--o3));
+  flex-shrink: 0;
+}
+
+/* ════════════════════════════════════════════
+   Z2 : DEUX DATES EN DOUBLE-BEZEL — 133mm
+   Architecture : outer-shell → inner-core
+   Technique : Doppelrand (machined hardware)
+   ════════════════════════════════════════════ */
+.z2 {
+  height: 133mm;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  flex-shrink: 0;
+}
+
+/* ─ Outer Shell (Bezel extérieur) ─ */
+.dc-shell {
+  padding: 5px;
+  position: relative;
+}
+.dc-shell.left  { background: var(--g2); }
+.dc-shell.right { background: var(--o2); }
+
+/* Liseré central entre les deux blocs */
+.dc-shell.left  { border-right: 1px solid rgba(255,255,255,.06); }
+.dc-shell.right { border-left:  1px solid rgba(255,255,255,.06); }
+
+/* ─ Inner Core (Bezel intérieur) ─ */
+.dc-core {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 8mm 8mm 7.5mm;
+  position: relative;
+  overflow: hidden;
+  border-radius: 2px;
+}
+.dc-shell.left  .dc-core {
+  background: linear-gradient(145deg, var(--g3) 0%, var(--g) 60%);
+  box-shadow: inset 0 1px 1px rgba(255,255,255,.14), inset 0 -1px 0 rgba(0,0,0,.2);
+}
+.dc-shell.right .dc-core {
+  background: linear-gradient(145deg, var(--o3) 0%, var(--o) 65%);
+  box-shadow: inset 0 1px 1px rgba(255,255,255,.16), inset 0 -1px 0 rgba(0,0,0,.2);
+}
+
+/* Déco orb en fond */
+.dc-core::before {
+  content: "";
+  position: absolute;
+  bottom: -28mm;
+  right:  -20mm;
+  width:  72mm;
+  height: 72mm;
+  border-radius: 50%;
+  background: rgba(255,255,255,.032);
+  pointer-events: none;
+}
+.dc-core::after {
+  content: "";
+  position: absolute;
+  top:  -10mm;
+  left: -12mm;
+  width:  40mm;
+  height: 40mm;
+  border-radius: 50%;
+  background: rgba(255,255,255,.018);
+  pointer-events: none;
+}
+
+/* Numéro de tournoi — eyebrow */
+.dc-num {
+  font-size: 7pt;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.28);
+  margin-bottom: 1.5mm;
+}
+
+/* LE CHIFFRE — pièce maîtresse */
+.dc-day {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 158pt;
+  color: var(--w);
+  line-height: .80;
+  letter-spacing: -5px;
+  /* Légère ombre pour profondeur */
+  text-shadow: 0 4px 24px rgba(0,0,0,.25), 0 2px 6px rgba(0,0,0,.2);
+}
+
+/* Mois */
+.dc-month {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 28pt;
+  color: rgba(255,255,255,.88);
+  letter-spacing: 6px;
+  line-height: 1;
+  margin-top: -1mm;
+}
+
+/* Jour de semaine */
+.dc-wday {
+  font-size: 8pt;
+  font-weight: 700;
+  color: rgba(255,255,255,.38);
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  margin-top: 1.5mm;
+}
+
+/* ─ QR + CTA strip — ancré en bas ─ */
+.dc-bottom {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  background: rgba(0,0,0,.20);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 8px;
+  padding: 7px 10px;
+  /* Petit bezel intérieur sur le strip */
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
+}
+.dc-qr-wrap {
+  flex-shrink: 0;
+  padding: 4px;
+  background: var(--w);
+  border-radius: 5px;
+  line-height: 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,.25);
+}
+.dc-qr-wrap img {
+  width: 58px;
+  height: 58px;
+  display: block;
+}
+.dc-cta { flex: 1; }
+.dc-cta-title {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 18.5pt;
+  color: var(--w);
+  line-height: 1;
+  letter-spacing: .8px;
+}
+.dc-cta-sub {
+  font-size: 6.5pt;
+  font-weight: 600;
+  color: rgba(255,255,255,.46);
+  margin-top: 2px;
+  letter-spacing: .4px;
+}
+
+/* ════════════════════════
+   Z3 : DÉTAILS — flex: 1 (~60mm)
+   ════════════════════════ */
+.z3 {
+  flex: 1;
+  background: var(--c);
+  display: flex;
+  flex-direction: column;
+  padding: 4.5mm 9mm 3.5mm;
+  gap: 3mm;
+  overflow: hidden;
+}
+
+/* ─ Bannière alerte ─ */
+.alert-bar {
+  flex-shrink: 0;
+  background: linear-gradient(to right, var(--r), var(--r2));
+  border-radius: 5px;
+  padding: 4.5px 12px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 2px 8px rgba(139,26,18,.3);
+}
+.alert-bar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    -50deg,
+    transparent, transparent 6px,
+    rgba(0,0,0,.065) 6px, rgba(0,0,0,.065) 12px
+  );
+}
+.al-ico  { position: relative; z-index: 1; font-size: 10.5pt; }
+.al-body { position: relative; z-index: 1; flex: 1; }
+.al-main { font-size: 8pt; font-weight: 900; color: #fff; }
+.al-hint { font-size: 6.5pt; color: rgba(255,255,255,.75); margin-left: 5px; font-weight: 600; }
+.al-pill {
+  position: relative; z-index: 1;
+  flex-shrink: 0;
+  background: rgba(255,255,255,.15);
+  border: 1px solid rgba(255,255,255,.28);
+  border-radius: 12px;
+  padding: 2px 9px;
+  font-size: 5.5pt;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ─ 4 blocs catégories — grid bento ─ */
+.cats-bento {
+  flex-shrink: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3mm;
+}
+
+/* Outer shell du chip */
+.cat-shell {
+  padding: 3px;
+  border-radius: 8px;
+}
+.cat-shell.youth { background: var(--g2); }
+.cat-shell.adult { background: var(--o2); }
+
+/* Inner core du chip */
+.cat-core {
+  border-radius: 5px;
+  padding: 5px 6px 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5px;
+  text-align: center;
+}
+.cat-shell.youth .cat-core {
+  background: linear-gradient(160deg, var(--g3) 0%, var(--g) 100%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.13);
+}
+.cat-shell.adult .cat-core {
+  background: linear-gradient(160deg, var(--o3) 0%, var(--o) 100%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.13);
+}
+.cat-tag {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 24pt;
+  color: var(--w);
+  line-height: 1;
+  letter-spacing: 1.5px;
+  text-shadow: 0 2px 6px rgba(0,0,0,.2);
+}
+.cat-label {
+  font-size: 5.5pt;
+  font-weight: 700;
+  color: rgba(255,255,255,.65);
+  text-transform: uppercase;
+  letter-spacing: .6px;
+}
+.cat-fee {
+  font-size: 5pt;
+  color: rgba(255,255,255,.5);
+  letter-spacing: .2px;
+}
+
+/* ─ Ligne infos pratiques ─ */
+.info-strip {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: var(--w);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,.08);
+}
+.info-cell {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 8px;
+}
+.info-cell + .info-cell {
+  border-left: 1px solid var(--cd);
+}
+.info-icon {
+  font-size: 10pt;
+  flex-shrink: 0;
+  opacity: .7;
+}
+.info-txt { flex: 1; }
+.info-label {
+  font-size: 5.5pt;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--o);
+}
+.info-val {
+  font-size: 7pt;
+  font-weight: 700;
+  color: var(--g);
+  line-height: 1.3;
+  margin-top: 1px;
+}
+
+/* ════════════════
+   FOOTER — 8mm
+   ════════════════ */
+.footer {
+  height: 8mm;
+  background: var(--g);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 9mm;
+  flex-shrink: 0;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.07);
+}
+.f-brand {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 10.5pt;
+  color: var(--c);
+  letter-spacing: 3.5px;
+}
+.f-meta {
+  font-size: 5.5pt;
+  font-weight: 600;
+  color: rgba(240,235,224,.38);
+  letter-spacing: .4px;
+  text-align: right;
+}
+
+/* ════════════════════════
+   PRINT
+   ════════════════════════ */
+@media print {
+  body { background: none; padding: 0; margin: 0; }
+  .poster { width: 210mm; height: 297mm; box-shadow: none; }
+  .btn-print { display: none !important; }
+  @page { size: A4 portrait; margin: 0; }
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+}
+
+/* ════════════════════════
+   BOUTON (screen only)
+   ════════════════════════ */
+.btn-print {
+  margin-top: 1.8rem;
+  font-family: "Barlow", sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  padding: 12px 32px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  background: var(--g);
+  color: #fff;
+  letter-spacing: .5px;
+  box-shadow: 0 6px 20px rgba(28,58,14,.45);
+  transition: background .2s;
+}
+.btn-print:hover { background: var(--g3); }
+</style>
+</head>
+<body>
+
+<div class="poster">
+
+  <!-- ═══════════════════════════════
+       Z1 : HERO PHOTO
+       ═══════════════════════════════ -->
+  <div class="z1">
+    <img src="hero-tennis.jpg" alt="Tennis auf Sandplatz — Bergische LK-Turniere">
+    <div class="z1-overlay"></div>
+
+    <div class="z1-badge">
+      <img src="esv_logo.png" alt="ESV" onerror="this.style.display='none'">
+      <span>ESV Wuppertal West</span>
+    </div>
+
+    <div class="z1-body">
+      <div class="z1-eyebrow">bergische-lk.de &nbsp;·&nbsp; LK-Turnierserie &nbsp;·&nbsp; Sommer 2026</div>
+      <div class="z1-title">SUMMER <em>SMASH</em></div>
+      <div class="z1-sub">SERIES &nbsp;·&nbsp; WUPPERTAL</div>
+    </div>
+  </div>
+
+  <!-- Orange divider -->
+  <div class="o-band"></div>
+
+  <!-- ═══════════════════════════════
+       Z2 : DEUX GRANDES DATES
+       Architecture Double-Bezel
+       ═══════════════════════════════ -->
+  <div class="z2">
+
+    <!-- ─ Tournoi #3 — 21 Juni ─ -->
+    <div class="dc-shell left">
+      <div class="dc-core">
+        <div class="dc-num">Turnier &nbsp;#3</div>
+        <div class="dc-day">21</div>
+        <div class="dc-month">JUNI</div>
+        <div class="dc-wday">Sonntag</div>
+        <div class="dc-bottom">
+          <div class="dc-qr-wrap">
+            <div id="qr1"></div>
+          </div>
+          <div class="dc-cta">
+            <div class="dc-cta-title">Jetzt anmelden!</div>
+            <div class="dc-cta-sub">QR-Code scannen &rarr; tennis.de</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─ Tournoi #4 — 28 Juni ─ -->
+    <div class="dc-shell right">
+      <div class="dc-core">
+        <div class="dc-num">Turnier &nbsp;#4</div>
+        <div class="dc-day">28</div>
+        <div class="dc-month">JUNI</div>
+        <div class="dc-wday">Sonntag</div>
+        <div class="dc-bottom">
+          <div class="dc-qr-wrap">
+            <div id="qr2"></div>
+          </div>
+          <div class="dc-cta">
+            <div class="dc-cta-title">Jetzt anmelden!</div>
+            <div class="dc-cta-sub">QR-Code scannen &rarr; tennis.de</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══════════════════════════════
+       Z3 : DÉTAILS
+       ═══════════════════════════════ -->
+  <div class="z3">
+
+    <!-- Alerte annulation -->
+    <div class="alert-bar">
+      <span class="al-ico">⚠️</span>
+      <div class="al-body">
+        <span class="al-main">5. &amp; 11. Juli — Keine Turniere!</span>
+        <span class="al-hint">Beide Termine entfallen wegen der Bezirksmeisterschaften (Bezirk 4)</span>
+      </div>
+      <span class="al-pill">Abgesagt</span>
+    </div>
+
+    <!-- 4 catégories en bento double-bezel -->
+    <div class="cats-bento">
+
+      <div class="cat-shell youth">
+        <div class="cat-core">
+          <span class="cat-tag">U12</span>
+          <span class="cat-label">Bis 12 Jahre</span>
+          <span class="cat-fee">25 € + 3 € DTB</span>
+        </div>
+      </div>
+
+      <div class="cat-shell youth">
+        <div class="cat-core">
+          <span class="cat-tag">U14</span>
+          <span class="cat-label">Bis 14 Jahre</span>
+          <span class="cat-fee">25 € + 3 € DTB</span>
+        </div>
+      </div>
+
+      <div class="cat-shell youth">
+        <div class="cat-core">
+          <span class="cat-tag">U16</span>
+          <span class="cat-label">Bis 16 Jahre</span>
+          <span class="cat-fee">25 € + 3 € DTB</span>
+        </div>
+      </div>
+
+      <div class="cat-shell adult">
+        <div class="cat-core">
+          <span class="cat-tag">H00</span>
+          <span class="cat-label">Herren Einzel</span>
+          <span class="cat-fee">25 € + 5 € DTB</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Infos pratiques -->
+    <div class="info-strip">
+      <div class="info-cell">
+        <span class="info-icon">📍</span>
+        <div class="info-txt">
+          <div class="info-label">Adresse</div>
+          <div class="info-val">ESV Wuppertal West &nbsp;·&nbsp; Sportanlage Kohlfurth</div>
+        </div>
+      </div>
+      <div class="info-cell">
+        <span class="info-icon">🕘</span>
+        <div class="info-txt">
+          <div class="info-label">Spielbeginn</div>
+          <div class="info-val">9:00 Uhr &nbsp;·&nbsp; Meldeschluss 48h vorher</div>
+        </div>
+      </div>
+      <div class="info-cell">
+        <span class="info-icon">🎾</span>
+        <div class="info-txt">
+          <div class="info-label">Format</div>
+          <div class="info-val">Spiralturnier LK &nbsp;·&nbsp; max. 12 Spieler/Kat.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══════════════════════════════
+       FOOTER
+       ═══════════════════════════════ -->
+  <div class="footer">
+    <div class="f-brand">Bergische LK-Turniere</div>
+    <div class="f-meta">bergische-lk.de &nbsp;·&nbsp; jcdas1@gmail.com &nbsp;·&nbsp; Veranstalter: Jean-Charles Das</div>
+  </div>
+
+</div>
+
+<!-- Bouton d'impression (masqué à l'impression) -->
+<button class="btn-print" onclick="window.print()">🖨&nbsp;&nbsp;Drucken / PDF speichern</button>
+
+<script>
+/* ── QR codes ── */
+function genQR(containerId, url) {
+  const q = qrcode(0, 'M');
+  q.addData(url);
+  q.make();
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  el.innerHTML = q.createImgTag(4, 0);
+  const img = el.querySelector('img');
+  if (img) {
+    img.style.width  = '58px';
+    img.style.height = '58px';
+    img.style.display = 'block';
+  }
+}
+
+genQR('qr1', 'https://www.tennis.de/spielen/spielbetrieb/turniersuche.html#detail/829440');
+genQR('qr2', 'https://www.tennis.de/spielen/spielbetrieb/turniersuche.html#detail/841883');
+</script>
+</body>
+</html>

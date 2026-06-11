@@ -38,3 +38,6 @@ scrape_debug.png
 
 # Claude session data
 .claude/
+
+# Session scraper (cookies, jamais dans git)
+.tennis_session.json

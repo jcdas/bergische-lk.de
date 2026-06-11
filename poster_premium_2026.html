@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Summer Smash Series 2026 — ESV</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+<style>
+:root {
+  --ink:         #080F05;
+  --ink-soft:    #0E1A09;
+  --ink-card:    #131F0D;
+  --green-glow:  #2D6B1A;
+  --green-viv:   #44A025;
+  --clay:        #C4621F;
+  --clay-light:  #E07830;
+  --cream:       #F2EDE2;
+  --cream-soft:  rgba(242,237,226,0.08);
+  --red:         #E63946;
+  --red-dark:    #9B1C22;
+  --white:       #FFFFFF;
+  --grey:        #3A3A3A;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+/* ─ BODY ─ */
+body {
+  background: #2A2A2A;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2.5em;
+  font-family: "Barlow", sans-serif;
+}
+
+/* ─ POSTER ─ */
+.poster {
+  width: 794px;
+  background: var(--ink);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(68,160,37,0.15);
+}
+
+/* ─ GRAIN OVERLAY ─ */
+.poster::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 99;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 200px;
+}
+
+/* ─ RADIAL GLOW BG ─ */
+.bg-glow {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+}
+.bg-glow-1 {
+  top: -120px; left: -80px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(68,160,37,0.12) 0%, transparent 70%);
+}
+.bg-glow-2 {
+  bottom: -100px; right: -60px;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(196,98,31,0.10) 0%, transparent 70%);
+}
+
+/* ─ HEADER ─ */
+.header {
+  position: relative;
+  z-index: 1;
+  padding: 28px 32px 0;
+}
+.header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+.eyebrow {
+  font-size: 8pt;
+  font-weight: 800;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--clay);
+}
+.esv-badge {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 20px;
+  padding: 5px 12px 5px 8px;
+}
+.esv-badge img {
+  height: 22px;
+  filter: brightness(0) invert(1);
+  opacity: 0.85;
+}
+.esv-badge span {
+  font-size: 8.5pt;
+  font-weight: 700;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* ─ TITLE BLOCK ─ */
+.title-block {
+  position: relative;
+  line-height: 0.9;
+}
+.title-main {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 96pt;
+  color: var(--white);
+  letter-spacing: -1px;
+  display: block;
+  position: relative;
+}
+.title-main em {
+  color: var(--clay);
+  font-style: normal;
+}
+.title-sub {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 42pt;
+  color: var(--cream);
+  letter-spacing: 6px;
+  display: block;
+  opacity: 0.85;
+}
+.title-year {
+  position: absolute;
+  right: 0; top: 6px;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 100pt;
+  color: rgba(255,255,255,0.04);
+  letter-spacing: -4px;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+.venue-strip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  padding-bottom: 24px;
+}
+.venue-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--clay);
+  flex-shrink: 0;
+}
+.venue-text {
+  font-size: 9pt;
+  font-weight: 600;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+/* ─ ORANGE DIVIDER ─ */
+.divider {
+  height: 3px;
+  background: linear-gradient(90deg, var(--clay) 0%, var(--clay-light) 40%, transparent 100%);
+  position: relative;
+  z-index: 1;
+}
+
+/* ─ CALENDAR SECTION ─ */
+.section {
+  position: relative;
+  z-index: 1;
+  padding: 22px 32px;
+}
+.section-label {
+  font-size: 7pt;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 12px;
+}
+
+/* DATE CHIPS */
+.calendar-row {
+  display: flex;
+  gap: 8px;
+}
+.chip {
+  flex: 1;
+  border-radius: 10px;
+  padding: 12px 6px 10px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+/* PAST */
+.chip.past {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.chip.past .c-day  { color: rgba(255,255,255,0.2); font-family:"Bebas Neue"; font-size:28pt; line-height:1; }
+.chip.past .c-mon  { color: rgba(255,255,255,0.15); font-size:8pt; font-weight:700; letter-spacing:1px; text-transform:uppercase; }
+.chip.past .c-wd   { color: rgba(255,255,255,0.12); font-size:6.5pt; }
+.chip.past::after {
+  content: "✓";
+  position: absolute;
+  top: 5px; right: 7px;
+  font-size: 9pt;
+  color: rgba(255,255,255,0.18);
+  font-weight:700;
+}
+
+/* ACTIVE */
+.chip.active {
+  background: linear-gradient(160deg, rgba(45,107,26,0.7) 0%, rgba(14,26,9,0.9) 100%);
+  border: 1px solid rgba(68,160,37,0.4);
+  box-shadow: 0 0 20px rgba(68,160,37,0.15), inset 0 1px 0 rgba(255,255,255,0.08);
+}
+.chip.active .c-day  { color: var(--white); font-family:"Bebas Neue"; font-size:28pt; line-height:1; }
+.chip.active .c-mon  { color: var(--clay-light); font-size:8pt; font-weight:800; letter-spacing:1px; text-transform:uppercase; }
+.chip.active .c-wd   { color: rgba(255,255,255,0.5); font-size:6.5pt; }
+.chip-num {
+  position: absolute; top: 5px; right: 7px;
+  font-family:"Bebas Neue"; font-size:9pt;
+  color: var(--green-viv); letter-spacing:1px;
+}
+.chip-pulse {
+  position: absolute; bottom: 6px;
+  width: 6px; height: 6px; border-radius:50%;
+  background: var(--green-viv);
+  box-shadow: 0 0 8px var(--green-viv);
+}
+
+/* CANCELLED */
+.chip.cancelled {
+  background: rgba(230,57,70,0.06);
+  border: 1px solid rgba(230,57,70,0.2);
+}
+.chip.cancelled .c-day  { color: rgba(230,57,70,0.5); font-family:"Bebas Neue"; font-size:28pt; line-height:1; }
+.chip.cancelled .c-mon  { color: rgba(230,57,70,0.4); font-size:8pt; font-weight:700; letter-spacing:1px; text-transform:uppercase; }
+.chip.cancelled .c-wd   { color: rgba(230,57,70,0.3); font-size:6.5pt; }
+/* diagonal slash */
+.chip.cancelled::before {
+  content:"";
+  position:absolute; inset:0;
+  background: linear-gradient(135deg, transparent 40%, rgba(230,57,70,0.12) 50%, transparent 60%);
+  pointer-events:none;
+}
+.chip-cancel-tag {
+  font-size: 5.5pt;
+  font-weight:800;
+  color: var(--red);
+  letter-spacing:1px;
+  text-transform:uppercase;
+  background: rgba(230,57,70,0.15);
+  padding: 2px 5px;
+  border-radius: 3px;
+  margin-top:2px;
+}
+.c-day  { font-family:"Bebas Neue"; font-size:28pt; line-height:1; }
+.c-mon  { font-size:8pt; font-weight:700; letter-spacing:1px; text-transform:uppercase; }
+.c-wd   { font-size:6.5pt; font-weight:600; letter-spacing:0.3px; text-transform:uppercase; color:rgba(255,255,255,0.4); }
+
+/* ─ ALERT BAND ─ */
+.alert-band {
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(90deg, #8B0000 0%, var(--red-dark) 30%, var(--red) 70%, #E63946 100%);
+  padding: 10px 32px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  overflow: hidden;
+}
+.alert-band::before {
+  content:"";
+  position:absolute; inset:0;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 8px,
+    rgba(0,0,0,0.1) 8px,
+    rgba(0,0,0,0.1) 16px
+  );
+  pointer-events:none;
+}
+.alert-icon { font-size:18pt; flex-shrink:0; position:relative; z-index:1; }
+.alert-content { position:relative; z-index:1; }
+.alert-title {
+  font-size:11pt;
+  font-weight:900;
+  color: var(--white);
+  letter-spacing:0.5px;
+  line-height:1.2;
+}
+.alert-sub {
+  font-size:8.5pt;
+  color:rgba(255,255,255,0.85);
+  margin-top:2px;
+  font-weight:500;
+}
+.alert-badge {
+  margin-left:auto;
+  position:relative; z-index:1;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 20px;
+  padding: 4px 14px;
+  font-size:8pt;
+  font-weight:800;
+  color:var(--white);
+  letter-spacing:1px;
+  white-space:nowrap;
+  text-transform:uppercase;
+  flex-shrink:0;
+}
+
+/* ─ CATEGORIES ─ */
+.cat-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1.4fr;
+  gap: 8px;
+}
+.cat-card {
+  border-radius: 10px;
+  padding: 14px 10px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.cat-card.youth {
+  background: linear-gradient(160deg, rgba(45,107,26,0.5) 0%, rgba(8,15,5,0.8) 100%);
+  border: 1px solid rgba(68,160,37,0.3);
+}
+.cat-card.adults {
+  background: linear-gradient(160deg, rgba(196,98,31,0.6) 0%, rgba(8,15,5,0.8) 100%);
+  border: 1px solid rgba(224,120,48,0.4);
+  box-shadow: 0 0 24px rgba(196,98,31,0.15);
+}
+.cat-card::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.04) 0%, transparent 50%);
+  pointer-events:none;
+}
+.cat-age {
+  font-family:"Bebas Neue";
+  font-size:30pt;
+  color:var(--white);
+  line-height:1;
+  letter-spacing:1px;
+}
+.cat-label {
+  font-size:7pt;
+  font-weight:700;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:rgba(255,255,255,0.55);
+}
+.cat-fee {
+  margin-top:4px;
+  font-size:7pt;
+  font-weight:600;
+  color:rgba(255,255,255,0.35);
+}
+.cat-lk {
+  font-size:6.5pt;
+  font-weight:800;
+  color:rgba(255,255,255,0.25);
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+
+/* ─ QR SECTION ─ */
+.qr-outer {
+  background: var(--ink-card);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  padding: 5px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+}
+.qr-inner {
+  background: linear-gradient(160deg, rgba(255,255,255,0.04) 0%, transparent 100%);
+  border-radius: 10px;
+  padding: 18px 20px 16px;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+.qr-headline {
+  font-family:"Bebas Neue";
+  font-size:20pt;
+  color:var(--white);
+  letter-spacing:3px;
+  text-align:center;
+  margin-bottom:14px;
+}
+.qr-headline span { color: var(--clay-light); }
+.qr-grid {
+  display:grid;
+  grid-template-columns:1fr 1px 1fr;
+  gap:0;
+  align-items:start;
+}
+.qr-sep {
+  background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.12), transparent);
+  margin: 0 20px;
+  align-self:stretch;
+}
+.qr-item {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+}
+.qr-date-pill {
+  background: linear-gradient(90deg, var(--clay) 0%, var(--clay-light) 100%);
+  color:var(--white);
+  font-family:"Bebas Neue";
+  font-size:13pt;
+  letter-spacing:2px;
+  padding:5px 16px;
+  border-radius:20px;
+  box-shadow:0 4px 12px rgba(196,98,31,0.4);
+}
+.qr-frame {
+  background:var(--white);
+  border-radius:10px;
+  padding:6px;
+  box-shadow:0 4px 16px rgba(0,0,0,0.4);
+}
+.qr-frame img { width:108px; height:108px; display:block; }
+.qr-cta {
+  font-size:8pt;
+  font-weight:800;
+  color:var(--green-viv);
+  text-transform:uppercase;
+  letter-spacing:1.5px;
+  text-align:center;
+}
+.qr-url {
+  font-size:6pt;
+  color:rgba(255,255,255,0.25);
+  text-align:center;
+  max-width:150px;
+  word-break:break-all;
+  line-height:1.4;
+}
+
+/* ─ INFO ROW ─ */
+.info-row {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+}
+.info-item {
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:8px;
+  padding:9px 12px;
+}
+.info-lbl {
+  font-size:6.5pt;
+  font-weight:800;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--clay);
+  margin-bottom:3px;
+}
+.info-val {
+  font-size:9pt;
+  font-weight:600;
+  color:rgba(255,255,255,0.75);
+  line-height:1.3;
+}
+
+/* ─ FOOTER ─ */
+.footer {
+  position:relative;
+  z-index:1;
+  background: rgba(0,0,0,0.4);
+  border-top:1px solid rgba(255,255,255,0.06);
+  padding:10px 32px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.footer-brand {
+  font-family:"Bebas Neue";
+  font-size:13pt;
+  color:var(--clay);
+  letter-spacing:3px;
+}
+.footer-sub {
+  font-size:7pt;
+  color:rgba(255,255,255,0.3);
+  margin-top:1px;
+  letter-spacing:0.5px;
+}
+.footer-right {
+  text-align:right;
+  font-size:7.5pt;
+  color:rgba(255,255,255,0.35);
+  font-weight:600;
+}
+
+/* ─ PRINT ─ */
+@media print {
+  body { background:none; padding:0; margin:0; }
+  .poster { box-shadow:none; width:210mm; }
+  .controls { display:none !important; }
+  @page { size:A4 portrait; margin:0; }
+}
+
+/* ─ CONTROLS ─ */
+.controls {
+  margin-top:2em;
+  display:flex;
+  gap:1em;
+  justify-content:center;
+}
+.controls button {
+  font-family:"Barlow";
+  font-size:14px;
+  font-weight:700;
+  padding:11px 28px;
+  border-radius:8px;
+  border:none;
+  cursor:pointer;
+  background:var(--clay);
+  color:white;
+  letter-spacing:0.5px;
+  box-shadow:0 4px 16px rgba(196,98,31,0.4);
+}
+.controls button:hover { background:var(--clay-light); }
+</style>
+</head>
+<body>
+
+<div class="poster">
+
+  <!-- bg glows -->
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+
+  <!-- ─ HEADER ─ -->
+  <div class="header">
+    <div class="header-top">
+      <span class="eyebrow">bergische-lk.de · LK-Turnierserie</span>
+      <div class="esv-badge">
+        <img src="esv_logo.png" alt="ESV" onerror="this.style.display='none'">
+        <span>ESV Wuppertal West</span>
+      </div>
+    </div>
+    <div class="title-block">
+      <span class="title-year">2026</span>
+      <span class="title-main">SUMMER <em>SMASH</em></span>
+      <span class="title-sub">Series &nbsp;·&nbsp; Saison 2026</span>
+    </div>
+    <div class="venue-strip">
+      <div class="venue-dot"></div>
+      <span class="venue-text">Blombacherbach 1 · 42277 Wuppertal · 6 Sandplätze</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ─ CALENDAR ─ -->
+  <div class="section">
+    <div class="section-label">Turnierkalender · alle 6 Termine</div>
+    <div class="calendar-row">
+
+      <div class="chip past">
+        <span class="c-day">02</span>
+        <span class="c-mon">Mai</span>
+        <span class="c-wd">Samstag</span>
+      </div>
+
+      <div class="chip past">
+        <span class="c-day">10</span>
+        <span class="c-mon">Mai</span>
+        <span class="c-wd">Sonntag</span>
+      </div>
+
+      <div class="chip active">
+        <span class="chip-num">#3</span>
+        <span class="c-day">21</span>
+        <span class="c-mon">Juni</span>
+        <span class="c-wd">Sonntag</span>
+        <span class="chip-pulse"></span>
+      </div>
+
+      <div class="chip active">
+        <span class="chip-num">#4</span>
+        <span class="c-day">28</span>
+        <span class="c-mon">Juni</span>
+        <span class="c-wd">Sonntag</span>
+        <span class="chip-pulse"></span>
+      </div>
+
+      <div class="chip cancelled">
+        <span class="c-day">05</span>
+        <span class="c-mon">Juli</span>
+        <span class="c-wd">Sonntag</span>
+        <span class="chip-cancel-tag">Abgesagt</span>
+      </div>
+
+      <div class="chip cancelled">
+        <span class="c-day">11</span>
+        <span class="c-mon">Juli</span>
+        <span class="c-wd">Samstag</span>
+        <span class="chip-cancel-tag">Abgesagt</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ─ ALERT ─ -->
+  <div class="alert-band">
+    <span class="alert-icon">⚠️</span>
+    <div class="alert-content">
+      <div class="alert-title">5. &amp; 11. Juli — Keine Turniere!</div>
+      <div class="alert-sub">Beide Termine fallen aus wegen der Bezirksmeisterschaften (Tennis-Bezirk 4)</div>
+    </div>
+    <span class="alert-badge">Bezirksmeisterschaft</span>
+  </div>
+
+  <!-- ─ CATEGORIES ─ -->
+  <div class="section" style="padding-bottom:0">
+    <div class="section-label">Konkurrenzen · 4 × 12 Spieler max.</div>
+    <div class="cat-row">
+
+      <div class="cat-card youth">
+        <span class="cat-age">U12</span>
+        <span class="cat-label">Jugend bis 12</span>
+        <span class="cat-fee">25 € + 3 € DTB</span>
+      </div>
+
+      <div class="cat-card youth">
+        <span class="cat-age">U14</span>
+        <span class="cat-label">Jugend bis 14</span>
+        <span class="cat-fee">25 € + 3 € DTB</span>
+      </div>
+
+      <div class="cat-card youth">
+        <span class="cat-age">U16</span>
+        <span class="cat-label">Jugend bis 16</span>
+        <span class="cat-fee">25 € + 3 € DTB</span>
+      </div>
+
+      <div class="cat-card adults">
+        <span class="cat-age">H00</span>
+        <span class="cat-label">Herren Einzel · LK 1–25</span>
+        <span class="cat-fee">30 € + 5 € DTB</span>
+        <span class="cat-lk">Offen für Deutschland</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ─ QR CODES ─ -->
+  <div class="section">
+    <div class="section-label">Jetzt anmelden — tennis.de</div>
+    <div class="qr-outer">
+      <div class="qr-inner">
+        <div class="qr-headline">QR scannen &amp; <span>anmelden</span></div>
+        <div class="qr-grid">
+
+          <div class="qr-item">
+            <div class="qr-date-pill">So. 21. Juni 2026</div>
+            <div class="qr-frame" id="qr1"></div>
+            <div class="qr-cta">Turnier #3 — Jetzt einschreiben</div>
+            <div class="qr-url">tennis.de · Spielbetrieb · #detail/829440</div>
+          </div>
+
+          <div class="qr-sep"></div>
+
+          <div class="qr-item">
+            <div class="qr-date-pill">So. 28. Juni 2026</div>
+            <div class="qr-frame" id="qr2"></div>
+            <div class="qr-cta">Turnier #4 — Jetzt einschreiben</div>
+            <div class="qr-url">tennis.de · Spielbetrieb · #detail/841883</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─ INFO ─ -->
+  <div class="section" style="padding-top:0; padding-bottom:20px">
+    <div class="info-row">
+      <div class="info-item">
+        <div class="info-lbl">Format</div>
+        <div class="info-val">Spiralturnier · LK-Wertung<br>DTB-Nummer erforderlich</div>
+      </div>
+      <div class="info-item">
+        <div class="info-lbl">Beginn · Meldeschluss</div>
+        <div class="info-val">9:00 Uhr Spielbeginn<br>48h vor Turnier</div>
+      </div>
+      <div class="info-item">
+        <div class="info-lbl">Anlage</div>
+        <div class="info-val">6 Sandplätze outdoor<br>ESV Wuppertal West</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─ FOOTER ─ -->
+  <div class="footer">
+    <div>
+      <div class="footer-brand">Bergische LK-Turniere</div>
+      <div class="footer-sub">bergische-lk.de · Veranstalter: Jean-Charles Das</div>
+    </div>
+    <div class="footer-right">
+      jcdas1@gmail.com<br>
+      ESV Wuppertal West e.V. · Wuppertal
+    </div>
+  </div>
+
+</div><!-- /poster -->
+
+<div class="controls">
+  <button onclick="window.print()">🖨&nbsp; Drucken / PDF speichern</button>
+</div>
+
+<script>
+function makeQR(id, url) {
+  const qr = qrcode(0, 'M');
+  qr.addData(url);
+  qr.make();
+  const el = document.getElementById(id);
+  el.innerHTML = qr.createImgTag(4, 0);
+  const img = el.querySelector('img');
+  if (img) { img.style.width = '108px'; img.style.height = '108px'; }
+}
+makeQR('qr1','https://www.tennis.de/spielen/spielbetrieb/turniersuche.html#detail/829440');
+makeQR('qr2','https://www.tennis.de/spielen/spielbetrieb/turniersuche.html#detail/841883');
+</script>
+</body>
+</html>

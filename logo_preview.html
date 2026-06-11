@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  body { background: #2a2a2a; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; min-height: 100vh; gap: 40px; margin: 0; padding: 40px; box-sizing: border-box; }
+  label { color: #999; font-family: sans-serif; font-size: 11px; letter-spacing: 2px; text-align: center; display: block; margin-bottom: 12px; }
+  .card { display: flex; flex-direction: column; align-items: center; }
+</style>
+</head>
+<body>
+
+<!-- BADGE CARRÉ fond vert -->
+<div class="card">
+  <label>BADGE</label>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+    <!-- Fond -->
+    <rect width="200" height="200" rx="16" fill="#1C3A0E"/>
+    <!-- Bordure orange fine -->
+    <rect width="200" height="200" rx="16" fill="none" stroke="#B85A20" stroke-width="3"/>
+
+    <!-- BLK en grand -->
+    <text x="100" y="108" font-family="'Bebas Neue', Impact, sans-serif"
+      font-size="92" fill="#F0EBE0" letter-spacing="4"
+      text-anchor="middle">BLK</text>
+
+    <!-- Balle tennis dans le "O" imaginaire — au-dessus du texte -->
+    <circle cx="100" cy="42" r="22" fill="#B85A20"/>
+    <path d="M 83 24 Q 100 42 83 60" fill="none" stroke="#F0EBE0" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M 117 24 Q 100 42 117 60" fill="none" stroke="#F0EBE0" stroke-width="2.5" stroke-linecap="round"/>
+
+    <!-- Ligne séparatrice fine -->
+    <line x1="30" y1="118" x2="170" y2="118" stroke="#B85A20" stroke-width="1.5" opacity="0.6"/>
+
+    <!-- Sous-titre -->
+    <text x="100" y="142" font-family="'Bebas Neue', Impact, sans-serif"
+      font-size="16" fill="#F0EBE0" letter-spacing="5"
+      text-anchor="middle" opacity="0.75">BERGISCHE</text>
+    <text x="100" y="162" font-family="'Bebas Neue', Impact, sans-serif"
+      font-size="13" fill="#B85A20" letter-spacing="4"
+      text-anchor="middle">LK-TURNIERE</text>
+
+    <!-- Ligne de court (coin bas-gauche) -->
+    <line x1="16" y1="182" x2="60"  y2="182" stroke="#F0EBE0" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+    <line x1="16" y1="170" x2="16"  y2="182" stroke="#F0EBE0" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+    <!-- Empreinte balle -->
+    <ellipse cx="38" cy="182" rx="7" ry="3" fill="none" stroke="#B85A20" stroke-width="1.2" opacity="0.7"/>
+  </svg>
+</div>
+
+<!-- LOGO HORIZONTAL fond vert -->
+<div class="card">
+  <label>LOGO NAV — FOND VERT</label>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 100" width="480" height="100" style="background:#1C3A0E; border-radius:6px;">
+
+    <!-- BLK compact -->
+    <text x="12" y="78" font-family="'Bebas Neue', Impact, sans-serif"
+      font-size="82" fill="#F0EBE0" letter-spacing="2">BLK</text>
+    <!-- Balle qui écrase le K -->
+    <circle cx="148" cy="28" r="20" fill="#B85A20"/>
+    <path d="M 133 13 Q 148 28 133 43" fill="none" stroke="#F0EBE0" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M 163 13 Q 148 28 163 43" fill="none" stroke="#F0EBE0" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- Vitesse balle -->
+    <line x1="122" y1="22" x2="128" y2="25" stroke="#F0EBE0" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+    <line x1="120" y1="28" x2="127" y2="28" stroke="#F0EBE0" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+    <line x1="122" y1="34" x2="128" y2="31" stroke="#F0EBE0" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+
+    <!-- Séparateur -->
+    <line x1="182" y1="14" x2="182" y2="86" stroke="#F0EBE0" stroke-width="1" opacity="0.2"/>
+
+    <!-- Texte complet -->
+    <text x="198" y="52" font-family="'Bebas Neue', Impact, sans-serif"
+      font-size="44" fill="#F0EBE0" letter-spacing="3">BERGISCHE</text>
+    <text x="200" y="86" font-family="'Bebas Neue', Impact, sans-serif"
+      font-size="30" fill="#B85A20" letter-spacing="6">LK-TURNIERE</text>
+  </svg>
+</div>
+
+<!-- LOGO HORIZONTAL fond crème -->
+<div class="card">
+  <label>LOGO NAV — FOND CRÈME</label>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 100" width="480" height="100" style="background:#F0EBE0; border-radius:6px;">
+    <text x="12" y="78" font-family="'Bebas Neue', Impact, sans-serif"
+      font-size="82" fill="#1C3A0E" letter-spacing="2">BLK</text>
+    <circle cx="148" cy="28" r="20" fill="#B85A20"/>
+    <path d="M 133 13 Q 148 28 133 43" fill="none" stroke="#F0EBE0" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M 163 13 Q 148 28 163 43" fill="none" stroke="#F0EBE0" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="122" y1="22" x2="128" y2="25" stroke="#B85A20" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+    <line x1="120" y1="28" x2="127" y2="28" stroke="#B85A20" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+    <line x1="122" y1="34" x2="128" y2="31" stroke="#B85A20" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+    <line x1="182" y1="14" x2="182" y2="86" stroke="#1C3A0E" stroke-width="1" opacity="0.2"/>
+    <text x="198" y="52" font-family="'Bebas Neue', Impact, sans-serif"
+      font-size="44" fill="#1C3A0E" letter-spacing="3">BERGISCHE</text>
+    <text x="200" y="86" font-family="'Bebas Neue', Impact, sans-serif"
+      font-size="30" fill="#B85A20" letter-spacing="6">LK-TURNIERE</text>
+  </svg>
+</div>
+
+</body>
+</html>
