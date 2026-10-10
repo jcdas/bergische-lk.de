@@ -41,3 +41,10 @@ scrape_debug.png
 
 # Session scraper (cookies, jamais dans git)
 .tennis_session.json
+
+# Notes perso (Emeric), jamais dans ce repo public (deep dive 10.10.2026)
+*emeric*
+*Emeric*
+recap_*.html
+tenup_*.md
+programme_*.md
