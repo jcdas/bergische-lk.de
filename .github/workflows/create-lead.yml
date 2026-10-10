@@ -12,42 +12,51 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      # Les champs du payload passent par env: pour ne jamais etre interpoles
+      # dans le script shell (injection de commandes via un formulaire).
       - name: Create MD file
+        env:
+          VEREIN: ${{ github.event.client_payload.vereinsname }}
+          LEAD_DATUM: ${{ github.event.client_payload.datum }}
+          ANSPRECHPARTNER: ${{ github.event.client_payload.ansprechpartner }}
+          EMAIL: ${{ github.event.client_payload.email }}
+          TELEFON: ${{ github.event.client_payload.telefon }}
+          ANZAHL_PLAETZE: ${{ github.event.client_payload.anzahl_plaetze }}
+          VEREINSANTEIL: ${{ github.event.client_payload.vereinsanteil }}
+          FREE_TICKETS: ${{ github.event.client_payload.free_tickets }}
+          VERFUEGBARE_SONNTAGE: ${{ github.event.client_payload.verfuegbare_sonntage }}
+          ANZAHL_SONNTAGE: ${{ github.event.client_payload.anzahl_sonntage }}
+          NACHRICHT: ${{ github.event.client_payload.nachricht }}
         run: |
           DATUM=$(date +%Y-%m-%d)
-          VEREIN="${{ github.event.client_payload.vereinsname }}"
-          SLUG=$(echo "$VEREIN" | tr '[:upper:]' '[:lower:]' | tr ' ' '-' | tr -cd '[:alnum:]-')
+          SLUG=$(printf '%s' "$VEREIN" | tr '[:upper:]' '[:lower:]' | tr ' ' '-' | tr -cd '[:alnum:]-')
+          SLUG=${SLUG:-unbekannt}
           DATEINAME="leads/${DATUM}-${SLUG}.md"
           mkdir -p leads
-          cat > "$DATEINAME" << 'LEADEOF'
-          # ${{ github.event.client_payload.vereinsname }}
-
-          **Eingegangen am:** ${{ github.event.client_payload.datum }}
-          **Status:** Interesse erhalten
-
-          ## Kontakt
-          - **Ansprechpartner:** ${{ github.event.client_payload.ansprechpartner }}
-          - **E-Mail:** ${{ github.event.client_payload.email }}
-          - **Telefon:** ${{ github.event.client_payload.telefon }}
-
-          ## Turnierdetails
-          - **Verfügbare Plätze:** ${{ github.event.client_payload.anzahl_plaetze }}
-          - **Vereinsanteil:** ${{ github.event.client_payload.vereinsanteil }} EUR
-          - **Free Tickets:** ${{ github.event.client_payload.free_tickets }}
-          - **Verfügbare Sonntage:** ${{ github.event.client_payload.verfuegbare_sonntage }}
-          - **Anzahl Sonntage:** ${{ github.event.client_payload.anzahl_sonntage }}
-
-          ## Nachricht
-          ${{ github.event.client_payload.nachricht }}
-
-          ## Notizen
-          *(hier eigene Notizen nach dem Erstgespräch eintragen)*
-          LEADEOF
+          {
+            printf '# %s\n\n' "$VEREIN"
+            printf '**Eingegangen am:** %s\n' "$LEAD_DATUM"
+            printf '**Status:** Interesse erhalten\n\n'
+            printf '## Kontakt\n'
+            printf -- '- **Ansprechpartner:** %s\n' "$ANSPRECHPARTNER"
+            printf -- '- **E-Mail:** %s\n' "$EMAIL"
+            printf -- '- **Telefon:** %s\n\n' "$TELEFON"
+            printf '## Turnierdetails\n'
+            printf -- '- **Verfügbare Plätze:** %s\n' "$ANZAHL_PLAETZE"
+            printf -- '- **Vereinsanteil:** %s EUR\n' "$VEREINSANTEIL"
+            printf -- '- **Free Tickets:** %s\n' "$FREE_TICKETS"
+            printf -- '- **Verfügbare Sonntage:** %s\n' "$VERFUEGBARE_SONNTAGE"
+            printf -- '- **Anzahl Sonntage:** %s\n\n' "$ANZAHL_SONNTAGE"
+            printf '## Nachricht\n%s\n\n' "$NACHRICHT"
+            printf '## Notizen\n*(hier eigene Notizen nach dem Erstgespräch eintragen)*\n'
+          } > "$DATEINAME"
 
       - name: Commit and push
+        env:
+          VEREIN: ${{ github.event.client_payload.vereinsname }}
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
           git add leads/
-          git commit -m "Neuer Lead: ${{ github.event.client_payload.vereinsname }}"
+          git commit -m "Neuer Lead: $VEREIN"
           git push
