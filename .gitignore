@@ -38,3 +38,10 @@ scrape_debug.png
 
 # Claude session data
 .claude/
+
+# Notes perso (Emeric), jamais dans ce repo public (deep dive 10.10.2026)
+*emeric*
+*Emeric*
+recap_*.html
+tenup_*.md
+programme_*.md
